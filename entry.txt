@@ -1,0 +1,14 @@
+San Francisco, 49er
+Seattle, Seahawks
+Phoenix, Cardinals
+Boston, Patriots
+Alberta, Edmonton
+British Columbia, Victoria
+Manitoba, Winnipeg
+Ontario, Toronto
+Newfoundland, St-Johns
+Nova Scotia, Halifax
+New Brunswick, Moncton
+Prince Edward Island, Charlottetown
+Quebec, Quebec City
+Saskachewan, Regina
