@@ -1,88 +1,99 @@
-# -*- coding: utf-8 -*-
+
 """
+Implementation of grade calculators using classes and decorators.
 Created on Tue Jan 13 21:34:02 2015
 
-@author: Hugo Sarrazin
 """
 
-class Course(object):
-    def __init__(self, name, grade = None, honor = False):
-        self.name = name
-        self.grade = grade
-        self.honor = honor
-        
-    def getName(self):
-        return self.name
-        
-    def setName(self,name):
-        self.name = name
-
-    def getGrade(self):
-        return self.grade
-        
-    def setGrade(self,grade):
-        self.grade = grade
-        
-    def getHonor(self):
-        return self.honor
-        
-    def setHonor(self,honor):
-        self.honor = honor
-        
-    def __str__(self):
-        if self.honor:    
-            ls = self.name + "\t" + "Hon:\t" + str(self.grade) 
-        else:
-            ls = self.name + "\t" + "Reg:\t" + str(self.grade) 
-        return ls
-         
 # Dictionary to convert grades
-L2G = {"A+":4.3, "A": 4, "A-": 3.7,
-       "B+":3.3, "B": 3, "B-": 2.7,
-       "C+":2.3, "C": 2}    
+L2G = {"A+": 4.3, "A": 4, "A-": 3.7,
+       "B+": 3.3, "B": 3, "B-": 2.7,
+       "C+": 2.3, "C": 2}
 
-def getLetterGrades(courseL):
-    """Assumes that courseL is a list of object of class Course
-        Returns a list containing all the letter grades"""
-    letterL = []
 
-    for l in courseL:
-        letterL.append(l.getGrade())
-    return letterL
-    
-def convertGrade(letterGrade, L2G):
-    """ Assumes letterGrade is a list and L2G are dictionaries
-        Returns a list of numerical grades"""
-    
-    l = []
-    for c in letterGrade:
-        l.append(L2G[c])
-    return l    
-         
-def average(l):
-    """ Assumes l is a non empty list
+class Course():
+    def __init__(self, name, grade=None, honor=False):
+        self.__name = name
+        self.__grade = grade
+        self.__honor = honor
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        self.__name = name
+
+    @property
+    def grade(self):
+        return self.__grade
+
+    @grade.setter
+    def grade(self, grade):
+        self.__grade = grade
+
+    @property
+    def honor(self):
+        return self.__honor
+
+    @honor.setter
+    def honor(self, honor):
+        self.__honor = honor
+
+    def convert_grade(self):
+        """ Convert the letter grades into numbers."""
+        return L2G[self.grade]
+
+    def __str__(self):
+        if self.honor:
+            ls = self.__name + "\t" + "Hon:\t" + str(self.__grade)
+        else:
+            ls = self.__name + "\t" + "Reg:\t" + str(self.__grade)
+        return ls
+
+
+def get_numerical_grades(courses):
+    """ For the list of courses get the numerical grades.
+        Signature: (list str) -> list of float."""
+    letters = []
+
+    for course in courses:
+        letters.append(course.convert_grade())
+    return letters
+
+
+def average(numbers):
+    """ Assumes numbers is a non empty list
         Returns the average of the list """
-        
+
     try:   # Check for divide by zero error
-        return sum(l)/float(len(l))  
+        return sum(numbers) / float(len(numbers))
     except ValueError:
         raise ValueError("Unable to calculate average -> list is empty")
-        
-# def TestGradeAverage():        
-mathC = Course("Math", "A-", True)
-bioC = Course("BIO", "A-")
-englishC = Course("English", "A-", True)
-spanishC = Course("Spanish", "B+")
-APUSHC = Course("APUSH", "B", True)
-CSC = Course("CS", "B+")
 
-courseL = [mathC, bioC, englishC, spanishC, \
-            APUSHC, CSC]
-for l in courseL:
-    print l
-    
-letterL = getLetterGrades(courseL)
-#print letterL
-numL = convertGrade(letterL, L2G)
-#print numL
-print "GPA: ", average(numL)
+
+def main():
+    """ Main code """
+
+    # def TestGradeAverage():
+    mathC = Course("Math", "A-", True)
+    bioC = Course("BIOL", "A-")
+    englishC = Course("English", "A-", True)
+    spanishC = Course("Spanish", "B+")
+    APUSHC = Course("APUSH", "B", True)
+    CSC = Course("CSCI", "B+")
+
+    courses = [mathC, bioC, englishC, spanishC, APUSHC, CSC]
+
+    for course in courses:
+        print(course)
+
+    numbers = get_numerical_grades(courses)
+
+    # print numbers
+    print("GPA: {0:.2f}".format(average(numbers)))
+
+
+if __name__ == '__main__':
+    main()

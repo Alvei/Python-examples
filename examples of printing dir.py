@@ -1,4 +1,4 @@
-#Both dictionaries have the same keys
+# Both dictionaries have the same keys
 prices = {
     "banana": 4,
     "apple": 2,
@@ -23,11 +23,9 @@ for item in prices:
     print(item)   # prints the keys in dict prices
 
 # Calculate the value of the inventory
-print "how many items: " + str( len(prices))
+print("how many items: " + str(len(prices)))
 
 total = 0
 for item in prices:
-    total += prices[item]*stock[item] #Both dict have same key
+    total += prices[item] * stock[item]  # Both dict have same key
 print(total)
-
-

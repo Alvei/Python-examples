@@ -1,7 +1,5 @@
-
 """
 Define functions inside other functions. Explore different scope.
-
 Created on Fri Jan 02 13:18:56 2015
 """
 
