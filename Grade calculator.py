@@ -1,50 +1,51 @@
-# -*- coding: utf-8 -*-
 """
+Simple grade calculator. Need to enter both the unweighted and weighted grades.
+
 Created on Tue Jan 13 19:39:10 2015
 
-@author: Hugo Sarrazin
 """
 
-# Grade calculator
-############################
-
 # Dictionary to convert grades
-L2G = {"A+":4.3, "A": 4, "A-": 3.7,
-       "B+":3.3, "B": 3, "B-": 2.7,
-       "C+":2.3, "C": 2}
-       
+L2G = {"A+": 4.3, "A": 4, "A-": 3.7,
+       "B+": 3.3, "B": 3, "B-": 2.7,
+       "C+": 2.3, "C": 2}
+
 # List of grades unweighted
 courses = {"Math": "A-", "BIO": "A-", "English": "A-",
-        "Spanish": "B+", "CS": "A-", "APUSH": "B"}
-              
+           "Spanish": "B+", "CS": "A-", "APUSH": "B"}
+
 # Weighted grades
 coursesW = {"Math": "A-", "BIO": "A-", "English": "A",
-        "Spanish": "B+", "CS": "A-", "APUSH": "B+"}
+            "Spanish": "B+", "CS": "A-", "APUSH": "B+"}
+
 
 def convertGrade(courses, L2G):
-    """ Assumes courses and L2G are dictionaries"""
-    
-    l = []
-    for c in courses:
-        l.append(L2G[courses[c]])
-    return l
-    
-def average(l):
-    """ Assumes l is a non empty list
-        Returns the average of the list """
-        
+    """ Simple function to convert class grades.
+    Signature: (dict, dict) -> list """
+
+    numerical_grades = []
+    for course in courses:
+        numerical_grades.append(L2G[courses[course]])
+    return numerical_grades
+
+
+def average(my_list):
+    """ Calculate the average of a list.
+        Signature: (list) -> list """
+
     try:   # Check for divide by zero error
-        return sum(l)/float(len(l))  
+        return sum(my_list) / float(len(my_list))
     except ValueError:
         raise ValueError("Unable to calculate average -> list is empty")
-    
-l = convertGrade(courses, L2G)
 
-GPA = average(l)
-print "Unweighted GPA:\t %.2f" % GPA
 
-lW = convertGrade(coursesW, L2G)
+grades = convertGrade(courses, L2G)
 
-GPAW = average(lW)
+GPA = average(grades)
+print("Unweighted GPA:\t %.2f" % GPA)
 
-print "Weighted GPA:\t %.2f" % GPAW
+grades_weigthed = convertGrade(coursesW, L2G)
+
+GPAW = average(grades_weigthed)
+
+print("Weighted GPA:\t %.2f" % GPAW)

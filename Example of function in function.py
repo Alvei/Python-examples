@@ -1,37 +1,42 @@
-# -*- coding: utf-8 -*-
+
 """
+Define functions inside other functions. Explore different scope.
+
 Created on Fri Jan 02 13:18:56 2015
-
-@author: Hugo Sarrazin
 """
 
-# Define functions inside other functions
-def greet(name):
+
+def greet1(name):
+    """ Define a function inside another function. Scope of get_msg() limited to greet1()"""
+
     def get_msg():
         return "Hello "
     return get_msg() + name
 
-print greet("john")     # Output : Hello John
 
-# Passing functions as parameters to functions
-def greet(name):
+def greet2(name):
+    """ greet2 will be passed as an argument."""
     return "Hello " + name
-    
-def call_func(func):  # Passing a function called func
+
+
+def call_func(func):
+    """ Passing a function called func as an argument."""
     other_name = "Bob"
     return func(other_name)  # It is returning the output of func()
 
-print call_func(greet)  # Calling the function with greet as a functional arg
-                        # Outoput : Hello Bob
 
-# Functions can return other functions
 def compose_greet_func():
+    """Functions can return other functions."""
     def get_msg(name):
         return "Hello there!" + name
     return get_msg    # returning a function get_msg
-    
-# assigning a function to greet. 
-# greet becomes a function that behaves like the get_msg function
-greet = compose_greet_func()  
 
-print greet("julie")       # Print Hello there! julie
+
+# Assigning a function to greet. greet becomes a function that behaves like the get_msg function
+greet = compose_greet_func()
+
+print(greet("julie"))       # Print Hello there! julie
+
+
+print(greet1("john"))       # Output : Hello John
+print(call_func(greet2))    # Calling  function with greet2 as a functional arg. Output: Hello Bob

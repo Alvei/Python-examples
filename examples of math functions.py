@@ -1,7 +1,8 @@
 """
+Find all the common divisors between two integers.
+
 Created on Sat Jan 10 16:53:39 2015
 
-@author: Hugo Sarrazin
 Python 3.X
 """
 

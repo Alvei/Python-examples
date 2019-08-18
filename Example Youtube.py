@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 """
 Created on Wed Dec 31 17:31:48 2014
-
-@author: Hugo Sarrazin
+python 2.7
 """
 
 
@@ -13,7 +11,7 @@ from urllib import urlopen
 # location of the youtube api
 url = "https://gdata.youtube.com/feeds/api/standardfeeds/top_rated?alt=json"
 
-# connect to youtube through api 
+# connect to youtube through api
 response = urlopen(url)
 
 # Get the info in variable content

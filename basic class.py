@@ -1,3 +1,9 @@
+""" Simple class definitions.
+    Car(), Shape(), Square()
+    Created 8/2014
+"""
+
+
 class Car(object):
 
     def __init__(self, typ, make, model, color, year, miles):
@@ -14,16 +20,11 @@ class Car(object):
         print('Model: ' + str(self.model))
         print('Year: ' + str(self.year))
         print('Miles: ' + str(self.miles))
-        return ''  # I can avoid getting an error if I un-comment this line
-
-bmw = Car('SUV', 'BMW', 'X5', 'silver', 2003, 12030)
-print bmw
-
-
+        return ''       # I can avoid getting an error if I un-comment this line
 
 
 class Shape:
-    def __init__(self,x,y):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
         self.description = "This shape has not been described yet"
@@ -31,59 +32,69 @@ class Shape:
         self.color = "Color not defined"
 
     def __str__(self):
-        print ('Shape with sides: ' + str(self.x) + ' and ' + str(self.y))
+        print('Shape with sides: ' + str(self.x) + ' and ' + str(self.y))
         return ''   # __str__ needs a return
-               
+
     def area(self):
         return self.x * self.y
 
     def perimeter(self):
         return 2 * self.x + 2 * self.y
-    def describe(self,text):
+
+    def describe(self, text):
         self.description = text
-    def authorName(self,text):
+
+    def authorName(self, text):
         self.author = text
+
     def colorName(self, text):
         self.color = text
-    def scaleSize(self,scale):
+
+    def scaleSize(self, scale):
         self.x = self.x * scale
         self.y = self.y * scale
 
+
 class Square(Shape):
-    def __init__(self,x):
+    """ Uses the class Shape()"""
+
+    def __init__(self, x):
         self.x = x
         self.y = x
-    
-
-
-smallSquare = Square(10)
-
-print smallSquare
 
 
 # The shape looks like this:
 # _________
-#|    |    |
-#|    |    |
-#|____|____|
- 
+# |    |    |
+# |    |    |
+# |____|____|
+
+
 class DoubleSquare(Square):
-    def __init__(self,y):
+    def __init__(self, y):
         self.x = 2 * y
         self.y = y
+
     def perimeter(self):
         return 2 * self.x + 2 * self.y
 
 
+# Test harnesses
+################
+bmw = Car('SUV', 'BMW', 'X5', 'silver', 2003, 12030)
+print(bmw)
+
+smallSquare = Square(10)
+print(smallSquare)
+
 dictionary = {}
- 
+
 # Then, create some instances of classes in the dictionary:
 dictionary["DoubleSquare 1"] = DoubleSquare(5)
-dictionary["long rectangle"] = Shape(600,45)
- 
-#You can now use them like a normal class:
-print "long rectangle area", dictionary["long rectangle"].area()
- 
-dictionary["DoubleSquare 1"].authorName("The Gingerbread Man")
-print dictionary["DoubleSquare 1"].author   
+dictionary["long rectangle"] = Shape(600, 45)
 
+# You can now use them like a normal class:
+print("Long rectangle area:", dictionary["long rectangle"].area())
+
+dictionary["DoubleSquare 1"].authorName("The Gingerbread Man")
+print(dictionary["DoubleSquare 1"].author)
