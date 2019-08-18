@@ -1,0 +1,17 @@
+{
+	"color_scheme": "Packages/Dayle Rees Color Schemes/sublime/contrast/stark-contrast.tmTheme",
+	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": true,
+	"font_size": 14,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"indent_guide_options":["draw_active"],
+
+	"tab_size": 4,
+	"translate_tab_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": true,
+	"wrap_width": 80
+}
