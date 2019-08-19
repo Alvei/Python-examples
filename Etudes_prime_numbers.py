@@ -1,4 +1,6 @@
-""" Series of functions to help find prime numbers
+"""
+Etudes_prime_numbers.py
+    Series of functions to help find prime numbers
     divisors(): checks to see if there is a divisor within a range.
     is_prime(): checks to see if a number is a prime.
     list_primes(): creates list of prime numbers within a range with recursion.

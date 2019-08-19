@@ -1,4 +1,6 @@
-""" Different implementations of sorting
+"""
+Etudes_in_sorting.py
+Different implementations of sorting
 
 Python 3.5
 """

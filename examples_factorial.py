@@ -1,8 +1,11 @@
+"""
+examples_factorial.py
+"""
 def fact_i(num):
     """ Calculates the factorial.
-    Signature (int) -> int
-    Assumes that num is an int > 0
-    for Python 3.5 """
+        Signature (int) -> int
+        Assumes that num is an int > 0
+        for Python 3.5 """
 
     result = 1
 
