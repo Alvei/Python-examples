@@ -1,4 +1,5 @@
-"""digitconversation.py
+"""
+digitconversion.py
 Set of functions to manipulate list or convert them.
 Python 3.5 """
 
@@ -20,11 +21,12 @@ def int_to_str(number):
 
 
 def add_digits(number):
-    """Returns the sum of the digit in number.
-       Signature: (int) -> int """
+    """ Returns the sum of the digit in number.
+        Signature: (int) -> int """
     assert number >= 0   # Works only wiht positive n
 
-    string_rep = int_to_str(number)     # Convert the integer into a string (a list)
+    # Convert the integer into a string (a list)
+    string_rep = int_to_str(number)
 
     total = 0
     for char in string_rep:
@@ -35,7 +37,9 @@ def add_digits(number):
 def is_subset(my_list1, my_list2):
     """Returns True if each element in my_list1 is also in my_list2.
        Signature: (list, list) -> boolean """
-    assert isinstance(my_list1, list) and isinstance(my_list2, list)  # Check that inputs are lists
+
+    # Check that inputs are lists
+    assert isinstance(my_list1, list) and isinstance(my_list2, list)
 
     for elem1 in my_list1:
         matched = False
@@ -51,7 +55,9 @@ def is_subset(my_list1, my_list2):
 def intersection(my_list1, my_list2):
     """Returns a list that is the intersection of my_list1 and my_list2.
        Signature: (list, list) -> list """
-    assert isinstance(my_list1, list) and isinstance(my_list2, list)  # Check that inputs are lists
+
+    # Check that inputs are lists
+    assert isinstance(my_list1, list) and isinstance(my_list2, list)
 
     # Build a list containing common elements
     tmp = []
@@ -70,9 +76,11 @@ def intersection(my_list1, my_list2):
 
 def get_binary_rep(number, num_digits):
     """number is the number to convert into binary
-       numDigit is the number of digits in the binary display.
+       num_digit is the number of digits in the binary display.
        Assumes n and numDigits are non-negative ints
-       Returns a numDigits str that is a binary representation of n"""
+       Returns a num_digits str that is a binary representation of n.
+       Signature: (int, int) -> str """
+
     assert number >= 0   # Works only with positive n
 
     result = ''
@@ -110,9 +118,9 @@ def gen_power_set(my_list):
 
 
 def search(my_list, elem):
-    """Brute force search of a list
-       Assumes my_list and e are the same type.
-       Signature: (list, int) -> bool"""
+    """ Brute force search of a list
+        Assumes my_list and elem are the same type.
+        Signature: (list, int) -> bool"""
     assert isinstance(my_list, list)      # Check that the input is a list
 
     for index, _ in enumerate(my_list):
