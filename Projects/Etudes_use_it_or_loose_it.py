@@ -11,7 +11,7 @@ for Python 3.5
 def backpack(capacity, items):
     """ Given a backpack capcity and a list of item consisting of positive
         numbers, return a number indicating the largest sum  that can be made
-        from a subset of items without exceeding the capacity"""
+        from a subset of items without exceeding the capacity."""
     assert capacity >= 0
     assert isinstance(items, list)
 

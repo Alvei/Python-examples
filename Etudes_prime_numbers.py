@@ -91,9 +91,6 @@ def is_prime_sqrt(number):
 
 def list_primes(beg, end):
     """ Returns a list of prime numbers between beg and end.
-        Assumes beg is an integer greater or equal to 2
-             end is a positive integers < MAX_RECURSION
-             otherwise max recursion exceeded.
         Signature: (int, int) -> list"""
     assert beg >= 2 and end < MAX_RECURSION
 
@@ -112,10 +109,8 @@ def list_primes(beg, end):
 
 def list_primes_sqrt(beg, end):
     """ Returns a list of prime numbers between beg and end.
-        Assumes beg is an integer greater or equal to 2
-                end is a positive integers < MAX_RECURSION
-                otherwise max recursion exceeded.
         Signature: (int, int) -> list"""
+
     # assert beg >= 2 and end < 3*MAX_RECURSION
 
     if beg == end:
@@ -133,10 +128,7 @@ def list_primes_sqrt(beg, end):
 
 def list_primes_loop(beg, end):
     """ Returns a list of prime numbers between beg and end.
-        Assumes beg is an integer greater or equal to 2
-                end is a positive integers < MAX_LOOP
-                otherwise max recursion exceeded in divisors.
-        Signature: (int, int)->list"""
+        Signature: (int, int) -> list"""
 
     assert beg >= 2 and end < MAX_LOOP
 
