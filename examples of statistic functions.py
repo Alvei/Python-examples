@@ -61,12 +61,10 @@ def main():
 
     print(ans)
 
-
     pylab.plot(trials, y10, trials, y20)
     pylab.grid()
     pylab.xlabel("Number of trials")
     pylab.ylabel("Cummulative probability")
-
 
 
 if __name__ == '__main__':
