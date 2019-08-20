@@ -1,5 +1,7 @@
 """
-   @author: Hugo Sarrazin for Python 3.5 """
+   Find root of simple polynomial y**power = x using bissection.
+   for Python 3.5 """
+
 
 def find_root(x, power, epsilon):
     """ Find root of simple polynomial y**power = x using bissection.
@@ -14,7 +16,7 @@ def find_root(x, power, epsilon):
     num_guesses = 0
     low = min(-1.0, x)
     high = max(1.0, x)
-    ans = (high + low)/2.0
+    ans = (high + low) / 2.0
 
     while abs(ans**power - x) >= epsilon:
         num_guesses += 1
@@ -22,8 +24,8 @@ def find_root(x, power, epsilon):
             low = ans
         else:
             high = ans
-        ans = (high + low)/2.0
-    #print ('num_guesses =', num_guesses)
+        ans = (high + low) / 2.0
+    # print('num_guesses =', num_guesses)
     return ans
 
 
@@ -42,5 +44,6 @@ def test_find_root():
                 print('    No Roots')
             else:
                 print('\tAns = %4.4f => %4.4f ~= %d' % (result, result**power, test))
+
 
 test_find_root()

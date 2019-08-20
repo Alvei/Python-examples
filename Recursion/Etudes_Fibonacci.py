@@ -1,6 +1,6 @@
 """Etudes Fibonacci.py
-   Compares the recursive implementation of Fib with the one using Hashing
-   and dynamic programing
+   Compares the recursive implementation of Fib with the one using
+   Hashing and dynamic programing
    Python 3.5"""
 
 

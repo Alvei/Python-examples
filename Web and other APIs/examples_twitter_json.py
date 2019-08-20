@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
+
 """
 Created on Wed Dec 31 20:02:35 2014
+for python 2.7
 
-@author: Hugo Sarrazin
 """
 import urllib2
 import json
@@ -15,6 +15,6 @@ if __name__ == "__main__":
     opener = urllib2.build_opener()
     f = opener.open(req)
     data = json.load(f)   # Converting in python based data such as list, strings, dict
-    
+
     for item in data:
-        print item.get('create_at')
+        print(item.get('create_at'))
