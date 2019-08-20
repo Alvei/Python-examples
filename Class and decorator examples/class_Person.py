@@ -182,34 +182,34 @@ def rawGradeReport(course):
     return report
 
 # Test Harness #1: Testing the Person Class
-#------------------------------------------
+# ------------------------------------------
 
 
 def test_basic():
-    Mili = Person('Mili Choi')
-    Hugo = Person('Hugo Sarrazin')
-    Zoe = Person('Zoe Sarrazin')
-    Anais = Person('Anais Potter')
+    Mili = Person('Mili Chad')
+    Bob = Person('Bob Paradis')
+    Zoe = Person('Zoe Lalonde')
+    Anabel = Person('Anabel Potter')
     print(Mili, 'last name', Mili.getLastName())
-    print(Hugo, Mili, Zoe, Anais)
+    print(Bob, Mili, Zoe, Anabel)
 
     Mili.setBirthday(datetime.date(1969, 5, 22))
-    Hugo.setBirthday(datetime.date(1968, 7, 9))
+    Bob.setBirthday(datetime.date(1968, 7, 9))
     print('\n')
     print(Mili.getName(), "is", Mili.getAge(), 'days old')
-    print(Hugo.getName(), "is", Hugo.getAge(), 'days old')
-    print('Hugo was born ', Hugo.getAge() - Mili.getAge(), ' days before Mili')
+    print(Bob.getName(), "is", Bob.getAge(), 'days old')
+    print('Bob was born ', Bob.getAge() - Mili.getAge(), ' days before Mili')
 
 # Test Harness #2: Testing the sorting using __lt__ and last name
 #---------------------------------------------------------------
 
 
 def test_sorting():
-    Mili = Person('Mili Choi')
-    Hugo = Person('Hugo Sarrazin')
-    Zoe = Person('Zoe Sarrazin')
-    Anais = Person('Anais Potter')
-    pList = [Zoe, Mili, Hugo, Anais]
+    Mili = Person('Mili Chad')
+    Bob = Person('Bob Paradis')
+    Zoe = Person('Zoe Lalonde')
+    Anabel = Person('Anabel Potter')
+    pList = [Zoe, Mili, Bob, Anabel]
     for p in pList:
         print(p)
     print('\nSorted by last name')
@@ -278,8 +278,8 @@ def test_grades():
 
 
 # Testing
-#============
-# test_basic()
-# test_sorting()
+# ============
+test_basic()
+test_sorting()
 # test_MITClass()
 test_grades()
