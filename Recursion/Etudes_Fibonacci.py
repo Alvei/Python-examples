@@ -4,18 +4,6 @@
    Python 3.5"""
 
 
-def fib_loop(num):
-    """ Calculates the fibonacci number of num.
-        Use loops and double assignments.
-        Signature (int) -> int """
-    assert num >= 0 and isinstance(num, int)
-
-    old, new = 0, 1
-    for index in range(num):
-        old, new = new, old + new
-    return old
-
-
 def fib(num):
     """Calculates the fibonacci number of num.
        Signature (int) -> int """
@@ -45,6 +33,41 @@ def fast_fib(num, memo={}):
         result = fast_fib(num - 1, memo) + fast_fib(num - 2, memo)
         memo[num] = result
         return result
+
+
+def fib_loop(num):
+    """ Calculates the fibonacci number of num.
+        Use loops and double assignments.
+        Signature (int) -> int """
+    assert num >= 0 and isinstance(num, int)
+
+    old, new = 0, 1
+    for index in range(num):
+        old, new = new, old + new
+    return old
+
+
+def fib_global(num):
+    """ Recursive Fibonacci with Global Variable
+        Signature: (int) -> int"""
+    global num_fib_calls
+
+    num_fib_calls += 1
+
+    if num == 0 or num == 1:  # base case
+        return 1
+
+    return fib_global(num - 1) + fib(num - 2)
+
+
+def test_fib_global(num):
+    """ test fib_global """
+    for index in range(num + 1):
+        global num_fib_calls
+        num_fib_calls = 0
+
+        print("fib of", index, "=", fib_global(index))
+        print("fib called", num_fib_calls, "times.")
 
 
 def test_fib(num):

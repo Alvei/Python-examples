@@ -1,6 +1,8 @@
 """
 examples_factorial.py
 """
+
+
 def fact_i(num):
     """ Calculates the factorial.
         Signature (int) -> int
@@ -17,8 +19,7 @@ def fact_i(num):
 
 def fact_r(num):
     """ Calculates the factorial using recursion.
-    Signature (int) -> int
-    Assumes that num is an int > 0"""
+    Signature (int) -> int"""
 
     # base case
     if num == 1:
