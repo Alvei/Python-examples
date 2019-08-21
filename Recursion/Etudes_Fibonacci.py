@@ -4,6 +4,18 @@
    Python 3.5"""
 
 
+def fib_loop(num):
+    """ Calculates the fibonacci number of num.
+        Use loops and double assignments.
+        Signature (int) -> int """
+    assert num >= 0 and isinstance(num, int)
+
+    old, new = 0, 1
+    for index in range(num):
+        old, new = new, old + new
+    return old
+
+
 def fib(num):
     """Calculates the fibonacci number of num.
        Signature (int) -> int """
@@ -52,6 +64,8 @@ def test_fib2(num):
     print('fastFib of \t', num, ' = ', str(fast_fib(num)))   # Should be super fast
     print('fib of \t\t', num, ' = ', str(fib(num)))            # Should take some time
 
+
+print(fib_loop(45))
 
 test_fib(12)
 print('\n\n')

@@ -32,7 +32,7 @@ def get_dict(filename):
 
 def main():
     """ Main code """
-    # filename = "C:\Users\Hugo Sarrazin\Documents\Python Scripts\entry.txt"
+
     filename = "entry.txt"
     mydict = get_dict(filename)
 
