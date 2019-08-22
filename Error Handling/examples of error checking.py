@@ -1,12 +1,22 @@
-# -*- coding: utf-8 -*-
 """
 Created on Mon Dec 29 13:47:08 2014
 
 Simple functions to read input with some error checking.
-Note that checking for string does not work since it assume a 
+Note that checking for string does not work since it assume a
 number is a string
 python 3.x
 """
+
+
+def yes_or_no(question):
+    """ Ask Y/N question with error checking.
+        Signature: (str) -> boolean."""
+    while "the answer is invalid":
+        reply = str(input(question + ' (y/n): ')).lower().strip()
+        if reply[:1] == 'y':
+            return True
+        if reply[:1] == 'n':
+            return False
 
 
 def read_int():
@@ -59,6 +69,7 @@ def main():
     print(read_val(str, "Enter string: ", "Not an string."))
 
     # temp_convert("xyz");
+
 
 if __name__ == '__main__':
     main()
