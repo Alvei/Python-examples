@@ -1,9 +1,10 @@
-# Power of n using recursion
-############################################
+"""
+Using recursion to do interger multiplications and power.
+"""
 
 
 def rec_power(m, n):
-    """ Calculates the power n of a number m using recursion
+    """ Calculates the power n of a number m using recursion.
         Signature: (int, int) -> int"""
 
     # Check that the input are ok
@@ -24,3 +25,13 @@ def rec_mult(m, n):
     if n == 0:  # Base case
         return 0
     return m + rec_mult(m, n - 1)
+
+
+def main():
+    """ Main code """
+    print("3 * 4  = ", rec_mult(3, 4))
+    print("2 ** 3 = ", rec_power(2, 3))
+
+
+if __name__ == '__main__':
+    main()

@@ -63,12 +63,17 @@ def is_palindrome(s):
 
 
 def test_is_palindrome():
-    print("Try dogGod")
-    print(is_palindrome("dogGod"))
-    print("Try doGOOD")
-    print(is_palindrome("doGOOD"))
+    print("dogGod is a palindrome?", is_palindrome("dogGod"))
+    print("doGOOD is a palindrome?", is_palindrome("doGOOD"))
 
 
-test_is_palindrome()
-print(is_palindrome_list([1, 2, 1]), "should be True")
-print(is_palindrome_list([1, 2, 2]), "should be False")
+def main():
+    """ Main code """
+
+    test_is_palindrome()
+    print("[1, 2, 1] palindrome?", is_palindrome_list([1, 2, 1]))
+    print("[1, 2, 2] palindrome?", is_palindrome_list([1, 2, 2]))
+
+
+if __name__ == '__main__':
+    main()

@@ -3,6 +3,8 @@
     Greate example of decorator in classes
     https://www.programiz.com/python-programming/property
     Created Aug 2016."""
+
+
 class Element():
     """Atomic element class with private attributes"""
 

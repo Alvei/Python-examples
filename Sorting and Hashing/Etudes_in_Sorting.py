@@ -137,9 +137,6 @@ def first_name_last_name(name1, name2):
     # Default -> First name the same, sort by first name
     return new_name1[1] < new_name2[1]
 
-# Test harness
-#------------
-
 
 def test_sel_sort():
     ''' test_selSort'''

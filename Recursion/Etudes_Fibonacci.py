@@ -88,8 +88,16 @@ def test_fib2(num):
     print('fib of \t\t', num, ' = ', str(fib(num)))            # Should take some time
 
 
-print(fib_loop(45))
+def main():
+    """ Main code """
+    print("Fib using loop F(45):", fib_loop(45))
+    test_fib_global(3)
 
-test_fib(12)
-print('\n\n')
-test_fib2(35)
+    print('\n\n')
+    test_fib(4)
+    print('\n\n')
+    test_fib2(35)
+
+
+if __name__ == '__main__':
+    main()
