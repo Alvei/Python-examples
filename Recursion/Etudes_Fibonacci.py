@@ -47,18 +47,6 @@ def fib_loop(num):
     return old
 
 
-
-
-def test_fib_global(num):
-    """ test fib_global """
-    for index in range(num + 1):
-        global num_fib_calls
-        num_fib_calls = 0
-
-        print("fib of", index, "=", fib_global(index))
-        print("fib called", num_fib_calls, "times.")
-
-
 def test_fib(num):
     """ Test harness. The last call with n = 35 is instanteneous
         for fastFib but takes long for fib """
@@ -80,7 +68,6 @@ def test_fib2(num):
 def main():
     """ Main code """
     print("Fib using loop F(45):", fib_loop(45))
-    test_fib_global(3)
 
     print('\n\n')
     test_fib(4)
