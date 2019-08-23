@@ -42,10 +42,23 @@ def fib_loop(num):
     assert num >= 0 and isinstance(num, int)
 
     old, new = 0, 1
-    for index in range(num):
+    for _ in range(num):
         old, new = new, old + new
     return old
 
+def fib_yield(num):
+    """ Calculates the fibonacci number of num.
+        Use generator.
+        Signature (int) -> int """
+    yield 0  # special case
+
+    if num > 0: 
+        yield 1  # special case
+    last = 0  # initially set to fib(0)
+    next = 1  # initially set to fib(1)
+    for _ in range(1, num):
+        last, next = next, last + next
+        yield next  # main generation step
 
 def test_fib(num):
     """ Test harness. The last call with n = 35 is instanteneous
@@ -73,6 +86,11 @@ def main():
     test_fib(4)
     print('\n\n')
     test_fib2(35)
+
+    # This is still buggy
+    for index in fib_yield(35):
+        print(index)
+    #print("Using Yield:", fib_yield(10))
 
 
 if __name__ == '__main__':
