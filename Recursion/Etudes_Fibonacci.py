@@ -47,17 +47,6 @@ def fib_loop(num):
     return old
 
 
-def fib_global(num):
-    """ Recursive Fibonacci with Global Variable
-        Signature: (int) -> int"""
-    global num_fib_calls
-
-    num_fib_calls += 1
-
-    if num == 0 or num == 1:  # base case
-        return 1
-
-    return fib_global(num - 1) + fib(num - 2)
 
 
 def test_fib_global(num):
