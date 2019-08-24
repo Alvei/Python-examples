@@ -1,5 +1,5 @@
 """ Comma Grid program.
-    
+    Transpose the grid. Ie columns become row.
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Page 102.
 """
 
