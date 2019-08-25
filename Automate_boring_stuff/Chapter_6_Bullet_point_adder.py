@@ -6,9 +6,9 @@
 from os.path import dirname, join
 
 
-def add_char_to_every_lines(file_name, characters): 
-    """ Read a file and add characters to every line. 
-        Signature: (str, str) -> None."""
+def add_char_to_every_lines(file_name, characters, debug=False):
+    """ Read a file and add characters to every line.
+        Signature: (str, str, str) -> None."""
 
     # Find the location of the current directory. Assumes the text file is in the same directory
     current_dir = dirname(__file__)
@@ -17,17 +17,18 @@ def add_char_to_every_lines(file_name, characters):
     with open (file_path, 'rt') as in_file:
         try:
             # Read the entire file into a string variable
-            contents = in_file.read()           
-            print("Original file:\n", contents, '\n', sep="")             # Print string
+            contents = in_file.read()
+            if debug == True:
+                print("Original file:\n", contents, '\n', sep="")             # Print string
         except IOError:
             print('Unable to load "%s".  Check that it exists.' % file_path)
             return
-        
+
 
     lines = contents.split('\n')            # Separate the string based on EOL
-    # print("Convert into a list:", lines)                            # Print list(string)             
+    # print("Convert into a list:", lines)                            # Print list(string)
 
-    # Add the new characters in front of the line              
+    # Add the new characters in front of the line
     new_lines = []
     for line in lines:
         new_lines.append(characters + line)
@@ -42,7 +43,7 @@ def add_char_to_every_lines(file_name, characters):
 
 def main():
     """ Test harness. Use * to create a bullet list."""
-    add_char_to_every_lines("old_file.md", "* ")
+    add_char_to_every_lines("Chapter_6_old_file.md", "* ", True)
 
 if __name__ == "__main__":
     main()
