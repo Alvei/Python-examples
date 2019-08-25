@@ -9,7 +9,7 @@ from os.path import dirname, join
 
 def read_file(file_name, debug=False):
     """ Read a file and return a long string while doing some basic error checking
-        Signature: (str) -> str."""
+        Signature: (str, str) -> str."""
 
     # Find the location of the current directory. Assumes the text file is in the same directory
     current_dir = dirname(__file__)
@@ -45,12 +45,13 @@ def get_all_phone_no(text, debug=False):
     phone_no = []
     for item in ans:
         phone_no.append(item[0])
-    return phone_no
+    # Convert the list of strings to a singular string with each answer separated by an EOL
+    return '\n'.join(phone_no)
 
 
 def get_all_emails(text):
     """ Apply email regex to find all the emails in a string.
-        Signature: (str) -> list(str). """
+        Signature: (str) -> str. """
     # By putting the parenthesis in front of each element we get access to each
     email_regex = re.compile(r'''(
         ([a-zA-Z0-9._%+-]+)     # username
@@ -64,14 +65,16 @@ def get_all_emails(text):
     emails = []
     for item in ans:
         emails.append(item[0])
-    return emails
+
+    # Convert the list of strings to a singular string with each answer separated by an EOL
+    return '\n'.join(emails)
 
 
 def main():
     """ Test harness """
     text = read_file('Chapter_7_input_file.txt', debug=True)
-    print(get_all_phone_no(text))
-    print(get_all_emails(text))
+    print("Phone no:\n", get_all_phone_no(text), sep='')
+    print("\nEmails:\n", get_all_emails(text), sep='')
 
 
 if __name__ == "__main__":
