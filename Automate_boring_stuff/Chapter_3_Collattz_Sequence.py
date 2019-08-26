@@ -51,7 +51,7 @@ def yes_or_no(question):
 
 def main():
     """"Main program"""
-    
+
     print(" Collatz Sequence Program\n", "#"*25)
     if yes_or_no("Choose to count steps"):
         try:
@@ -59,12 +59,12 @@ def main():
         except ValueError:
             print('Non-Integer entered, program will exit')
     else:
-    
+
         try:
             collatz(int(input('Choose any integer greater than 1: ')))
         except ValueError:
             print('Non-Integer entered, program will exit')
-        
-   
+
+
 if __name__ == '__main__':
     main()

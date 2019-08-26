@@ -1,5 +1,5 @@
 """" Add to invetory.
-    
+
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Page 120.
 """
 

@@ -1,0 +1,9 @@
+Gender, Weight (lbs)
+Male, 171.0
+Male, 179.6
+Male, 174.7
+Male, 172.5
+Female, 161.4
+Male, 192.7
+Male, 190.4
+Male, 193.4

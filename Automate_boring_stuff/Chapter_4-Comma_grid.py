@@ -42,7 +42,7 @@ def transpose_grid(grid):
         new_string = ""
         for row in lines:
             new_string += row[col]
-            #col += 1    
+            #col += 1
         print(new_string)
 
 def transpose_grid2(grid):

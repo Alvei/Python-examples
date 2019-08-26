@@ -14,7 +14,7 @@ from os.path import dirname, join
 
 
 def read_two_lists(file_path, key_col, value_col):
-    """ Read two lists from the csv data that will become (key, value) pairs 
+    """ Read two lists from the csv data that will become (key, value) pairs
         Signature (string, int, int) -> tuple(list, list)."""
 
     with open(file_path) as csvfile:
@@ -27,7 +27,7 @@ def read_two_lists(file_path, key_col, value_col):
         values = []
         keys = []
         for row in readCSV:
-            key = row[key_col]          
+            key = row[key_col]
             value = row[value_col]
 
             values.append(value)
@@ -36,10 +36,10 @@ def read_two_lists(file_path, key_col, value_col):
         # Return a tuple with the two lists
         print("List of Values =", values)
         print("List Keys =", keys)
-        return (keys, values) 
+        return (keys, values)
 
 def read_dict(file_path, key_col, value_col):
-    """ Read the csv data. In this case, we know upfront the data we want to store. 
+    """ Read the csv data. In this case, we know upfront the data we want to store.
         The 1st (value) and 4th columns (key).
         Signature (string) -> dict."""
 
@@ -56,7 +56,7 @@ def read_dict(file_path, key_col, value_col):
 
         print("Dictionary:", my_dict)
 
-        return my_dict 
+        return my_dict
 
 def find_list_match(list1, list2, key):
     """ Uses the fact that index in one list is the same for the other list.
@@ -93,9 +93,9 @@ def main():
     my_dict = read_dict(file_path, 3, 0)
 
     what_color = input('What color do you wish to know the date of?:')
-    
+
     # find_list_match(colors, dates, what_color)
-    find_value(my_dict, what_color)   
+    find_value(my_dict, what_color)
 
 
 if __name__ == "__main__":
