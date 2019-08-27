@@ -5,26 +5,27 @@
 """
 import re
 DEBUG = False
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+#logging.disable(logging.DEBUG)
 
 def my_strip(text, remove=''):
     """ Signature: (str, str) -> str."""
 
     # Start with default. Removes whitespace from either end of the string.
     if remove == '':
-        if DEBUG:
-            print("***", text, "***", sep='')
+        logging.debug("***" + text + "***")
 
         # Remove the front spaces, use ^ to insist on starting at beginning
         front_regex =  re.compile(r'^\s+')
         front = front_regex.sub("", text)
-        if DEBUG:
-            print("***", front, "***", sep='')
+        logging.debug("***" + front + "***")
 
         # Remove the back spaces. \Z means from the end of the string
         back_regex =  re.compile(r'\s+\Z')
         ans = back_regex.sub("", front)
-        if DEBUG:
-            print("***", ans, "***", sep='')
+        logging.debug("***" + ans + "***")
 
         return ans
     else:
@@ -38,8 +39,7 @@ def my_strip(text, remove=''):
         start_len = len(start.group())
         end_len = len(end.group())
 
-        if DEBUG:
-            print(start.group(), end.group())
+        logging.debug("Start:" + start.group() + "End:" + end.group())
 
         # Allows function to strip even if only one side has remove characters
         try:
@@ -53,10 +53,10 @@ def my_strip(text, remove=''):
 def main():
     """ Test Harness"""
 
-    tests = {"":"   allo c'est moi        ", "#":"####Non c'est toi###"}
+    tests = {"": "   allo c'est moi        ", "#": "####Non c'est toi###"}
 
     for key, text in tests.items():
-        print(key,text)
+        print("\nKey:\'", key, "\' \tValue:\'", text, "\'")
         orig_len = len(text)
         ans = my_strip(text, key)
         print("Length: Original=", orig_len, "-> Final=", len(ans),":", ans)
