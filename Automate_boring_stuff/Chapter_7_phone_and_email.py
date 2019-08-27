@@ -5,11 +5,15 @@
 """
 import re
 from os.path import dirname, join
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging.disable(logging.DEBUG)
 
 
-def read_file(file_name, debug=False):
+def read_file(file_name):
     """ Read a file and return a long string while doing some basic error checking
-        Signature: (str, str) -> str."""
+        Signature: (str) -> str."""
 
     # Find the location of the current directory. Assumes the text file is in the same directory
     current_dir = dirname(__file__)
@@ -19,8 +23,7 @@ def read_file(file_name, debug=False):
         try:
             # Read the entire file into a string variable
             contents = in_file.read()
-            if debug == True:
-                print("Original file:\n", contents, '\n', sep="")
+            logging.debug("Original file:\n" + contents + "\n")
             return contents
         except IOError:
             print('Unable to load "%s".  Check that it exists.' % file_path)
@@ -72,7 +75,7 @@ def get_all_emails(text):
 
 def main():
     """ Test harness """
-    text = read_file('Chapter_7_input_file.txt', debug=True)
+    text = read_file('Chapter_7_input_file.txt')
     print("Phone no:\n", get_all_phone_no(text), sep='')
     print("\nEmails:\n", get_all_emails(text), sep='')
 
