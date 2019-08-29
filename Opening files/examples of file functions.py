@@ -2,29 +2,34 @@
 Examples of I/O
 Created on Sun Dec 28 07:45:23 2014 """
 import os
+from os.path import dirname, join
+from pprint import pprint
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.disable(logging.DEBUG)
 
 
 def num_words(file_name):
-    ''' function to count the words in a file
-        Signature: (str) -> int'''
-    with open(file_name, 'r') as f:
+    ''' function to count the words in a file.
+        Signature: (str) -> int.'''
+
+    with open(file_name, 'r') as file_object:
         total = 0
-        for line in f:
+        for line in file_object:
             count = len(line.split())
             total += count
-         # print("total =", total, "count =", count)
+        logging.debug("total = %s count = %s", total, count)
         return total
-
-# print("number of word is: ", num_words('course_description.txt'))
 
 
 def most_common(file_name):
-    ''' Function to returns the most common word in a file.
-        Signature: (str) -> dict with the word and word count pairs'''
+    ''' Function to returns the most common word in a file in a unsorted dictionary.
+        Signature: (str) -> dict {word: word count}'''
 
-    with open(file_name, 'r') as f:
+    with open(file_name, 'r') as file_object:
         words = {}
-        for line in f:                  # Loop of each line
+        for line in file_object:        # Loop of each line
             line_words = line.split()   # Creates a list of words for that line
 
             for word in line_words:     # Loop over the list of words
@@ -32,38 +37,37 @@ def most_common(file_name):
                     words[word] += 1    # Add to the counter
                 else:
                     words[word] = 1     # Create a new word in dict with count 1
-        # print "list of items: ", words.items()
+        # print("list of items: ", words.items())
         # return sorted(words.items(), key=lambda x: x[1], reverse=True)[0]
         return words                    # Unsorted dict
 
-# print("Most common word is: ", most_common(file_name))
 
-
-def getKey(item):
-    """ Simple function to return the 2nd item from a list.
-        This is a list of tuples (word, word_count)
-    """
-    return item[1]  # return the 2nd item of the list on which we will sort
+def get_key(item):
+    """ Simple function to return the 2nd item from a tuple
+        Signature: (tuple(any)) -> any. """
+    return item[1]  # return the 2nd item of the tuple on which we will sort
 
 
 def main():
     """ Main code """
-    file_name = "course_description.txt"
-    D = most_common(file_name)
-    listWords = D.items()   # Create a list of tuples (word, word_count)
+    file_name =  "lorem.txt"
+    current_dir = dirname(__file__)
+    file_path = join(current_dir, "./", file_name)
+
+    print("\nNumber of words: ", num_words(file_path))
+
+    my_dict = most_common(file_path)
+    list_words = my_dict.items()       # Create a dictionary of tuples (word, word_count)
+    print("\n Dict of words:")
+    print(list_words)
 
     # replaces the lambda function,
-    # uses getKey with no argument since assumes listWords, the first argument
-    # getKey returns the second elements of the tuple which is the word count
-    sorted(listWords, key=getKey, reverse=True)[0]  # Sort and return the largest
-
-    # Breaks down further the line into two steps, create a sorted list,
-    # tell me biggest #
-    s = sorted(listWords, key=getKey, reverse=True)  # returns a sorted list of tuples
-    print(s[0])
-
-    current_dir = os.getcwd()
-    print(current_dir)
+    # uses get_key with no argument since assumes list_words, the first argument
+    # get_key returns the second elements of the tuple which is the word count
+    new_list = sorted(list_words, key=get_key, reverse=True)
+    print("\n LIst of words:")
+    print(new_list)
+    print("Largest: ", new_list[0])
 
 
 if __name__ == '__main__':
