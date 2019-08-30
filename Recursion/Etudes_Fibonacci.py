@@ -60,6 +60,9 @@ def fast_fib2(num):
 
     if not isinstance(num, int):
         raise TypeError("Expecting int but got", type(int))
+    if num < 0:
+        raise ValueError("num must be positive. It is", num)
+
     if num in (0,1):
         return 1
     else:
@@ -67,15 +70,15 @@ def fast_fib2(num):
 
 
 def fib_yield(num):
-    """ Calculates the fibonacci number of num.
-        Use generator.
+    """ Calculates the fibonacci number of num. Use generator.
         Signature (int) -> int """
     yield 0  # special case
 
     if num > 0:
         yield 1  # special case
-    last = 0  # initially set to fib(0)
-    next = 1  # initially set to fib(1)
+
+    last, next = 0, 1  # initially set to fib(0) and fib(1)
+
     for _ in range(1, num):
         last, next = next, last + next
         yield next  # main generation step
@@ -92,20 +95,18 @@ def test_fib(num):
 def test_fib2(num):
     """ Test harness. The last call with n = 35 is instanteneous
         for fastFib but takes long for fib """
-    print('fastFib of \t', num, ' = ', str(fast_fib(num)))   # Should be super fast
-    print('fastFib2 of \t', num, ' = ', str(fast_fib2(num))) # Should be super fast
+    print('fastFib of \t\t', num, ' = ', str(fast_fib(num)))   # Should be super fast
+    print('fastFib2 of \t\t', num, ' = ', str(fast_fib2(num))) # Should be super fast
     print("This should take a while....")
-    print('fib of \t\t', num, ' = ', str(fib(num)))          # Should take some time
+    print('Traditional recursion Fib \t', num, ' = ', str(fib(num)))  # Should take some time
+    print('Traditional loop Fib \t\t', num, ' = ', str(fib_loop(num)))  # Should take some time
 
 
 def main():
-    """ Main code """
-    print("Fib using loop F(45):", fib_loop(45))
+    """ Test Harness """
 
-    print('\n')
-    test_fib(4)
-    print('\n')
-    test_fib2(35)
+    print('\n'); test_fib(4)
+    print('\n'); test_fib2(35)
 
     # This is still buggy
     #for index in fib_yield(35):
