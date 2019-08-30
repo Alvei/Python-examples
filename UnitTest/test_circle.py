@@ -3,6 +3,7 @@ from math import pi
 from circle import circle_area
 
 class TestCircleArea(unittest.TestCase):
+    """ Simple unit test. Run python -m unittest"""
     def test_area(self):
         # Test areas with radius > 0
         self.assertAlmostEqual(circle_area(1), pi)
