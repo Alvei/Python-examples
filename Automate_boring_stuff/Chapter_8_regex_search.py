@@ -29,7 +29,7 @@ def look_for_pattern(pattern):
             txt_files.append(doc)
 
     # Write regex to match a search. In this case looking for pattern ending in !
-    search_regex = re.compile(r'\s?\w*\!')
+    search_regex = re.compile(pattern)
 
     # Open each txt file in turn and if regex triggers print matches to console
     for doc in txt_files:
@@ -43,7 +43,7 @@ def look_for_pattern(pattern):
 
 def main():
     """ Test harness """
-    pattern = '\s?\w*\!'
+    pattern = r'\s?\w*\!'
     look_for_pattern(pattern)
 
 if __name__ == "__main__":
