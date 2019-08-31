@@ -3,4 +3,4 @@
 3rd line 313.323.4567
 4th line info@nostarch.com
 5th line academic@nostart.org
-6th line Paul.joines@norstart.edu
+6th line Paul.joines@norstart.edu!
