@@ -20,7 +20,7 @@ def look_for_pattern(pattern):
     files = os.listdir(os.getcwd())
     logging.debug(os.getcwd())
 
-    txt_files = []   # List of files with *.txt extensions
+    txt_files = []              # List of files with *.txt extensions
 
     # Filter the files that are not txt files
     txt_doc_regex = re.compile(r'.txt')
