@@ -53,6 +53,7 @@ def main():
     file_name =  "lorem.txt"
     current_dir = dirname(__file__)
     file_path = join(current_dir, "./", file_name)
+    logging.debug(os.getcwd())
 
     print("\nNumber of words: ", num_words(file_path))
 
