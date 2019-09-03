@@ -2,7 +2,7 @@
     Search for a regex pattern in all txt files in a directory.
     Regext pattern passed finishes with !
     https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s02.html
-    also Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 6. Page 195.
+    also Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 8. Page 195.
 """
 
 import os
