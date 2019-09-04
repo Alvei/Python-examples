@@ -3,13 +3,13 @@ Simple functions to reverse a string.
 """
 
 def reverse(string):
-    """ Reversing the text it receives using slicing. Most pythonic
+    """ Reversing the text using slicing. Most pythonic
         Signature: (str) -> str. """
     string = string[::-1]
     return string
 
 def reverse_basic(text):
-    """ Reverse by simply adding characters upfront to the string.
+    """ Reverse by adding characters upfront to the string.
         Signature: (str) -> str. """
     new_text = ""
     for index in text:
@@ -42,10 +42,10 @@ def reverse_recursion(text):
 
 def main():
     """ Test harness """
-    print(reverse("bonsoir"))
-    print(reverse_basic("bonjour"))
-    print(reverse_counter("Football"))
-    print(reverse_recursion("bon2bon"))
+    functions = [reverse, reverse_basic, reverse_counter, reverse_recursion]
+
+    for func in functions:
+        print(func("bonjour"))
 
 if __name__ == "__main__":
     main()
