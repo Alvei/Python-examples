@@ -1,6 +1,7 @@
 """ Chapter_8_regex_search.py
     Search for a regex pattern in all txt files in a directory.
     Regext pattern passed finishes with !
+    https://medium.com/analytics-vidhya/intro-to-regexes-strong-password-detection-in-python-2138fc3cf8bf
     https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s02.html
     also Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 8. Page 195.
 """
@@ -44,11 +45,19 @@ def look_for_pattern(pattern):
         logging.debug("String:%s", string)
         found = search_regex.findall(string)
         found_str = ' '.join(found)
-        print("Answer for this doc:", found_str)
+        print("Answer for ", doc, "is: ", found_str)
 
 
 def main():
-    """ Test harness """
+    """ Test harness
+    \s  => Matches any space, tab or newline character (i.e. whitespace characters)
+    ?   => Matches zero or one occurences of the pattern to the left of it.
+    *   => Matches zero or more occurences of the pattern to the left of it.
+    \w  => Matches any letter, numeric digit or underscore character (i.e. alphanumeric characters);
+        this is equivalent to the class [a-zA-Z0-9_]
+
+    The pattern is: ok to have 0 or 1 spaces, then any combination of alphanumeric before !
+    """
 
     pattern = r'\s?\w*\!'
     look_for_pattern(pattern)
