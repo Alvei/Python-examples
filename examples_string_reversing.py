@@ -2,24 +2,21 @@
 Simple functions to reverse a string.
 """
 
-def reverse(string) -> str:
-    """ Reversing the text using slicing. Most pythonic
-        Signature: (str) -> str. """
-    string = string[::-1]
-    return string
+def reverse(text: str) -> str:
+    """ Reversing the text using slicing. Most pythonic. """
+    text = text[::-1]
+    return text
 
-def reverse_basic(text) -> str:
-    """ Reverse by adding characters upfront to the string.
-        Signature: (str) -> str. """
+def reverse_basic(text: str) -> str:
+    """ Reverse by adding characters upfront to the string. """
     new_text = ""
     for index in text:
         new_text = index + new_text
     return new_text
 
 
-def reverse_counter(text) -> str:
-    """ Reversing the text it receives using decremented counter.
-        Signature: (str) -> str. """
+def reverse_counter(text: str) -> str:
+    """ Reversing the text it receives using decremented counter. """
     new_text = ''
     text = str(text)   # Convert the argument into a string if not already
     my_list = len(text) - 1
@@ -31,9 +28,8 @@ def reverse_counter(text) -> str:
     return new_text
 
 
-def reverse_recursion(text) -> str:
-    """ Function that is reversing the text it receives using recursion.
-        Signature: (str) -> str. """
+def reverse_recursion(text: str) -> str:
+    """ Function that is reversing the text it receives using recursion. """
     if len(text) == 0:  # Base case
         return text
     else:
