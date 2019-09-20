@@ -2,13 +2,13 @@
 Simple functions to reverse a string.
 """
 
-def reverse(string):
+def reverse(string) -> str:
     """ Reversing the text using slicing. Most pythonic
         Signature: (str) -> str. """
     string = string[::-1]
     return string
 
-def reverse_basic(text):
+def reverse_basic(text) -> str:
     """ Reverse by adding characters upfront to the string.
         Signature: (str) -> str. """
     new_text = ""
@@ -17,7 +17,7 @@ def reverse_basic(text):
     return new_text
 
 
-def reverse_counter(text):
+def reverse_counter(text) -> str:
     """ Reversing the text it receives using decremented counter.
         Signature: (str) -> str. """
     new_text = ''
@@ -31,7 +31,7 @@ def reverse_counter(text):
     return new_text
 
 
-def reverse_recursion(text):
+def reverse_recursion(text) -> str:
     """ Function that is reversing the text it receives using recursion.
         Signature: (str) -> str. """
     if len(text) == 0:  # Base case
