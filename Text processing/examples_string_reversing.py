@@ -43,18 +43,16 @@ def my_function():
     return y
 
 
-
 def main():
     """ Test harness """
-    functions = [reverse, reverse_basic, reverse_counter, reverse_recursion]
-    dict_functions = {"slicing": reverse, "lateral": reverse_basic, reverse_counter, reverse_recursion}
+    dict_functions = {"slicing": reverse, "lateral": reverse_basic, "counter": reverse_counter, "recursion": reverse_recursion}
     text = 'bonjour'
 
     # print(timeit.timeit(reverse(text), number=1000))
-    print(timeit.timeit(my_function, number=100000))
+    # print(timeit.timeit(my_function, number=100000))
 
-    for func in functions:
-        print(func(text))
+    for name, func in dict_functions.items():
+        print(name,":\t", func(text))
         #print(timeit.timeit(func(text), number=1000))
 
 if __name__ == "__main__":
