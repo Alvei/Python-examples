@@ -11,7 +11,7 @@ class TestCircleArea(unittest.TestCase):
             self.assertAlmostEqual(circle_area(key), value)
 
     def test_values(self):
-        #  Make sure reasonable value are accepted
+        #  Make sure reasonable values are accepted
         self.assertRaises(ValueError, circle_area, -2)
 
     def test_types(self):
