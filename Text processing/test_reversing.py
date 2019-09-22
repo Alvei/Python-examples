@@ -6,12 +6,13 @@
     https://docs.python.org/3/library/functools.html
 """
 import unittest
-from reversing import reverse_slice, reverse_lateral, reverse_counter, reverse_recursion
+from reversing import reverse_slice, reverse_iterator, reverse_method, reverse_lateral, reverse_counter, reverse_recursion
 import timeit, functools
 
 def main():
     """ Test harness """
-    dict_functions = {"slicing": reverse_slice, "lateral": reverse_lateral, "counter": reverse_counter, "recursion": reverse_recursion}
+    dict_functions = {"slicing": reverse_slice, "iterator": reverse_iterator, "list method": reverse_method,
+                    "lateral": reverse_lateral, "counter": reverse_counter, "recursion": reverse_recursion}
     text = 'bonjour'
     time = []
     print("Approach\tAnswer\t\tTime")

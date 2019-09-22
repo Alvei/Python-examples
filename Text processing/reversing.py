@@ -7,6 +7,20 @@ def reverse_slice(text: str) -> str:
     text = text[::-1]
     return text
 
+def reverse_iterator(text: str) -> str:
+    """ Reversing text using the reversed() function. """
+    reversed_iterator = reversed(text)
+    reversed_text = "".join(reversed_iterator)
+    return reversed_text
+
+def reverse_method(text: str) -> str:
+    """ Reversing text using the built-in reverse() method. This method cannot be used directly
+        with the string data type. We must 1st convert to a list, then reverse the list and use join(). """
+    temp_list = list(text)
+    temp_list.reverse()
+    reversed_text = "".join(temp_list)
+    return reversed_text
+
 def reverse_lateral(text: str) -> str:
     """ Traverse forward and add character upfront. """
     reversed_text = ""
