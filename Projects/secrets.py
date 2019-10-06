@@ -18,6 +18,9 @@ def char_cypher(letter: str, key: int) -> str:
 
     logging.debug("Character:<%s> Location:%i", letter, position)
 
+    if key >= len_alpha:
+        raise Exception("Key is greater than length of alphabet: <{}>".format(len_alpha))
+
     if position == -1:
         raise Exception("A character is not in the alphabet: <{}>".format(letter))
 
@@ -44,10 +47,10 @@ def list_to_string(char_list):
 
 def main():
     """ Main program """
-    key = 3
-    #phrase = input("Enter a string of charaters: ")
-    print(string.punctuation)
-    phrase = 'b0nj0ur comm3nt ca va!'
+    key = 150
+    phrase = input("Enter a string of charaters: ")
+    #print(string.punctuation)
+    #phrase = 'b0nj0ur comm3nt ca va!'
 
     new_phrase = cypher(phrase, key)
     print("New Phrase[{}]:\t\t {}".format(len(new_phrase), new_phrase))
