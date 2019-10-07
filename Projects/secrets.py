@@ -1,7 +1,6 @@
 """ secrets.py
     Simple program to use a offset key to create a secret.
-    Only works with alphanumeric characters and single whitespace.
-    Inspired from https://codeclubprojects.org/en-GB/python/secret-messages/ """
+    Only works with alphanumeric characters and single whitespace. """
 import string
 import logging
 
@@ -13,23 +12,22 @@ def char_cypher(letter: str, key: int) -> str:
         Does some basic check that the character is in the the alphabet
         punctionation => !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
     #alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    alphabet = string.ascii_letters + string.digits + string.punctuation +' '
+    alphabet = string.ascii_letters + ' ' + string.digits + string.punctuation
     len_alpha = len(alphabet)
     position = alphabet.find(letter)
 
     logging.debug("Character:<%s> Location:%i", letter, position)
 
     if key >= len_alpha:
-        raise ValueError("Key is greater than length of alphabet: <{}>".format(len_alpha))
+        raise ValueError("Key-offset is greater than length of alphabet: <{}>".format(len_alpha))
 
     if position == -1:
         raise ValueError("A character is not in the alphabet: <{}>".format(letter))
 
-    # To avoid problems of exceeding the number of characters in the alphabet
+    # To avoid exceeding the number of characters in the alphabet
     # % brings it back to zero and creates a loop on the alphabet
     new_pos = (position + key) % len_alpha
 
-    # print(new_pos, alphabet[new_pos])
     return alphabet[new_pos]
 
 def cypher(phrase: str, key: int) -> str:
@@ -47,7 +45,7 @@ def cypher(phrase: str, key: int) -> str:
 def list_to_string(char_list):
     """ using .join() method to join the list. """
     word = ""
-    return(word.join(char_list))
+    return word.join(char_list)
 
 def main():
     """ Main program """
