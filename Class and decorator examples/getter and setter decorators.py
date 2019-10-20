@@ -18,12 +18,12 @@ class Duck():
 
         @property
         def name(self):
-            print('Inside the getter')
+            print('\tInside the getter')
             return self.__name
 
         @name.setter
         def name(self, inputName):
-            print('Inside the setter')
+            print('\tInside the setter')
             self.__name = inputName
 
 
@@ -48,9 +48,10 @@ class Circle():
 
 
 c = Circle(5)
-print('Radius ', c.radius, ' and Diameter', c.diameter)
+print(f"Radius {c.radius} and Diameter {c.diameter}")
+
 c.radius = 7
-print('Radius ', c.radius, ' and Diameter', c.diameter)
+print(f"Radius {c.radius} and Diameter {c.diameter}")
 
 
 class A():
@@ -64,11 +65,11 @@ class A():
         A.count += 1
 
     def exclaim(sefl):
-        print("I'm in A!")
+        print("\tI'm in A!")
 
     @classmethod
     def kids(cls):
-        print("A has", cls.count, "little objects")
+        print(f"A has {cls.count} little objects")
 
 
 easy_a = A()
@@ -79,8 +80,7 @@ A.kids()  # call the class method
 
 class CoyoteWeapon():
     """ Simple class to show the use of the @staticmethod decorator.
-        It can be called from an uninstantiated class object
-    """
+        It can be called from an uninstantiated class object. """
     @staticmethod
     def commercial():
         print("This CoyoteWeapon has been brought to you by Acme")

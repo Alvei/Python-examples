@@ -1,6 +1,5 @@
 """ Creating a class with getter and setter using Properties.
-    This will allow each of the properties to be updated
-    when attribute is changed.
+    This will allow each of the properties to be updated when attribute is changed.
     Greate example of decorator in classes
     https://www.programiz.com/python-programming/property
 """
@@ -14,7 +13,7 @@ class Circle():
         self.__radius = input_radius
 
     def __str__(self):
-        return "Radius : " + str(self.__radius)
+        return "Radius: " + str(self.__radius)
 
     @property
     def radius(self):
@@ -37,18 +36,14 @@ class Circle():
         """ Defines the getter for private variable using @property"""
         return PI * self.__radius**2
 
-# Test harnest
-# ############
-
 
 def main():
     """ Main code """
     c = Circle(5)
-    print("radius =", c.radius)
-    print("diameter =", c.diameter)
-    c.radius = 6
-    print("radius =", c.radius)
-    print("diameter =", c.diameter)
+    print(f"radius = {c.radius}, diameter = {c.diameter}, area = {c.area}")
+
+    c.radius = 6  # using the setter
+    print(f"radius = {c.radius}, diameter = {c.diameter}, area = {c.area}")
 
 
 if __name__ == '__main__':

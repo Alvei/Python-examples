@@ -1,9 +1,5 @@
-
-"""
-Implementation of grade calculators using classes and decorators.
-Created on Tue Jan 13 21:34:02 2015
-
-"""
+""" Implementation of grade calculators using classes and decorators.
+Created on Tue Jan 13 21:34:02 2015"""
 
 # Dictionary to convert grades
 L2G = {"A+": 4.3, "A": 4, "A-": 3.7,

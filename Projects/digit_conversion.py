@@ -1,12 +1,10 @@
-"""
-digitconversion.py
+"""digitconversion.py
 Set of functions to manipulate list or convert them.
 Python 3.5 """
 
 
-def int_to_str(number):
-    """Returns a decimal string representation of number
-       Signature: (int) -> string"""
+def int_to_str(number: int) -> str:
+    """Returns a decimal string representation of number."""
     assert number >= 0   # Works only wiht positive number
 
     digits = '0123456789'
@@ -20,9 +18,8 @@ def int_to_str(number):
     return result
 
 
-def add_digits(number):
-    """ Returns the sum of the digit in number.
-        Signature: (int) -> int """
+def add_digits(number: int) -> int:
+    """ Returns the sum of the digit in number."""
     assert number >= 0   # Works only wiht positive n
 
     # Convert the integer into a string (a list)
@@ -34,9 +31,8 @@ def add_digits(number):
     return total
 
 
-def is_subset(my_list1, my_list2):
-    """Returns True if each element in my_list1 is also in my_list2.
-       Signature: (list, list) -> boolean """
+def is_subset(my_list1: list, my_list2: list) -> bool:
+    """Returns True if each element in my_list1 is also in my_list2."""
 
     # Check that inputs are lists
     assert isinstance(my_list1, list) and isinstance(my_list2, list)
@@ -52,9 +48,8 @@ def is_subset(my_list1, my_list2):
     return True
 
 
-def intersection(my_list1, my_list2):
-    """Returns a list that is the intersection of my_list1 and my_list2.
-       Signature: (list, list) -> list """
+def intersection(my_list1: list, my_list2: list) -> list:
+    """Returns a list that is the intersection of my_list1 and my_list2."""
 
     # Check that inputs are lists
     assert isinstance(my_list1, list) and isinstance(my_list2, list)
@@ -74,12 +69,11 @@ def intersection(my_list1, my_list2):
     return result
 
 
-def get_binary_rep(number, num_digits):
+def get_binary_rep(number: int, num_digits: int) -> str:
     """number is the number to convert into binary
        num_digit is the number of digits in the binary display.
        Assumes n and numDigits are non-negative ints
-       Returns a num_digits str that is a binary representation of n.
-       Signature: (int, int) -> str """
+       Returns a num_digits str that is a binary representation of n."""
 
     assert number >= 0   # Works only with positive n
 
@@ -96,10 +90,9 @@ def get_binary_rep(number, num_digits):
     return result
 
 
-def gen_power_set(my_list):
+def gen_power_set(my_list: list) -> list:
     """Returns a list of lists that contains all the possible
-       combinations of the elements of my_list.
-       Signature: (list) -> list """
+       combinations of the elements of my_list."""
     assert isinstance(my_list, list)      # Check that the input is a list
 
     powerset = []
@@ -117,10 +110,10 @@ def gen_power_set(my_list):
     return powerset
 
 
-def search(my_list, elem):
+def search(my_list: list, elem: int) -> bool:
     """ Brute force search of a list
-        Assumes my_list and elem are the same type.
-        Signature: (list, int) -> bool"""
+        Assumes my_list and elem are the same type."""
+
     assert isinstance(my_list, list)      # Check that the input is a list
 
     for index, _ in enumerate(my_list):
@@ -128,20 +121,27 @@ def search(my_list, elem):
             return True
     return False
 
-# Test Harness
 
+def main():
+    """Test Harness"""
+    num = 456
 
-TEST_STRING = int_to_str(456)
-print('\nString number', TEST_STRING, 'where s is a ', type(TEST_STRING))
+    print(f"\nNumber {num} has been converted {type(int_to_str(num))}")
+    print(f"\nThe sum of the digits of 456 is: {add_digits(num)}")
 
-print('\nThe sum of the digits of 456 is:', add_digits(456))
+    list1 = [3, 4]
+    list2 = [1, 2, 3, 4, 5]
+    list3 = [1, 2, 4]
+    print(f"\n{list1} is a subset of {list2}?: {is_subset(list1, list2)}")
+    print(f"\nIntersection of {list1} and {list2}?: {intersection(list1, list2)}\n")
 
-print('\n[3,4] is a subset of [1,2,3,45]?:', is_subset([3, 4], [1, 2, 3, 4, 5]))
-print('\nIntersection of [3,4] and [1,2,3,45]?:', intersection([3, 4], [1, 2, 3, 4, 5]), '\n')
+    for index in range(8):
+        print(f"fbinary representation of {index} is:\t{get_binary_rep(index, 8)}")
 
-for i in range(16):
-    print('binary representation of', i, 'is:\t', get_binary_rep(i, 8))
+    print(f"\nPower combo of {list3} are: {gen_power_set(list3)}")
 
-print('\nPower combo of [1,2,4] are:', gen_power_set([1, 2, 4]))
+    num = 2
+    print(f"\nIs {num} part of {list2}?: {search(list2, num)}")
 
-print('\nIs 3 part of [1,2,3,4,5]:', search([1, 2, 3, 4, 5], 3))
+if __name__ == "__main__":
+    main()

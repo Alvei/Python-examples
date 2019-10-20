@@ -72,37 +72,35 @@ class Rational():
         return "%s and %s/%s" % (whole, remainder, self.d)
 
 
-def gcd(num, num2):
-    '''Greatest common divisor function; Euclid's algorithm.
-       Signature (int, int) -> int '''
-
+def gcd(num: int, num2: int) -> int:
+    '''Greatest common divisor function; Euclid's algorithm.'''
     if num2 == 0:
         return num  # Base case
-
     return gcd(num2, num % num2)
 
 
-def test_rationale():
+def main():
     """ Test Harness"""
     rat1 = Rational(3, 4)
     rat2 = Rational(3, 4)
 
-    print("Num 1 =", rat1)
-    print("{} + {} = {}".format(rat1, rat2, rat1 + rat2))
-    print("{} - {} = {}".format(rat2, rat1, rat2 - rat1))
-    print("({}) * ({}) = {}".format(rat1, rat2, rat1 * rat2))
-    print("({}) / ({}) = {}".format(rat1, rat2, rat1 / rat2))
-
+    print("Test harness")
+    print(f"Num 1 = {rat1} \nNum 2 = {rat2}")
     rat1_float = float(rat1)
-    print(rat1_float)
+    print(f"Num 1 in float = {rat1_float}")
+
+    print(f"Adding them => \t\t({rat1}) + ({rat2}) = {rat1 + rat2}")
+    print(f"Substrating them =>\t({rat2}) - ({rat1}) = {rat2 - rat1}")
+    print(f"Multiplying them =>\t({rat1}) * ({rat2}) = {rat1 * rat2}")
+    print(f"Dividing them =>\t({rat1}) / ({rat2}) = {rat1 / rat2}")
 
     rat = Rational(4, 1)
-    print("r = ({}) is {}".format(rat, rat.mixed()))
+    print(f"r = ({rat}) is {rat.mixed()}")
     rat = Rational(0, 2)
-    print("r = ({}) is {}".format(rat, rat.mixed()))
+    print(f"r = ({rat}) is {rat.mixed()}")
     rat = Rational(5, 2)
-    print("r = ({}) is {}".format(rat, rat.mixed()))
+    print(f"r = ({rat}) is {rat.mixed()}")
 
 
-test_rationale()
-# generalTests()
+if __name__ == "__main__":
+    main()

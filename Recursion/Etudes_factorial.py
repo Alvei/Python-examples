@@ -3,10 +3,8 @@ etudes_factorial.py
 """
 
 
-def fact_i(num):
+def fact_i(num: int) -> int:
     """ Calculates the factorial with while loop.
-        Signature (int) -> int
-
         for Python 3.5 """
 
     assert num > 0 and isinstance(num, int)
@@ -19,9 +17,8 @@ def fact_i(num):
     return result
 
 
-def fact_r(num):
-    """ Calculates the factorial using recursion.
-    Signature (int) -> int"""
+def fact_r(num: int) -> int:
+    """ Calculates the factorial using recursion."""
 
     assert num > 0 and isinstance(num, int)
 
@@ -33,8 +30,10 @@ def fact_r(num):
 
 def main():
     """ Main code """
-    print("3! = ", fact_i(3))
-    print("4! = ", fact_r(4))
+    tests = [3, 4, 8]
+    for test in tests:
+        print(f"{test}! = {fact_i(test)}")
+
 
 
 if __name__ == '__main__':

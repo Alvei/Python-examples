@@ -1,12 +1,8 @@
-
-"""
-examples_recursions_functions.py
+""" examples_recursions_functions.py
 Examples of recursions:
 factorial()
 Palindrome with list
-
 Created on Fri Dec 26 10:50:21 2014
-for Python 3.5
 """
 
 
@@ -32,9 +28,8 @@ def is_palindrome(s):
 
     assert isinstance(s, str)  # Check that name is a string
 
-    def to_chars(string):
-        """ Converts all letters to lowercase & removes all non-letters
-            Signature: (str) -> str."""
+    def to_chars(string: str) -> str:
+        """ Converts all letters to lowercase & removes all non-letters."""
         string = string.lower()
         letters = ''
         for char in string:
