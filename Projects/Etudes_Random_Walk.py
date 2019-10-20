@@ -11,7 +11,7 @@ import numpy as np
 import pylab
 
 
-def stdDev(X):
+def stdDev(X: list) -> list:
     """Assumes that X is a list of numbers.
        Returns the standard deviation of X"""
     mean = float(sum(X)) / len(X)

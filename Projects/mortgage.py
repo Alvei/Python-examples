@@ -11,7 +11,7 @@ for Python 3.5"""
 import pylab
 
 
-def findPayment(loan, r, m):
+def findPayment(loan: float, r: float, m: int) -> float:
     """Assumes: loan and r are floats, m an int
        Returns the monthly payment for a mortgage of size
        loan at monthly rate of r for m month"""
@@ -189,6 +189,10 @@ def compareMortgages(amt, years, fixedRate, pts, ptsRate,
     plotMortgages(morts, amt)
 
 
-compareMortgages(amt=200000, years=30, fixedRate=0.07, pts=3.25,
+def main():
+    compareMortgages(amt=200000, years=30, fixedRate=0.07, pts=3.25,
                  ptsRate=0.05, varRate1=0.045, varRate2=0.095,
                  varMonths=48)
+
+if __name__ == "__main__":
+    main()
