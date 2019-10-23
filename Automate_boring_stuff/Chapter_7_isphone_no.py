@@ -6,9 +6,8 @@
 """
 import re
 
-def isphone_no(text):
-    """ Very clumsy implementation. Also only works for xxx-xxx-xxxx
-        Signature: (str) -> boolean."""
+def isphone_no(text: str) -> bool:
+    """ Very clumsy implementation. Also only works for xxx-xxx-xxxx. """
     if len(text) != 12:
         return False
     for num in range(0-3):
@@ -24,9 +23,8 @@ def isphone_no(text):
     return True
 
 
-def isphone_no2(text):
-    """ Use Regex.
-        Signature: (str) -> boolean."""
+def isphone_no2(text: str) -> bool:
+    """ Use Regex. """
     # Basic regex
     # phone_no_regex = r'\d{3}-\d{3}-\d{4}'
 
@@ -39,11 +37,10 @@ def isphone_no2(text):
         return True
     return False
 
-def look_phone_no(msg):
+def look_phone_no(msg: str) -> list:
     """ Process a line to see if there are phone numbers.
         Clumsy implementation.
-        Assumes a phone no is xxx-xxx-xxxx of length 12
-        Signature: (string) -> list."""
+        Assumes a phone no is xxx-xxx-xxxx of length 12. """
     length = 12
     phone_no = []
 
@@ -55,10 +52,9 @@ def look_phone_no(msg):
     return phone_no
 
 
-def look_phone_no2(text):
+def look_phone_no2(text: str) -> list:
     """ Process a line to see if there are phone numbers.
-        Assumes a phone no is xxx-xxx-xxxx of length 12
-        Signature: (string) -> list."""
+        Assumes a phone no is xxx-xxx-xxxx of length 12. """
 
     # Basic checks for xxx-xxx-xxxx
     # phone_no_regex = re.compile(r'\d{3}-\d{3}-\d{4}')

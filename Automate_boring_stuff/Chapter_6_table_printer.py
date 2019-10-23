@@ -3,18 +3,17 @@
     Print a right justified table.
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 6. Page 143.
 """
+from typing import List
 
-
-def table_printer(table_data):
-    """ Print table that is right justify. It assumes same number of elements in each list
-        Signature: (list(list)) -> None."""
+def table_printer(table_data: List[list]) -> None:
+    """ Print table that is right justify. It assumes same number of elements in each list. """
     num_col = []
     max_word = 0
 
     # Loop over each line and keep track of number of columns
     for line in table_data:
         num_col.append(len(line))
-        
+
         # Loop over the words in the line and keep track of largest word
         for word in line:
             length = len(word)
