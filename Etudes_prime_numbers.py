@@ -33,16 +33,16 @@ for Python 3.5 """
 # import sys
 # sys.setrecursionlimit(20000)
 from math import sqrt
+from typing import List, Iterator, Set, Union
 
 # Global constants
 MAX_RECURSION = 500
 MAX_LOOP = 996
 
 
-def divisors(number, small, large):
+def divisors(number: int, small: int, large: int) -> bool:
     """ Returns True if number has a divisor in the range of small to large.
-        Otherwise returns False. Assumes all input are positive integers.
-        Signature: (int, int, int) -> Boolean"""
+        Otherwise returns False. """
 
     # Catch wrong entries
     assert number >= 0
@@ -59,10 +59,8 @@ def divisors(number, small, large):
     return divisors(number, small + 1, large)
 
 
-def is_prime(number):
-    """ For any number greater or equal to 2, return True is number is prime and False if not.
-        Signature: (int) -> Boolean """
-
+def is_prime(number: int) -> bool:
+    """ For any number greater or equal to 2, return True is number is prime and False if not. """
     assert number >= 2
 
     # Use divisors function that will iterate over all numbers from 2 to (number-1).
@@ -70,12 +68,11 @@ def is_prime(number):
         return False
 
     # Default is that it is a prime number.
-        return True
+    return True
 
 
-def is_prime_sqrt(number):
-    """ For any number greater or requal to 2, Return True is n is prime, False if not.
-        Signature: (int) -> Boolean"""
+def is_prime_sqrt(number: int) -> bool:
+    """ For any number greater or requal to 2, Return True is n is prime, False if not. """
 
     assert number >= 2
 
@@ -89,9 +86,8 @@ def is_prime_sqrt(number):
     return True
 
 
-def list_primes(beg, end):
-    """ Returns a list of prime numbers between beg and end.
-        Signature: (int, int) -> list"""
+def list_primes(beg: int, end: int) -> list:
+    """ Returns a list of prime numbers between beg and end. """
     assert beg >= 2 and end < MAX_RECURSION
 
     if beg == end:
@@ -107,9 +103,8 @@ def list_primes(beg, end):
     return list_primes(beg + 1, end)
 
 
-def list_primes_sqrt(beg, end):
-    """ Returns a list of prime numbers between beg and end.
-        Signature: (int, int) -> list"""
+def list_primes_sqrt(beg: int, end: int) -> list:
+    """ Returns a list of prime numbers between beg and end. """
 
     # assert beg >= 2 and end < 3*MAX_RECURSION
 
@@ -126,13 +121,12 @@ def list_primes_sqrt(beg, end):
     return list_primes_sqrt(beg + 1, end)
 
 
-def list_primes_loop(beg, end):
-    """ Returns a list of prime numbers between beg and end.
-        Signature: (int, int) -> list"""
+def list_primes_loop(beg: int, end: int) -> list:
+    """ Returns a list of prime numbers between beg and end. """
 
     assert beg >= 2 and end < MAX_LOOP
 
-    my_list = []
+    my_list: List [int] = []
 
     if beg == end:
         return []
@@ -144,21 +138,20 @@ def list_primes_loop(beg, end):
     return my_list
 
 
-def sift(number, num_list):
-    """ Takes a number, and a list of numbers, num_list to
-        returns the list of those numbers that are not multiple of n.
-        Signature: (int, list) -> list"""
+def sift(number: int, num_list: list) -> List[int]:
+    """ Takes a number, and a list of numbers, to
+        returns the list of those numbers that are not multiple of n. """
     def my_func(x):
         return x % number != 0
 
-    return filter(my_func, num_list)
+    # Use list() because filter() return an iterator
+    return list(filter(my_func, num_list))
 
 
-def prime_sieve(num_list):
-    """ Creates a list of prime number with a range using sieve algo
-        which eliminates multiples of any prime found to speed up implementation.
-        Assumes the 1st number is a prime so works if start at 2.
-        Signature: (list) -> list"""
+def prime_sieve(num_list: list) -> List[int]:
+    """ Creates a list of prime number using sieve algo which eliminates multiples
+        of any prime found to speed up implementation.
+        Assumes the 1st number is a prime so works if start at 2. """
 
     assert (len(num_list) - 1) < 7878
 
@@ -175,10 +168,8 @@ def prime_sieve(num_list):
     return [prime] + prime_sieve(sift(prime, num_list[1:]))
 
 
-def prime_sieve_comprehension(num):
-    """ Returns the SET of all primes in num_list using a prime Sieve algo.
-       Assumes n > 2.
-       Signature: (int)->list"""
+def prime_sieve_comprehension(num: int) -> Set[int]:
+    """ Returns the SET of all primes in num_list using a prime Sieve algo. Assumes n > 2. """
 
     assert num > 2
     # from math import sqrt
@@ -191,21 +182,24 @@ def prime_sieve_comprehension(num):
     # by using {} we create a set without duplicates
     noprimes = {j for i in range(2, sqrt_n) for j in range(i * 2, num, i)}
 
-    # Remove the various multipes we found
+    # Remove the various multipes we found by applying Set
     primes = {x for x in range(2, num) if x not in noprimes}
 
     return primes
 
+def main():
+    """ Test harness """
 
-# Test harness
-# ---------------
-# print( divisors(10, 2, 5) )
-# print( is_prime(7) )
-# print( is_prime(-1) )
+    # print( divisors(10, 2, 5) )
+    # print( is_prime(7) )
+    # print( is_prime(-1) )
 
-print('\nSize of Prime list up to 500:', len(list_primes(2, 499)), "=> Answer should be 94")
-print('Size of Prime list using sqrt trick:', len(list_primes_sqrt(2, 499)))
-print('Prime using Sieve algo [0, 500]:\n', prime_sieve_comprehension(500 - 1))
-# print( list_primes(2,1699) )
-# print( list_primes_loop(2,995) )
-# print( prime_sieve(range(2,100)) )
+    print(f"\nSize of Prime list up to 500: {len(list_primes(2, 499))}=> Answer should be 94")
+    print(f"Size of Prime list using sqrt trick: {len(list_primes_sqrt(2, 499))}")
+    print(f"Prime using Sieve algo [0, 500]:\n {prime_sieve_comprehension(500 - 1)}")
+    # print( list_primes(2,1699) )
+    # print( list_primes_loop(2,995) )
+    # print( prime_sieve(range(2,100)) )
+
+if __name__ == "__main__":
+    main()
