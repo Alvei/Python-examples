@@ -1,11 +1,9 @@
-"""
-merge_sort_with_lambda.py
-Flexible merge Sort using lambda
-Created on Sun Dec 28 21:06:38 2014
-"""
+""" merge_sort_with_lambda.py
+Flexible merge Sort using lambda """
+from typing import List
 
 
-def merge_list(left: list, right:list, func) -> list:
+def merge_list(left: list, right: list, func) -> list:
     ''' Assumes left and right are sorted lists.
         func defines an ordering on the elements of the lists.
         righteturns a new sorted (by func) list containing the same elements
@@ -63,11 +61,11 @@ def merge_sort(my_list: list, func=lambda x, y: x < y) -> list:
     return merge_list(left, right, func)
 
 
-def lastNameFirstName(name1: str, name2: str) -> bool:
+def lastNameFirstName(name_1: str, name_2: str) -> bool:
     """ Defining a lambda that can be used to sort names starting with Last names. """
     # Returns a list with each part of name
-    name1 = name1.split(" ")
-    name2 = name2.split(" ")
+    name1 = name_1.split(" ")
+    name2 = name_2.split(" ")
 
     if name1[1] != name2[1]:    # Then sort on last name
         return name1[1] < name2[1]
@@ -75,11 +73,11 @@ def lastNameFirstName(name1: str, name2: str) -> bool:
     return name1[0] < name2[0]
 
 
-def firstNameLastName(name1: str, name2: str) -> bool:
+def firstNameLastName(name_1: str, name_2: str) -> bool:
     """ Defining a lambda that can be used to sort names starting with first names. """
     # Returns a list with each part of name
-    name1 = name1.split(" ")
-    name2 = name2.split(" ")
+    name1 = name_1.split(" ")
+    name2 = name_2.split(" ")
 
     if name1[0] != name2[0]:        # Then sort on first name
         return name1[0] < name2[0]
