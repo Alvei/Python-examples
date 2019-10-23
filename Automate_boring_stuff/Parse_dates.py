@@ -6,11 +6,10 @@
 from datetime import datetime
 import re
 from os.path import dirname, join
+from typing import Union
 
-
-def read_file(file_name, debug=False):
-    """ Read a file and return a long string while doing some basic error checking
-        Signature: (str, str) -> str."""
+def read_file(file_name: str, debug: bool=False) -> str:
+    """ Read a file and return a long string while doing some basic error checking. """
 
     # Find the location of the current directory. Assumes the text file is in the same directory
     current_dir = dirname(__file__)
@@ -24,12 +23,14 @@ def read_file(file_name, debug=False):
                 print("Original file:\n", contents, '\n', sep="")
             return contents
         except IOError:
-            print('Unable to load "%s".  Check that it exists.' % file_path)
-            return
+            print(f"Unable to load {file_path} Check that it exists.")
+            return "IOError"
 
 
-def try_parsing_date(text, debug=False):
-    """ Signature: (str) -> str. """
+def try_parsing_date(text: str, debug: bool=False) -> Union[str, bool, datetime]:
+    """ Find a date in a string. If not possible return False. """
+
+    # Loop through the 3 different ways of representing a date
     for fmt in ('%Y-%m-%d', '%d.%m.%Y', '%d/%m/%Y'):
         try:
             return datetime.strptime(text, fmt)
@@ -38,8 +39,8 @@ def try_parsing_date(text, debug=False):
 
     # Keepe raise if you want it to fail
     if debug == True:
-        raise ValueError('no valid date format found')
-    return None
+        raise ValueError('No valid date format found')
+    return False
 
 
 def main():

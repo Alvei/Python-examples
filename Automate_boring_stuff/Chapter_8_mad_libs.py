@@ -12,14 +12,14 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 # Prompt for file name in cwd to read and save its content to string variable
 logging.debug(os.getcwd())
 
-def get_input():
+def get_input() -> str:
     """ Signature: (None) -> str. """
     file_name = input('Enter the name of the file to use without the .txt extension: ')
     try:
         file_object = open('{0}/{1}.txt'.format(os.getcwd(), file_name))
 
     except FileNotFoundError as err:
-        print("File ", file_name, " does not exist.")
+        print(f"File {file_name} does not exist.")
         find_files_in_dir(r'.txt')
         raise err
     else:
@@ -28,9 +28,8 @@ def get_input():
         return text
 
 
-def find_files_in_dir(pattern):
-    """ Find all the files in a current directory that matches a pattern.
-        Signature: (string) -> None."""
+def find_files_in_dir(pattern: str) -> None:
+    """ Find all the files in a current directory that matches a pattern. """
     files = os.listdir(os.getcwd())
     logging.debug(os.getcwd())
 
@@ -41,7 +40,7 @@ def find_files_in_dir(pattern):
         if txt_doc_regex.search(doc) is not None:
             logging.debug(doc)
             txt_files.append(doc)
-    print("Available files:", txt_files)
+    print(f"Available files: {txt_files}")
 
 
 def main():
@@ -60,7 +59,7 @@ def main():
         new = str(input("Enter a " + match + ": "))
         text = text.replace(match, new )
 
-    print("\n=>", text)
+    print(f"\n=> {text}")
 
 if __name__ == "__main__":
     main()
