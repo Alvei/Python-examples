@@ -11,9 +11,8 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %
 # logging.disable(logging.DEBUG)
 
 
-def read_file(file_name):
-    """ Read a file and return a long string while doing some basic error checking
-        Signature: (str) -> str."""
+def read_file(file_name: str) -> str:
+    """ Read a file and return a long string while doing some basic error checking. """
 
     # Find the location of the current directory. Assumes the text file is in the same directory
     current_dir = dirname(__file__)
@@ -26,10 +25,11 @@ def read_file(file_name):
             logging.debug("Original file:\n" + contents + "\n")
             return contents
         except IOError:
-            print('Unable to load "%s".  Check that it exists.' % file_path)
-            return
+            print(f"Unable to load {file_path}.  Check that it exists.")
+            return "IOError"
 
-def get_all_phone_no(text, debug=False):
+
+def get_all_phone_no(text: str, debug: bool=False) -> str:
     """ Apply phone_no regex to find all the phone numbers in a string.
         Signature: (str) -> list(str). """
     # By putting the parenthesis in front of each element we get access to each
@@ -42,7 +42,7 @@ def get_all_phone_no(text, debug=False):
         )''', re.VERBOSE)
     ans = phone_regex.findall(text)
     if debug == True:
-        print("Phone found:", ans)
+        print(f"Phone found: {ans}")
 
     # Extra step to extract the 1st item of list which contains the whole phone no. Could also remove parenthesis
     phone_no = []
@@ -52,9 +52,8 @@ def get_all_phone_no(text, debug=False):
     return '\n'.join(phone_no)
 
 
-def get_all_emails(text):
-    """ Apply email regex to find all the emails in a string.
-        Signature: (str) -> str. """
+def get_all_emails(text: str) -> str:
+    """ Apply email regex to find all the emails in a string. """
     # By putting the parenthesis in front of each element we get access to each
     email_regex = re.compile(r'''(
         ([a-zA-Z0-9._%+-]+)     # username

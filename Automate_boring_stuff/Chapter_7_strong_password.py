@@ -5,12 +5,10 @@
 """
 import re
 
-def chk_pwd(text):
+def chk_pwd(text: str) -> bool:
     """ Check if a password is strong. To be strong you need to be at least 8 character,
         to have at least one upper case, one lower case and one digit, must have at least one of [._%+-].
-        Note I was not able to get the weird test to work with !.
-        Signature: (str) -> bool."""
-
+        Note I was not able to get the weird test to work with !."""
 
     length_regex = re.compile(r'.{8,}')
     upper_regex = re.compile(r'[A-Z]')
@@ -37,7 +35,7 @@ def main():
     """ Test harness """
     test_password = ['aaaa', 'Ab9ab9+2', 'Ab9ab9!2', 'ab9ab9+2']
     for text in test_password:
-        print(text, "? ", chk_pwd(text))
+        print(f"{text} ? {chk_pwd(text)}")
 
 if __name__ == "__main__":
     main()

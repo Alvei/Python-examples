@@ -8,10 +8,10 @@ DEBUG = False
 import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-#logging.disable(logging.DEBUG)
+logging.disable(logging.DEBUG)
 
-def my_strip(text, remove=''):
-    """ Signature: (str, str) -> str."""
+def my_strip(text: str, remove: str='') -> str:
+    """ Remove a character from a string. """
 
     # Start with default. Removes whitespace from either end of the string.
     if remove == '':
@@ -25,8 +25,8 @@ def my_strip(text, remove=''):
         # Remove the back spaces. \Z means from the end of the string
         back_regex =  re.compile(r'\s+\Z')
         ans = back_regex.sub("", front)
-        logging.debug("***" + ans + "***")
 
+        logging.debug("***" + ans + "***")
         return ans
     else:
         # Uses ^ for the beginning and & for the end. The % inside the paranthesis gets replaced with remove
@@ -56,10 +56,10 @@ def main():
     tests = {"": "   allo c'est moi        ", "#": "####Non c'est toi###"}
 
     for key, text in tests.items():
-        print("\nKey:\'", key, "\' \tValue:\'", text, "\'")
+        print(f"\nKey:\' {key}\' \tValue:\'{text}\'.")
         orig_len = len(text)
         ans = my_strip(text, key)
-        print("Length: Original=", orig_len, "-> Final=", len(ans),":", ans)
+        print(f"Length: Original= {orig_len} -> Final= {len(ans)} :{ans}.")
 
 
 if __name__ == "__main__":
