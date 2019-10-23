@@ -13,9 +13,8 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logging.disable(logging.DEBUG)
 
-def look_for_pattern(pattern):
-    """ Look for specific regex pattern across all files ending in *.txt.
-        Signature: (str) -> None. """
+def look_for_pattern(pattern: str) -> None:
+    """ Look for specific regex pattern across all files ending in *.txt. """
 
     # Create at list all files in directory
     files = os.listdir(os.getcwd())
@@ -45,7 +44,7 @@ def look_for_pattern(pattern):
         logging.debug("String:%s", string)
         found = search_regex.findall(string)
         found_str = ' '.join(found)
-        print("Answer for ", doc, "is: ", found_str)
+        print(f"Answer for {doc} is: {found_str}")
 
 
 def main():

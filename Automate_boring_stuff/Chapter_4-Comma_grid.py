@@ -2,6 +2,7 @@
     Transpose the grid. Ie columns become row.
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Page 102.
 """
+from typing import List   # For static type checker
 
 spam = ['apples', 'bananas', 'tofu', 'cats']
 grid = [['.', '.', '.', '.', '.', '.'],
@@ -14,9 +15,8 @@ grid = [['.', '.', '.', '.', '.', '.'],
         ['.', '0', '0', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.']]
 
-def list_to_string(my_list):
-    """ Converts a list to a string with items separated by commas
-        Signature: (list)->str."""
+def list_to_string(my_list: list) -> str:
+    """ Converts a list to a string with items separated by commas. """
     string = my_list[0]
     for item in my_list[1:]:
         string = string + ', ' + item
@@ -25,9 +25,8 @@ def list_to_string(my_list):
 #print(list_to_string(spam))
 
 
-def transpose_grid(grid):
-    """ Transpose the grid.
-        Signature (list(list)) -> None. """
+def transpose_grid(grid: List[list]) -> None:
+    """ Transpose the grid. """
 
     # Create a list of strings representing each lines while removing the comma
     lines = []
@@ -45,13 +44,16 @@ def transpose_grid(grid):
             #col += 1
         print(new_string)
 
-def transpose_grid2(grid):
-    """ Transpose the grid. Simply flip the col and row. use end='' to avoid EOL
-        Signature (list(list)) -> None. """
+def transpose_grid2(grid: List[list]) -> None:
+    """ Transpose the grid. Simply flip the col and row. use end='' to avoid EOL. """
     for i in range(len(grid[0])):
         for j in range(len(grid)):
             print(grid[j][i], end='')
         print()
 
-transpose_grid(grid)
-transpose_grid2(grid)
+def main():
+    transpose_grid(grid)
+    transpose_grid2(grid)
+
+if __name__ == "__main__":
+    main()

@@ -6,7 +6,7 @@
 """
 
 
-def collatz(number):
+def collatz(number: int):
     """ Collatzs the input number recursively until it reaches 1.
         Signature: (int) -> None"""
     if number == 1:
@@ -19,7 +19,7 @@ def collatz(number):
         collatz(number * 3 + 1)
 
 
-def collatz2(number):
+def collatz2(number: int):
     """Collatz the number and print each step and tracks the number of them.
        Signature: (int) -> int."""
     if number > 1:
@@ -38,9 +38,8 @@ def collatz2(number):
         print("You entered 1. Should be greater than one. Start again.")
 
 
-def yes_or_no(question):
-    """ Ask Y/N question with error checking.
-        Signature: (str) -> boolean."""
+def yes_or_no(question: str) -> bool:
+    """ Ask Y/N question with error checking."""
     while "the answer is invalid":
         reply = str(input(question+' (y/n): ')).lower().strip()
         if reply[:1] == 'y':
@@ -53,13 +52,12 @@ def main():
     """"Main program"""
 
     print(" Collatz Sequence Program\n", "#"*25)
-    if yes_or_no("Choose to count steps"):
+    if yes_or_no("Choose to count steps?"):
         try:
             collatz2(int(input('Choose any integer greater than 1: ')))
         except ValueError:
             print('Non-Integer entered, program will exit')
     else:
-
         try:
             collatz(int(input('Choose any integer greater than 1: ')))
         except ValueError:

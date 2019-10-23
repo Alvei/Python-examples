@@ -2,11 +2,10 @@
 merge_sort_with_lambda.py
 Flexible merge Sort using lambda
 Created on Sun Dec 28 21:06:38 2014
-
 """
 
 
-def merge_list(left, right, func):
+def merge_list(left: list, right:list, func) -> list:
     ''' Assumes left and right are sorted lists.
         func defines an ordering on the elements of the lists.
         righteturns a new sorted (by func) list containing the same elements
@@ -44,7 +43,7 @@ def merge_list(left, right, func):
     return result
 
 
-def merge_sort(my_list, func=lambda x, y: x < y):
+def merge_sort(my_list: list, func=lambda x, y: x < y) -> list:
     ''' Returns a new sorted list containing the same elements as L.
         lt is a lambda function left is smaller than right (x<y).
         Input: my_list is assumed to be a list list'''
@@ -64,10 +63,8 @@ def merge_sort(my_list, func=lambda x, y: x < y):
     return merge_list(left, right, func)
 
 
-def lastNameFirstName(name1, name2):
-    """ Defining a lambda that can be used to sort names starting with Last names
-    Input: two strings
-    """
+def lastNameFirstName(name1: str, name2: str) -> bool:
+    """ Defining a lambda that can be used to sort names starting with Last names. """
     # Returns a list with each part of name
     name1 = name1.split(" ")
     name2 = name2.split(" ")
@@ -78,10 +75,8 @@ def lastNameFirstName(name1, name2):
     return name1[0] < name2[0]
 
 
-def firstNameLastName(name1, name2):
-    """ Defining a lambda that can be used to sort names starting with first names
-        Signature: (str, str) -> str
-    """
+def firstNameLastName(name1: str, name2: str) -> bool:
+    """ Defining a lambda that can be used to sort names starting with first names. """
     # Returns a list with each part of name
     name1 = name1.split(" ")
     name2 = name2.split(" ")
@@ -96,18 +91,19 @@ def main():
     list1 = [25, 4, 5, 29, 17, 58, 0]
 
     new_list1 = merge_sort(list1)    # uses default lambda for int
-    print(list1, "->", new_list1)
+    print(f"{list1} -> {new_list1}")
 
     list2 = [2.0, 55.121, 44.01, 44.001, 5]
     new_list2 = merge_sort(list2, float.__gt__)  # uses the built-in float greater than as lambda
-    print(list2, "->", new_list2)
+    print(f"{list2} -> {new_list2}")
 
     list3 = ['John Guttag', 'Tom Brady', 'Chancellor Grimson', 'Gisele Brady', 'Big Julie']
+
     new_list3 = merge_sort(list3, lastNameFirstName)
-    print("sorted by last name: ", new_list3)
+    print(f"\nsorted by last name: {new_list3}")
 
     new_list3 = merge_sort(list3, firstNameLastName)
-    print("sorted by first name: ", new_list3)
+    print(f"\nsorted by first name: {new_list3}")
 
 
 if __name__ == '__main__':

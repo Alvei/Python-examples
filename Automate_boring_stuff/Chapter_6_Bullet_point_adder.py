@@ -1,14 +1,11 @@
 """ Chapter_6_Bullet_point_adder.py
     Used os.path library to help find the file directory and special join to create the path.
-    Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 6. Page 139.
-
-"""
+    Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 6. Page 139."""
 from os.path import dirname, join
 
 
-def add_char_to_every_lines(file_name, characters, debug=False):
-    """ Read a file and add characters to every line.
-        Signature: (str, str, str) -> None."""
+def add_char_to_every_lines(file_name: str, characters: str) -> None:
+    """ Read a file and add characters to every line. """
 
     # Find the location of the current directory. Assumes the text file is in the same directory
     current_dir = dirname(__file__)
@@ -18,12 +15,9 @@ def add_char_to_every_lines(file_name, characters, debug=False):
         try:
             # Read the entire file into a string variable
             contents = in_file.read()
-            if debug == True:
-                print("Original file:\n", contents, '\n', sep="")             # Print string
         except IOError:
             print('Unable to load "%s".  Check that it exists.' % file_path)
             return
-
 
     lines = contents.split('\n')            # Separate the string based on EOL
     # print("Convert into a list:", lines)                            # Print list(string)
@@ -43,7 +37,7 @@ def add_char_to_every_lines(file_name, characters, debug=False):
 
 def main():
     """ Test harness. Use * to create a bullet list."""
-    add_char_to_every_lines("Chapter_6_old_file.md", "* ", True)
+    add_char_to_every_lines("Chapter_6_old_file.md", "* ")
 
 if __name__ == "__main__":
     main()

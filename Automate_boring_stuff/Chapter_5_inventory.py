@@ -1,33 +1,20 @@
 """" Add to invetory.
-
-    Inspired from Automate the Boring Stuff with Python - Al Sweigart. Page 120.
-"""
-
-stuff = {'rope': 1, 'torch': 6, 'gold coin': 42,
-         'dagger': 1, 'arrow': 12, 'map fragments': 3}
+    Inspired from Automate the Boring Stuff with Python - Al Sweigart. Page 120."""
 
 
-def display_inventory(inventory):
+def display_inventory(inventory: dict, bag_name: str):
     """ Print contents and total number of items in inventory.
         Signature: (dict) -> None. """
-    print('Inventory:')
+    print(f"Inventory of {bag_name}:")
     total = 0
-    for k, v in inventory.items():
-        print(str(v) + ' ' + k)
-        total += v
+    for key, value in inventory.items():
+        print(f"\t{str(value)} {key}")
+        total += value
     print('Total number of items : ' + str(total))
 
 
-display_inventory(stuff)
-
-print()   # For display reasons when running both projects
-
-"""List to Dictionary Function for Fantasy Game Inventory"""
-
-
-def add_to_inventory(inventory, added_items):
-    """ Combine a list of loot with an inventory.
-        Signature: (dict, list) -> dict."""
+def add_to_inventory(inventory: dict, added_items: list) -> dict:
+    """ Combine a list of loot with an inventory."""
 
     # Add item and use cool method .setdefault() to put a default value if key does not exist
     for loot in added_items:
@@ -35,8 +22,19 @@ def add_to_inventory(inventory, added_items):
         inventory[loot] += 1
     return(inventory)
 
+def main():
+    """ Test Harness """
 
-inv = {'gold coin': 52, 'rope': 1}
-dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
-inv = add_to_inventory(inv, dragon_loot)
-display_inventory(inv)
+    stuff = {'rope': 1, 'torch': 6, 'gold coin': 42,
+         'dagger': 1, 'arrow': 12, 'map fragments': 3}
+    #display_inventory(stuff, "First bag")
+
+    inv = {'gold coin': 52, 'rope': 1}
+    display_inventory(inv,"Second bag")
+    dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
+    print(f"\nAdding loot of {len(dragon_loot)} items")
+    inv = add_to_inventory(inv, dragon_loot)
+    display_inventory(inv,"Second bag")
+
+if __name__ == "__main__":
+    main()
