@@ -11,7 +11,7 @@
         - Enclosing function must return the nested function. """
 
 
-def print_msg(msg):
+def print_msg(msg: str):
     """ This is the outer enclosing function. The nested function printer() is able
         to access the non-local variable msg of the enclosing function.
         This is not closure since it does not return the nested function."""
@@ -20,7 +20,7 @@ def print_msg(msg):
         print(msg)
     printer()
 
-def print_msg2(msg):
+def print_msg2(msg: str):
     """ This is the outer enclosing function. What would happen if the last line
         of the function print_msg() returned the printer() function instead of calling it?
         This is a closure"""
@@ -29,8 +29,8 @@ def print_msg2(msg):
         print(msg)
     return printer  # This got changed. Returning the nexted function
 
-def make_multiplier_of(n):
-    def multiplier(x):
+def make_multiplier_of(n: int):
+    def multiplier(x: int):
         """ This is the nested function. It accesses n"""
         return x * n
     return multiplier # Returning the nested function
@@ -45,9 +45,9 @@ def main():
     times3 = make_multiplier_of(3)
     times5 = make_multiplier_of(5)
 
-    print("3*9 =", times3(9))               # Output: 27
-    print("5*3 =", times5(3))               # Output: 15
-    print("5*3*2 = ", times5(times3(2)))    # Output: 30
+    print(f"3*9 = {times3(9)} \t?= 27")
+    print(f"5*3 = {times5(3)} \t?= 15")
+    print(f"5*3*2 = {times5(times3(2))} \t?= 30")
 
     """ All function objects have a __closure__ attribute that returns a
         tuple of cell objects if it is a closure function.
