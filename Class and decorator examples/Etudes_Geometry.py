@@ -1,22 +1,21 @@
 """ Etudes_geometry.py
-Simple collection of geometric Classes
-for python 3.5 """
+Simple collection of geometric Classes. """
 
 from math import pi, sqrt, atan
 import sys
-dirname = os.path.dirname(__file__)
-filename = os.path.join(dirname, 'relative/path/to/file/you/want')
-sys.path.insert(1, '~/documents/github/python-examples/Error_Handling')
-import error
+#dirname = os.path.dirname(__file__)
+#filename = os.path.join(dirname, 'relative/path/to/file/you/want')
+#sys.path.insert(1, '~/documents/github/python-examples/Error_Handling')
+#import error
 
 
 class Pt():
     """Simple object to describe a point."""
 
-    def __init__(self, loc_x, loc_y):
+    def __init__(self, loc_x: float, loc_y: float) -> None:
         self.x, self.y = loc_x, loc_y
 
-    def move(self, delta_x, delta_y):
+    def move(self, delta_x: float, delta_y: float) -> None:
         """Move a point by distance dx and dy."""
         self.x += delta_x
         self.y += delta_y
@@ -26,7 +25,7 @@ class Pt():
         new_y = self.y + pt2.y
         return Pt(new_x, new_y)
 
-    def __str__(self):
+    def __str__(self) -> str:
         # two ways to achieve same formating
         # return '({self.x}, {self.y})'.format(self=self)
         return '({0:.2f}, {1:.2f})'.format(self.x, self.y)
@@ -36,23 +35,23 @@ class Circle():
     """Simple object to describe a circle by reusing the point class.
        If no center is specified assume at origin"""
 
-    def __init__(self, radius, point=Pt(0, 0)):
+    def __init__(self, radius: float, point=Pt(0, 0)) -> None:
         self.radius, self.center = radius, point
 
-    def area(self):
+    def area(self) -> float:
         """Calculate the areas of the circle."""
         return pi * self.radius ** 2
 
     def __add__(self, another_circle):
         return Circle(self.radius + another_circle.radius)
 
-    def __gt__(self, another_circle):
+    def __gt__(self, another_circle) -> bool:
         return self.radius > another_circle.radius
 
-    def __lt__(self, another_circle):
+    def __lt__(self, another_circle) -> bool:
         return self.radius < another_circle.radius
 
-    def __str__(self):
+    def __str__(self) -> str:
         # two ways to achieve same formating
         # return 'Origin {self.center} and r = {self.r}'.format(self=self)
         return 'Origin({0:.2f}, {1:.2f}) and r = {2:.2f}'.format(self.center.x,
@@ -62,7 +61,7 @@ class Circle():
 class Line():
     """Simple object to describe a line using Pt class."""
 
-    def __init__(self, pt1, pt2):
+    def __init__(self, pt1, pt2) -> None:
         self.point1, self.point2 = pt1, pt2
 
         x_dist = self.point2.x - self.point1.x
@@ -79,13 +78,13 @@ class Line():
             new_line = None
         return new_line
 
-    def __gt__(self, another_line):
+    def __gt__(self, another_line) -> bool:
         return self.mag > another_line.mag
 
-    def __lt__(self, another_line):
+    def __lt__(self, another_line) -> bool:
         return self.mag < another_line.mag
 
-    def __str__(self):
+    def __str__(self) -> str:
 
         return 'Line: {0} to {1} with Mag {2:.2f} at angle {3:.2f}'.format(self.point1,
                                                                            self.point2, self.mag, self.theta)
@@ -97,7 +96,7 @@ class Rectangle():
        If not p1 specified, assume at origine
        Rectangle is assumed to be horizontal"""
 
-    def __init__(self, width, height, p1=Pt(0, 0)):
+    def __init__(self, width: float, height: float, p1=Pt(0, 0)) -> None:
         self.point1 = p1
         self.point2 = p1 + Pt(width, 0)
         self.point3 = self.point2 + Pt(0, height)
@@ -105,11 +104,11 @@ class Rectangle():
         self.width = width
         self.height = height
 
-    def area(self):
+    def area(self) -> float:
         """Calculate the Area."""
         return self.width * self.height
 
-    def move(self, delta_x, delta_y):
+    def move(self, delta_x: float, delta_y: float):
         """Move by distance delta_x and delta_y."""
         distance = Pt(delta_x, delta_y)
         self.point1 = self.point1 + distance
@@ -117,7 +116,7 @@ class Rectangle():
         self.point3 = self.point3 + distance
         self.point4 = self.point4 + distance
 
-    def __str__(self):
+    def __str__(self) -> str:
         return 'Bottom Left Corner: {0}, W = {1}, H = {2}, A = {3:.2f}'.format(
             self.point1, self.width, self.height, self.area())
 
@@ -136,7 +135,7 @@ class Triangle():
        Ignore pylint R0902 Too many instance attributes (default is no more than 7)
        """
 
-    def __init__(self, seg1, seg2, seg3, p1=Pt(0, 0)):
+    def __init__(self, seg1, seg2, seg3, p1=Pt(0, 0)) -> None:
         self.seg1 = seg1  # Assumed to be segment AB
         self.seg2 = seg2  # Assumed to be segment AC
         self.seg3 = seg3  # Assume to be segment BC
@@ -153,28 +152,29 @@ class Triangle():
         self.width = seg1
         self.height = 2.0 * self.area() / self.width
 
-    def area(self):
+    def area(self) -> float:
         """Calculate the Area but 1st check triangle ineguality."""
         test1 = self.seg1 + self.seg2 <= self.seg3
         test2 = self.seg1 + self.seg3 <= self.seg2
         test3 = self.seg2 + self.seg3 <= self.seg1
 
         if (test1 or test2 or test3):  # if sum of any 2 sides is bigger than 3rd
-            error.err('****Error - Triangle inequality failed. Not a triangle')
+            print('****Error - Triangle inequality failed. Not a triangle')
+            #error.err('****Error - Triangle inequality failed. Not a triangle')
         else:
             perimeter = self.seg1 + self.seg2 + self.seg3
             s_var = perimeter / 2.0     # Semi perimeter
             area = sqrt(s_var * (s_var - self.seg1) * (s_var - self.seg2) * (s_var - self.seg3))
         return area
 
-    def move(self, delta_x, delta_y):
+    def move(self, delta_x, delta_y) -> None:
         """Move by distance deltat_x and delta_y."""
         distance = Pt(delta_x, delta_y)
         self.pt_a = self.pt_a + distance
         self.pt_b = self.pt_b + distance
         self.pt_c = self.pt_c + distance
 
-    def __str__(self):
+    def __str__(self) -> str:
         return '(S1, S2, S3) = ({0},{1},{2}) with Area = {3:.3f}'.format(self.seg1,
                                                                          self.seg2, self.seg3, self.area())
 
@@ -212,8 +212,8 @@ def test_circle():
     point_y = Pt(3, 4)
     circle1 = Circle(3)
     circle2 = Circle(1, point_y)
-    print("c1 = ", circle1, "of area = {0:.3f}".format(circle1.area()))
-    print("c2 = ", circle2, "of area = {0:.3f}".format(circle2.area()))
+    print(f"c1 = {circle1} of area = {circle1.area():.3f}")
+    print(f"c2 = {circle2} of area = {circle2.area():.3f}")
     print("Is c1 < c2?", (circle1 < circle2))
 
 
@@ -233,28 +233,28 @@ def test_triangles():
     """Test harness."""
     print("\nTesting triangles:")
     tri = Triangle(3, 4, 5)
-    print('Triangle: {}'.format(tri))
-    print('Width {0:.3f} and height {1:.3f}'.format(tri.width, tri.height))
-    print('Corners => ({}{}{}'.format(tri.pt_a, tri.pt_b, tri.pt_c))
+    print(f"Triangle: {tri}")
+    print(f"Width {tri.width:.3f} and height {tri.height:.3f}")
+    print(f"Corners => ({tri.pt_a}{tri.pt_b}{tri.pt_c})")
 
     tri2 = Triangle(7, 7, 7)
-    print('\nTriangle: {}'.format(tri2))
-    print('Width {0:.3f} and height {1:.3f}'.format(tri2.width, tri2.height))
-    print('Corners => ({}{}{}'.format(tri2.pt_a, tri2.pt_b, tri2.pt_c))
+    print(f"\nTriangle: {tri2}")
+    print(f"Width {tri2.width:.3f} and height {tri2.height:.3f}")
+    print(f"Corners => ({tri2.pt_a}{tri2.pt_b}{tri2.pt_c})")
 
     point_x = Pt(1, 3)
     tri3 = Triangle(3, 4, 5, point_x)
-    print('\nTriangle: {}'.format(tri3))
-    print('Width {0:.3f} and height {1:.3f}'.format(tri3.width, tri3.height))
-    print('Corners => ({}{}{}'.format(tri3.pt_a, tri3.pt_b, tri3.pt_c))
+    print(f"\nTriangle: {tri3}")
+    print(f"Width {tri3.width:.3f} and height {tri3.height:.3f}")
+    print(f"Corners => ({tri3.pt_a}{tri3.pt_b}{tri3.pt_c}")
 
     #t = Triangle(3, 2, 5)
     # print( 'Triangle: {}'.format(t) )  # This should fail
     tri.move(2, 3)
     print('\nMove original triangle by (2,3)')
-    print('Triangle: {}'.format(tri))
-    print('Width {0:.3f} and height {1:.3f}'.format(tri.width, tri.height))
-    print('Corners => ({}{}{}'.format(tri.pt_a, tri.pt_b, tri.pt_c))
+    print(f"Triangle: {tri}")
+    print(f"Width {tri.width:.3f} and height {tri.height:.3f}")
+    print(f"Corners => ({tri.pt_a}{tri.pt_b}{tri.pt_c})")
 
 
 test_points()
