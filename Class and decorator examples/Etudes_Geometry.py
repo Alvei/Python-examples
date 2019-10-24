@@ -3,6 +3,10 @@ Simple collection of geometric Classes
 for python 3.5 """
 
 from math import pi, sqrt, atan
+import sys
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, 'relative/path/to/file/you/want')
+sys.path.insert(1, '~/documents/github/python-examples/Error_Handling')
 import error
 
 
