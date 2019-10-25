@@ -1,21 +1,18 @@
-"""
-   Find root of simple polynomial y**power = x using bissection.
-   for Python 3.5 """
+""" Find root of simple polynomial y**power = x using bissection. """
 
+from typing import Optional  # Needed for None
 
-def find_root(x, power, epsilon):
+def find_root(x: float, power: int, epsilon: float) -> Optional[float]:
     """ Find root of simple polynomial y**power = x using bissection.
         Returns float y such that y**power is within epsilon of x.
-        If such a float does not exist, it returns None.
-        Signature (float, int, float) -> float/None"""
+        If such a float does not exist, it returns None. """
 
     # Check for input validity. Avoiding imaginary numbers
     if x < 0 and power % 2 == 0:
         return None
 
     num_guesses = 0
-    low = min(-1.0, x)
-    high = max(1.0, x)
+    low, high = min(-1.0, x), max(1.0, x)
     ans = (high + low) / 2.0
 
     while abs(ans**power - x) >= epsilon:
@@ -29,7 +26,7 @@ def find_root(x, power, epsilon):
     return ans
 
 
-def test_find_root():
+def main():
     """ Test harness """
     epsilon = 0.0001
 
@@ -37,13 +34,14 @@ def test_find_root():
     for test in (0.25, -0.25, 2, -2, 8, -8):
 
         for power in range(1, 4):
-            print('Testing=> (x, power) = (', test, ',', power, ')')
+            print(f"Testing => (x, power) = ({test},{power})")
             result = find_root(test, power, epsilon)
 
             if result is None:
                 print('    No Roots')
             else:
-                print('\tAns = %4.4f => %4.4f ~= %d' % (result, result**power, test))
+                print(f"\tAns = {result:.4f} => {result**power:.4f} ~= {test}")
 
 
-test_find_root()
+if __name__ == "__main__":
+    main()

@@ -79,22 +79,26 @@ class DoubleSquare(Square):
         return 2 * self.x + 2 * self.y
 
 
-# Test harnesses
-################
-bmw = Car('SUV', 'BMW', 'X5', 'silver', 2003, 12030)
-print(bmw)
+def main():
+    """ Test harnesses """
 
-smallSquare = Square(10)
-print(smallSquare)
+    bmw = Car('SUV', 'BMW', 'X5', 'silver', 2003, 12030)
+    print(bmw)
 
-dictionary = {}
+    smallSquare = Square(10)
+    print(smallSquare)
 
-# Then, create some instances of classes in the dictionary:
-dictionary["DoubleSquare 1"] = DoubleSquare(5)
-dictionary["long rectangle"] = Shape(600, 45)
+    dictionary = {}
 
-# You can now use them like a normal class:
-print("Long rectangle area:", dictionary["long rectangle"].area())
+    # Then, create some instances of classes in the dictionary:
+    dictionary["DoubleSquare 1"] = DoubleSquare(5)
+    dictionary["long rectangle"] = Shape(600, 45)
 
-dictionary["DoubleSquare 1"].authorName("The Gingerbread Man")
-print(dictionary["DoubleSquare 1"].author)
+    # You can now use them like a normal class:
+    print("Long rectangle area:", dictionary["long rectangle"].area())
+
+    dictionary["DoubleSquare 1"].authorName("The Gingerbread Man")
+    print(dictionary["DoubleSquare 1"].author)
+
+if __name__ == "__main__":
+    main()

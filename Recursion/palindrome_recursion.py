@@ -1,30 +1,24 @@
 """ examples_recursions_functions.py
 Examples of recursions:
-factorial()
-Palindrome with list
-Created on Fri Dec 26 10:50:21 2014
+Palindrome with list.
 """
+from typing import List, Any
 
+def is_palindrome_list(my_list: List[Any]) -> bool:
+    ''' Check if a list is a palindrome. '''
 
-def is_palindrome_list(name):
-    ''' Check if a word is a palindrome
-        Signature: (list) -> boolean.'''
+    assert isinstance(my_list, list)  # Check that name is a list
 
-    assert isinstance(name, list)  # Check that name is a list
-
-    temp = name[:]   # Make a copy of the list
+    temp = my_list[:]   # Make a copy of the list
     temp.reverse()
 
-    if temp == name:
+    if temp == my_list:
         return True
-
     return False
 
 
-def is_palindrome(s):
-    """ Check if a word is a palindrome.
-        Punctuations marks, blanks, and capitalization ignored.
-        Signature: (list) -> boolean."""
+def is_palindrome(s: str) -> bool:
+    """ Check if a word is a palindrome. Punctuations marks, blanks, and capitalization ignored."""
 
     assert isinstance(s, str)  # Check that name is a string
 
@@ -37,27 +31,26 @@ def is_palindrome(s):
                 letters = letters + char
         return letters
 
-    def is_pal(s):
-        """ Determine if a string is a Palindrome.
-            Signature: (string) -> boolean"""
+    def is_pal(txt: str) -> bool:
+        """ Determine if a string is a Palindrome. """
 
         # print("   isPal called with", s)
         # Base case
-        if len(s) <= 1:
+        if len(txt) <= 1:
             # print("  About to return True from base case")
             return True
 
         """ answer is a bolean. Checking two conditions:
             1) ensure 1st and last letter are the same
             2) launch a recursive call with those two letters removed"""
-        answer = s[0] == s[-1] and is_pal(s[1:-1])
+        answer = txt[0] == txt[-1] and is_pal(txt[1:-1])
         # print("   About to return", answer, "for", s)
         return answer
 
     return is_pal(to_chars(s))
 
 
-def test_is_palindrome():
+def test_is_palindrome() -> None:
     print("dogGod is a palindrome?", is_palindrome("dogGod"))
     print("doGOOD is a palindrome?", is_palindrome("doGOOD"))
 

@@ -1,11 +1,10 @@
 """
     Newton-Raphson for polynomial
     Find x such that f(x) - k is within epsilon.
-    Returns final guess and number of iteration
-    for Python 3.5."""
+    Returns final guess and number of iteration. """
 
 
-def Newton_RaphsonSquareRoot(k, epsilon):
+def Newton_RaphsonSquareRoot(k, epsilon: float):
     """square root
     Find x such that x**2 - k is within epsilon.
     Newton Raphson => x(n+1) = x(n) - f[x(n)] / df[x(n)]
@@ -25,7 +24,7 @@ def Newton_RaphsonSquareRoot(k, epsilon):
 # --------------------------------------------------------------------
 
 
-def newtonsMethod(f, df, x0, e):
+def newtonsMethod(f: callable, df, x0, e: float):
     """ f is the function f(x) for which we are looking for roots
         df is the derivative of the function f(x)
         x0 is the guess
@@ -47,8 +46,8 @@ def newtonsMethod(f, df, x0, e):
 '''
 
 
-def newtonRaphson(f, df, a, b, tol=1.0e-9):
-    import error
+def newtonRaphson(f, df, a, b, tol: float=1.0e-9):
+    #import error
     from numpy import sign
 
     fa = f(a)
@@ -58,7 +57,8 @@ def newtonRaphson(f, df, a, b, tol=1.0e-9):
     if fb == 0.0:
         return b
     if sign(fa) == sign(fb):
-        error.err('Root is not bracketed')
+        #error.err('Root is not bracketed')
+        print('Root is not bracketed')
 
     x = 0.5 * (a + b)
     for i in range(30):
@@ -105,7 +105,7 @@ def test_Newton_RaphsonSquareRoot():
     print('\n')
     for k in roots:
         guess, n = newtonsMethod(lambda x: x**2 - k, lambda y: 2 * y, k / 2, epsilon)
-        print('%d\t%4.4f\t\t%d ' % (k, guess, n))
+        print(f"{k}\t{guess:.4f}\t\t{n}")
 
 #-------------
 # Root is at:  0
