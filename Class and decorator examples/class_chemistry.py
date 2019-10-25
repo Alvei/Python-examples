@@ -8,7 +8,7 @@
 class Element():
     """Atomic element class with private attributes"""
 
-    def __init__(self, name=None, symbol=None, number=0):
+    def __init__(self, name: str=None, symbol: str=None, number: int=0) -> None:
         """Include default names for private variables"""
         self.__name = name
         self.__symbol = symbol
@@ -16,7 +16,7 @@ class Element():
             raise ValueError("Negative atomic number is not possible")
         self.__number = number
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "Name : " + str(self.__name) \
             + ", Symbol : " + str(self.__symbol)\
             + ", Number : " + str(self.__number)
@@ -28,7 +28,7 @@ class Element():
         return self.__name
 
     @name.setter
-    def name(self, value):
+    def name(self, value) -> None:
         """ Defines the setter with decorator"""
         self.__name = value
 
@@ -39,7 +39,7 @@ class Element():
         return self.__symbol
 
     @symbol.setter
-    def symbol(self, value):
+    def symbol(self, value) -> None:
         """ Defines the setter with decorator"""
         self.__symbol = value
 
@@ -50,7 +50,7 @@ class Element():
         return self.__number
 
     @number.setter
-    def number(self, value):
+    def number(self, value) -> None:
         """ Defines the setter with decorator and error checking"""
         if value < 0:
             raise ValueError("Negative atomic number is not possible")
@@ -62,7 +62,7 @@ class Element():
         new_element = Element(number=new_atomic_number)
         return new_element  # returns an object that is an Element
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """ Defines an overload for equality"""
         if self.__number != other.__number:
             print("1st attribute is not equal")
@@ -100,13 +100,13 @@ def main():
     print(oxygen)
 
     h_plus_o = hydrogen + oxygen
-    print("hydrogen + oxygen", h_plus_o)
+    print(f"hydrogen + oxygen {h_plus_o}")
 
     h_times_o = hydrogen * oxygen
-    print("hydrogen * oxygen", h_times_o)
+    print(f"hydrogen * oxygen {h_times_o}")
 
-    print("H == H?", hydrogen == hydrogen)
-    print("H == O?", hydrogen == oxygen)
+    print(f"H == H? {hydrogen == hydrogen}")
+    print(f"H == O? {hydrogen == oxygen}")
 
 
 if __name__ == '__main__':

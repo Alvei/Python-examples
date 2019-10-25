@@ -6,9 +6,13 @@ class Person:
     name: str
     age: int
 
-    def celebrate_birthday(self):
+    def celebrate_birthday(self) -> None:
         self.age += 1
 
-jdoe = Person('John Doe', 42)
-jdoe.celebrate_birthday()
-print(jdoe)
+def main():
+    jdoe = Person('John Doe', 42)
+    jdoe.celebrate_birthday()
+    print(jdoe)
+
+if __name__ == "__main__":
+    main()

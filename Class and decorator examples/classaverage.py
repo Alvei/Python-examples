@@ -1,29 +1,25 @@
 
-""" Simple example to calculate averages across a dictionary
-"""
+""" Simple example to calculate averages across a dictionary. """
 
 
-def list_average(inputList):
-    ''' Function to calculate the average from a list
-        Signature: (list) -> float.'''
+def list_average(inputList: list) -> float:
+    ''' Function to calculate the average from a list. '''
     total = sum(inputList)
     return float(total / len(inputList))
 
 
-def get_average(student_input):
-    ''' Function to calculate the weighted average
-        Signature: (dictionary) -> float.'''
+def get_average(student_input: dict) -> float:
+    ''' Function to calculate the weighted average. '''
     weight = [0.1, 0.3, 0.6]
     a1 = list_average(student_input["homework"])
     a2 = list_average(student_input["quizzes"])
     a3 = list_average(student_input["tests"])
-    wa = weight[0] * a1 + weight[2] * a2 + weight[3] * a3
+    wa = weight[0] * a1 + weight[1] * a2 + weight[2] * a3
     return wa
 
 
-def letter_grade(score):
-    ''' Function to convert a grade into a letter
-        Signature: (float) -> string.'''
+def letter_grade(score: float) -> str:
+    ''' Function to convert a grade into a letter. '''
 
     score = round(score)
 
@@ -38,7 +34,7 @@ def letter_grade(score):
     return "F"
 
 
-def class_average(students):
+def class_average(students: list) -> float:
     ''' Function that goes through all the list of student to calculate average
         Signature(list of dictionaries) -> float.'''
 
@@ -47,16 +43,13 @@ def class_average(students):
     for student in students:
         grade = get_average(student)
         student_average.append(grade)
-        print("student", student['name'], "average = ", grade, " ", letter_grade(grade))
+        print(f"student {student['name']} average =\t{grade: .2f} {letter_grade(grade)}")
 
     return list_average(student_average)
 
-# Test harness
-# ############
-
 
 def main():
-
+    # Test harness
     # Define data entry dictionaries
     lloyd = {
         "name": "Lloyd",
@@ -81,7 +74,7 @@ def main():
     students = [lloyd, alice, tyler]
 
     av = class_average(students)
-    print("class average =", av)
+    print(f"Class average =\t\t{av: .2f}")
 
 
 main()

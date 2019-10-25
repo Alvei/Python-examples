@@ -1,5 +1,5 @@
-""" Implementation of grade calculators using classes and decorators.
-Created on Tue Jan 13 21:34:02 2015"""
+""" Implementation of grade calculators using classes and decorators. """
+from typing import List
 
 # Dictionary to convert grades
 L2G = {"A+": 4.3, "A": 4, "A-": 3.7,
@@ -8,17 +8,17 @@ L2G = {"A+": 4.3, "A": 4, "A-": 3.7,
 
 
 class Course():
-    def __init__(self, name, grade=None, honor=False):
+    def __init__(self, name: str, grade: str=None, honor: bool=False) -> None:
         self.__name = name
         self.__grade = grade
         self.__honor = honor
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str) -> None:
         self.__name = name
 
     @property
@@ -26,42 +26,41 @@ class Course():
         return self.__grade
 
     @grade.setter
-    def grade(self, grade):
+    def grade(self, grade: str) -> None:
         self.__grade = grade
 
     @property
-    def honor(self):
+    def honor(self) -> bool:
         return self.__honor
 
     @honor.setter
-    def honor(self, honor):
+    def honor(self, honor: bool):
         self.__honor = honor
 
-    def convert_grade(self):
-        """ Convert the letter grades into numbers."""
+    def convert_grade(self) -> float:
+        """ Convert the letter grades into numbers. """
         return L2G[self.grade]
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.honor:
-            ls = self.__name + "\t" + "Hon:\t" + str(self.__grade)
+            class_type = "Hon"
         else:
-            ls = self.__name + "\t" + "Reg:\t" + str(self.__grade)
+            class_type = "Reg"
+        ls = f"{self.__name}\t {class_type}:\t {str(self.__grade)}"
         return ls
 
 
-def get_numerical_grades(courses):
-    """ For the list of courses get the numerical grades.
-        Signature: (list str) -> list of float."""
-    letters = []
+def get_numerical_grades(courses: List[Course]) -> List[float] :
+    """ For the list of courses get the numerical grades."""
+    letters: List[float] = []
 
     for course in courses:
         letters.append(course.convert_grade())
     return letters
 
 
-def average(numbers):
-    """ Assumes numbers is a non empty list
-        Returns the average of the list """
+def average(numbers: list) -> float:
+    """ Assumes numbers is a non empty list. Returns the average of the list. """
 
     try:   # Check for divide by zero error
         return sum(numbers) / float(len(numbers))
@@ -87,8 +86,7 @@ def main():
 
     numbers = get_numerical_grades(courses)
 
-    # print numbers
-    print("GPA: {0:.2f}".format(average(numbers)))
+    print(f"GPA: {average(numbers):.2f}")
 
 
 if __name__ == '__main__':

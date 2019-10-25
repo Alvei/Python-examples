@@ -1,12 +1,8 @@
-"""
-static.py
+""" static.py
 
 Example of using @staticmethod and @classmethod
-
 Created on Sat Mar 10 15:36:19 2018
-
 http://stackabuse.com/understanding-pythons-yield-keyword/
-for Pythong 3.5
 """
 
 
@@ -29,14 +25,17 @@ class ClassGrades:
             if g < 0 or g > 100:
                 raise Exception()
 
+def main():
+    try:
+        # Try out some valid grades
+        class_grades_valid = ClassGrades.from_csv('90, 80, 85, 94, 70')
+        print(f"Got grades: {class_grades_valid.grades}")
 
-try:
-    # Try out some valid grades
-    class_grades_valid = ClassGrades.from_csv('90, 80, 85, 94, 70')
-    print('Got grades:', class_grades_valid.grades)
+        # Should fail with invalid grades
+        class_grades_invalid = ClassGrades.from_csv('92, -15, 99, 101, 77, 65, 100')
+        print(class_grades_invalid.grades)
+    except:
+        print('Invalid!')
 
-    # Should fail with invalid grades
-    class_grades_invalid = ClassGrades.from_csv('92, -15, 99, 101, 77, 65, 100')
-    print(class_grades_invalid.grades)
-except:
-    print('Invalid!')
+if __name__ == "__main__":
+    main()
