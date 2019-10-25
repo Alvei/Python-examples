@@ -25,10 +25,9 @@ Rational(num, den):
 
 class Rational():
     """ Rational (num, den):
-        num is a nonnegative integer and den is a positive integer
-        Signature (int, int) -> Rational instance"""
+        num is a nonnegative integer and den is a positive integer"""
 
-    def __init__(self, num, den):
+    def __init__(self, num: int, den: int) -> None:
         if den == 0:
             raise ZeroDivisionError("Denominator of a rational may not be zero.")
         else:
@@ -47,10 +46,10 @@ class Rational():
     def __truediv__(self, other):
         return Rational(self.n * other.d, self.d * other.n)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "{0:d} / {1:d}".format(self.n, self.d)
 
-    def __float__(self):
+    def __float__(self) -> float:
         return float(self.n) / float(self.d)
 
     def mixed(self):

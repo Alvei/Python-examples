@@ -61,7 +61,7 @@ class A():
     """
     count = 0
 
-    def __init__(self):
+    def __init__(self) -> None:
         A.count += 1
 
     def exclaim(sefl):

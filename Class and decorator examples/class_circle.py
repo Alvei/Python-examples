@@ -9,11 +9,11 @@ PI = 3.14159
 class Circle():
     """ Definition of the class Circle."""
 
-    def __init__(self, input_radius):
+    def __init__(self, input_radius: float) -> None:
         self.__radius = input_radius
 
-    def __str__(self):
-        return "Radius: " + str(self.__radius)
+    def __str__(self) -> str:
+        return f"Radius: {str(self.__radius)}"
 
     @property
     def radius(self):
@@ -22,17 +22,17 @@ class Circle():
         return self.__radius
 
     @radius.setter
-    def radius(self, value):
+    def radius(self, value: float) -> None:
         # print "Inside the setter"
         self.__radius = value
 
     @property
-    def diameter(self):
+    def diameter(self) -> float:
         """ Defines the getter for private variable using @property"""
         return 2 * self.__radius
 
     @property
-    def area(self):
+    def area(self) -> float:
         """ Defines the getter for private variable using @property"""
         return PI * self.__radius**2
 

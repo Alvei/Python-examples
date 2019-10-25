@@ -1,9 +1,9 @@
 
 """ Simple example to calculate averages across a dictionary. """
+from typing import List
 
-
-def list_average(inputList: list) -> float:
-    ''' Function to calculate the average from a list. '''
+def list_average(inputList: List[float]) -> float:
+    ''' Calculate the average from a list. '''
     total = sum(inputList)
     return float(total / len(inputList))
 
@@ -34,9 +34,8 @@ def letter_grade(score: float) -> str:
     return "F"
 
 
-def class_average(students: list) -> float:
-    ''' Function that goes through all the list of student to calculate average
-        Signature(list of dictionaries) -> float.'''
+def class_average(students: List[dict]) -> float:
+    ''' Function that goes through all the list of student to calculate average. '''
 
     student_average = []
 

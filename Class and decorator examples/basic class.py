@@ -6,7 +6,7 @@
 
 class Car(object):
 
-    def __init__(self, typ, make, model, color, year, miles):
+    def __init__(self, typ: str, make: str, model: str, color: str, year: int, miles: int) -> None:
         self.typ = typ
         self.make = make
         self.model = model
@@ -24,14 +24,14 @@ class Car(object):
 
 
 class Shape:
-    def __init__(self, x, y):
+    def __init__(self, x: float, y: float) -> None:
         self.x = x
         self.y = y
         self.description = "This shape has not been described yet"
         self.author = "Nobody has claimed to make this shape yet"
         self.color = "Color not defined"
 
-    def __str__(self):
+    def __str__(self) -> str:
         print('Shape with sides: ' + str(self.x) + ' and ' + str(self.y))
         return ''   # __str__ needs a return
 
@@ -58,7 +58,7 @@ class Shape:
 class Square(Shape):
     """ Uses the class Shape()"""
 
-    def __init__(self, x):
+    def __init__(self, x: float) -> None:
         self.x = x
         self.y = x
 
@@ -71,11 +71,11 @@ class Square(Shape):
 
 
 class DoubleSquare(Square):
-    def __init__(self, y):
+    def __init__(self, y: float) -> None:
         self.x = 2 * y
         self.y = y
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return 2 * self.x + 2 * self.y
 
 
