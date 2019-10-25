@@ -47,7 +47,7 @@ class Rational():
         return Rational(self.n * other.d, self.d * other.n)
 
     def __str__(self) -> str:
-        return "{0:d} / {1:d}".format(self.n, self.d)
+        return "{self.n:d} / {self.d:d}"
 
     def __float__(self) -> float:
         return float(self.n) / float(self.d)
@@ -67,8 +67,8 @@ class Rational():
         if self.d == 1:
             return str(self.n)
         if whole == 0:
-            return "%s/%s" % (remainder, self.d)
-        return "%s and %s/%s" % (whole, remainder, self.d)
+            return f"{remainder}/{self.d}"
+        return f"{whole} and {remainder}/{self.d}"
 
 
 def gcd(num: int, num2: int) -> int:
