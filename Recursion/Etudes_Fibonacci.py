@@ -1,14 +1,13 @@
 """Etudes Fibonacci.py
    Compares the recursive implementation of Fib with the one using
-   Hashing and dynamic programing
-   Python 3.5"""
+   Hashing and dynamic programing. """
 from functools import lru_cache
+from typing import Generator
 
 
-def fib_loop(num):
+def fib_loop(num: int) -> int:
     """ Calculates the fibonacci number of num.
-        Use loops and double assignments.
-        Signature (int) -> int """
+        Use loops and double assignments. """
     assert num >= 0 and isinstance(num, int)
 
     old, new = 0, 1
@@ -17,9 +16,8 @@ def fib_loop(num):
     return old
 
 
-def fib(num):
-    """Calculates the fibonacci number of num.
-       Signature (int) -> int """
+def fib(num: int) -> int:
+    """Calculates the fibonacci number of num. """
 
     # Check that the input is a positive integer
     if not isinstance(num, int):
@@ -33,12 +31,11 @@ def fib(num):
     return fib(num - 1) + fib(num - 2)
 
 
-def fast_fib(num, memo={}):
+def fast_fib(num: int, memo: dict={}) -> int:
     """ Implementation of recursive fib that does not calculate the same fib
         number. It uses a dictionary of previously computed Fib numbers.
         dictionary entry in memo => (key = num, value = fib(num))
-        Initialize memo if empty.
-        Signature (int, dict) -> int """
+        Initialize memo if empty. """
 
     assert num >= 0 and isinstance(num, int)
 
@@ -53,10 +50,9 @@ def fast_fib(num, memo={}):
         return result
 
 @lru_cache(maxsize = 1000)
-def fast_fib2(num):
+def fast_fib2(num: int) -> int:
     """ Implementation of recursive fib that does not calculate the same fib
-        number. It uses functools to do memoization.
-        Signature (int, dict) -> int """
+        number. It uses functools to do memoization. """
 
     if not isinstance(num, int):
         raise TypeError("Expecting int but got", type(int))
@@ -69,9 +65,8 @@ def fast_fib2(num):
         return fast_fib2(num-1) + fast_fib2(num-2)
 
 
-def fib_yield(num):
-    """ Calculates the fibonacci number of num. Use generator.
-        Signature (int) -> int """
+def fib_yield(num: int) -> Generator:
+    """ Calculates the fibonacci number of num. Use generator. """
     yield 0  # special case
 
     if num > 0:
@@ -83,7 +78,7 @@ def fib_yield(num):
         last, next = next, last + next
         yield next  # main generation step
 
-def test_fib(num):
+def test_fib(num: int) -> None:
     """ Test harness. The last call with n = 35 is instanteneous
         for fastFib but takes long for fib """
 
@@ -92,14 +87,14 @@ def test_fib(num):
         print(i, ':', str(fib(i)), "\t\t", str(fast_fib(i)))
 
 
-def test_fib2(num):
+def test_fib2(num: int) -> None:
     """ Test harness. The last call with n = 35 is instanteneous
         for fastFib but takes long for fib """
-    print('fastFib of \t\t', num, ' = ', str(fast_fib(num)))   # Should be super fast
-    print('fastFib2 of \t\t', num, ' = ', str(fast_fib2(num))) # Should be super fast
+    print(f"fastFib of {num} =\t\t{str(fast_fib(num))}")   # Should be super fast
+    print(f"fastFib2 of {num} =\t{str(fast_fib2(num))}") # Should be super fast
     print("This should take a while....")
-    print('Traditional recursion Fib \t', num, ' = ', str(fib(num)))  # Should take some time
-    print('Traditional loop Fib \t\t', num, ' = ', str(fib_loop(num)))  # Should take some time
+    print(f"Traditional recursion Fib {num} =\t {str(fib(num))}")  # Should take some time
+    print(f"Traditional loop Fib {num} =\t {str(fib_loop(num))}")  # Should take some time
 
 
 def main():
