@@ -2,6 +2,7 @@
 Simple collection of geometric Classes. """
 
 from math import pi, sqrt, atan
+from typing import List, overload
 import sys
 #dirname = os.path.dirname(__file__)
 #filename = os.path.join(dirname, 'relative/path/to/file/you/want')
@@ -20,7 +21,7 @@ class Pt():
         self.x += delta_x
         self.y += delta_y
 
-    def __add__(self, pt2):
+    def __add__(self, pt2) -> Pt:
         new_x = self.x + pt2.x
         new_y = self.y + pt2.y
         return Pt(new_x, new_y)
@@ -135,7 +136,7 @@ class Triangle():
        Ignore pylint R0902 Too many instance attributes (default is no more than 7)
        """
 
-    def __init__(self, seg1, seg2, seg3, p1=Pt(0, 0)) -> None:
+    def __init__(self, seg1: float, seg2: float, seg3: float, p1=Pt(0, 0)) -> None:
         self.seg1 = seg1  # Assumed to be segment AB
         self.seg2 = seg2  # Assumed to be segment AC
         self.seg3 = seg3  # Assume to be segment BC
