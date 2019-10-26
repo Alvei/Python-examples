@@ -23,9 +23,9 @@ def to_chars(string: str) -> str:
             letters = letters + char
     return letters
 
-def is_palindrome(s: str) -> bool:
+def is_palindrome(msg: str) -> bool:
     """ Check if a word is a palindrome. Punctuations marks, blanks, and capitalization ignored."""
-    assert isinstance(s, str)  # Check that name is a string
+    assert isinstance(msg, str)  # Check that name is a string
 
     def is_pal(txt: str) -> bool:
         """ Determine if a string is a Palindrome. """
@@ -36,14 +36,12 @@ def is_palindrome(s: str) -> bool:
             # print("  About to return True from base case")
             return True
 
-        """ answer is a bolean. Checking two conditions:
-            1) ensure 1st and last letter are the same
-            2) launch a recursive call with those two letters removed"""
+        # 1) ensure 1st and last letter are the same
+        #    2) launch a recursive call with those two letters removed
         answer = txt[0] == txt[-1] and is_pal(txt[1:-1])
-        # print("   About to return", answer, "for", s)
         return answer
 
-    return is_pal(to_chars(s))
+    return is_pal(to_chars(msg))
 
 
 def main():
