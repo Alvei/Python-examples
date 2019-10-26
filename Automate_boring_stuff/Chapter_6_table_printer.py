@@ -20,9 +20,6 @@ def table_printer(table_data: List[list]) -> None:
             if length > max_word:
                 max_word = length
 
-    # Remember the largest number of columns
-    max_col = max(num_col)
-
     for line in table_data:
         for word in line:
             print(word.rjust(max_word+1), end="")
@@ -33,8 +30,8 @@ def main():
     """ Test harness. """
 
     table_data = [['apples', 'oranges', 'cherries', 'banana'],
-              ['Alice', 'Bob', 'Carol', 'David'],
-              ['dogs', 'cats', 'moose', 'goose']]
+                  ['Alice', 'Bob', 'Carol', 'David'],
+                  ['dogs', 'cats', 'moose', 'goose']]
     table_printer(table_data)
 
 

@@ -4,8 +4,8 @@
 """
 from typing import List   # For static type checker
 
-spam = ['apples', 'bananas', 'tofu', 'cats']
-grid = [['.', '.', '.', '.', '.', '.'],
+SPAM = ['apples', 'bananas', 'tofu', 'cats']
+GRID = [['.', '.', '.', '.', '.', '.'],
         ['.', '0', '0', '.', '.', '.'],
         ['0', '0', '0', '0', '.', '.'],
         ['0', '0', '0', '0', '0', '.'],
@@ -15,21 +15,19 @@ grid = [['.', '.', '.', '.', '.', '.'],
         ['.', '0', '0', '.', '.', '.'],
         ['.', '.', '.', '.', '.', '.']]
 
-def list_to_string(my_list: list) -> str:
+def list_to_string(my_list: List[str]) -> str:
     """ Converts a list to a string with items separated by commas. """
     string = my_list[0]
     for item in my_list[1:]:
         string = string + ', ' + item
     return string
 
-#print(list_to_string(spam))
-
 
 def transpose_grid(grid: List[list]) -> None:
     """ Transpose the grid. """
 
     # Create a list of strings representing each lines while removing the comma
-    lines = []
+    lines: List[str] = []
     for item in grid:
         line = list_to_string(item).replace(', ', '')
 
@@ -46,14 +44,17 @@ def transpose_grid(grid: List[list]) -> None:
 
 def transpose_grid2(grid: List[list]) -> None:
     """ Transpose the grid. Simply flip the col and row. use end='' to avoid EOL. """
-    for i in range(len(grid[0])):
-        for j in range(len(grid)):
-            print(grid[j][i], end='')
+    for index in range(len(grid[0])):
+        for index2 in range(len(grid)):
+            print(grid[index2][index], end='')
         print()
 
 def main():
-    transpose_grid(grid)
-    transpose_grid2(grid)
+    """ Test Harness """
+    transpose_grid(GRID)
+    transpose_grid2(GRID)
+
+    #print(list_to_string(spam))
 
 if __name__ == "__main__":
     main()
