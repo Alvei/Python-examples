@@ -1,47 +1,47 @@
-""" Hanoi tower example.
-"""
+""" Hanoi tower example. """
 
 
-def hanoi(height, s, t, b):
-    ''' Function to solve hanoi problem recursively
-        height is number of ring
-        s is source
-        t is target
-        b is buffer'''
-
+def hanoi(height: int, source: str, target: str, buffer: str) -> None:
+    ''' Function to solve hanoi problem recursively height is number of ring. '''
     assert height > 0
 
     if height == 1:
-        print("height: = ", height, " move ", s, " to ", t)
+        print(f"height: = {height} move {source} to {target}")
     else:
         # Take all rings except one from Target to Buffer
-        hanoi(height - 1, s, b, t)
+        hanoi(height - 1, source, buffer, target)
 
         # Take the bottom ring in Source to the Target
-        hanoi(1, s, t, b)
+        hanoi(1, source, target, buffer)
 
         # Take all Buffer back to Target
-        hanoi(height - 1, b, t, s)
+        hanoi(height - 1, buffer, target, source)
 
-
-"""for i in range(1, 5):
-    print("New Hanoi Example: hanoi(", i, " ,source")
-    print("------------------------------")
-    hanoi(i, "Source", "Target", "Buffer")"""
-hanoi(3, "Source", "Target", "Buffer")
-
-
-def move_tower(height, fromPole, toPole, withPole):
+def move_tower(height: int, from_pole: str, to_pole: str, with_pole: str) -> None:
+    """ Function that does all the moving work. """
     if height >= 1:
-        move_tower(height - 1, fromPole, withPole, toPole)
-        move_disk(fromPole, toPole)
-        move_tower(height - 1, withPole, toPole, fromPole)
+        move_tower(height - 1, from_pole, with_pole, to_pole)
+        move_disk(from_pole, to_pole)
+        move_tower(height - 1, with_pole, to_pole, from_pole)
 
 
-def move_disk(fp, tp):
-    print("moving disk from", fp, "to", tp)
+def move_disk(fpole: str, tpole: str) -> None:
+    """ Prints the moving action """
+    print(f"moving disk from {fpole} to {tpole}")
 
 
-# size = 3
-# print("Size is ", size)
-# moveTower(size, "A", "B", "C")
+def main():
+    """ Test harness """
+
+    for index in range(4, 5):
+        print(f"\nNew Hanoi Example with {index} source")
+        print("-"*35)
+        hanoi(index, "Source", "Target", "Buffer")
+
+
+    # size = 3
+    # print("Size is ", size)
+    # moveTower(size, "A", "B", "C")
+
+if __name__ == "__main__":
+    main()
