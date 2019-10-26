@@ -1,12 +1,9 @@
-"""
-etudes_factorial.py
+"""etudes_factorial.py
 """
 
 
 def fact_i(num: int) -> int:
-    """ Calculates the factorial with while loop.
-        for Python 3.5 """
-
+    """ Calculates the factorial with while loop. """
     assert num > 0 and isinstance(num, int)
 
     result = 1
@@ -18,8 +15,7 @@ def fact_i(num: int) -> int:
 
 
 def fact_r(num: int) -> int:
-    """ Calculates the factorial using recursion."""
-
+    """ Calculates the factorial using recursion. """
     assert num > 0 and isinstance(num, int)
 
     # base case
@@ -33,7 +29,6 @@ def main():
     tests = [3, 4, 8]
     for test in tests:
         print(f"{test}! = {fact_i(test)}")
-
 
 
 if __name__ == '__main__':

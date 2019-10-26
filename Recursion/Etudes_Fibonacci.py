@@ -2,7 +2,7 @@
    Compares the recursive implementation of Fib with the one using
    Hashing and dynamic programing. """
 from functools import lru_cache
-from typing import Generator
+from typing import Generator, Dict
 
 
 def fib_loop(num: int) -> int:
@@ -31,7 +31,7 @@ def fib(num: int) -> int:
     return fib(num - 1) + fib(num - 2)
 
 
-def fast_fib(num: int, memo: dict={}) -> int:
+def fast_fib(num: int, memo: Dict[int, int] = {}) -> int:
     """ Implementation of recursive fib that does not calculate the same fib
         number. It uses a dictionary of previously computed Fib numbers.
         dictionary entry in memo => (key = num, value = fib(num))
@@ -49,7 +49,7 @@ def fast_fib(num: int, memo: dict={}) -> int:
         memo[num] = result
         return result
 
-@lru_cache(maxsize = 1000)
+@lru_cache(maxsize=1000)
 def fast_fib2(num: int) -> int:
     """ Implementation of recursive fib that does not calculate the same fib
         number. It uses functools to do memoization. """
@@ -59,10 +59,9 @@ def fast_fib2(num: int) -> int:
     if num < 0:
         raise ValueError("num must be positive. It is", num)
 
-    if num in (0,1):
+    if num in (0, 1):
         return 1
-    else:
-        return fast_fib2(num-1) + fast_fib2(num-2)
+    return fast_fib2(num-1) + fast_fib2(num-2)
 
 
 def fib_yield(num: int) -> Generator:
@@ -72,11 +71,11 @@ def fib_yield(num: int) -> Generator:
     if num > 0:
         yield 1  # special case
 
-    last, next = 0, 1  # initially set to fib(0) and fib(1)
+    last, next_up = 0, 1  # initially set to fib(0) and fib(1)
 
     for _ in range(1, num):
-        last, next = next, last + next
-        yield next  # main generation step
+        last, next_up = next_up, last + next_up
+        yield next_up  # main generation step
 
 def test_fib(num: int) -> None:
     """ Test harness. The last call with n = 35 is instanteneous
@@ -100,8 +99,10 @@ def test_fib2(num: int) -> None:
 def main():
     """ Test Harness """
 
-    print('\n'); test_fib(4)
-    print('\n'); test_fib2(35)
+    print('\n')
+    test_fib(4)
+    print('\n')
+    test_fib2(35)
 
     # This is still buggy
     #for index in fib_yield(35):
