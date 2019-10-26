@@ -59,7 +59,7 @@ def get_numerical_grades(courses: List[Course]) -> List[float] :
     return letters
 
 
-def average(numbers: list) -> float:
+def average(numbers: List[float]) -> float:
     """ Assumes numbers is a non empty list. Returns the average of the list. """
 
     try:   # Check for divide by zero error
