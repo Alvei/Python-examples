@@ -2,12 +2,12 @@
    Compares the recursive implementation of Fib with the one using
    Hashing and dynamic programing. """
 from functools import lru_cache
+from typing import Generator
 
 
 def fib_loop(num: int) -> int:
     """ Calculates the fibonacci number of num.
-        Use loops and double assignments.
-        Signature (int) -> int """
+        Use loops and double assignments. """
     assert num >= 0 and isinstance(num, int)
 
     old, new = 0, 1
@@ -65,7 +65,7 @@ def fast_fib2(num: int) -> int:
         return fast_fib2(num-1) + fast_fib2(num-2)
 
 
-def fib_yield(num: int) -> int:
+def fib_yield(num: int) -> Generator:
     """ Calculates the fibonacci number of num. Use generator. """
     yield 0  # special case
 
@@ -78,7 +78,7 @@ def fib_yield(num: int) -> int:
         last, next = next, last + next
         yield next  # main generation step
 
-def test_fib(num: int) -> int:
+def test_fib(num: int) -> None:
     """ Test harness. The last call with n = 35 is instanteneous
         for fastFib but takes long for fib """
 
@@ -87,14 +87,14 @@ def test_fib(num: int) -> int:
         print(i, ':', str(fib(i)), "\t\t", str(fast_fib(i)))
 
 
-def test_fib2(num):
+def test_fib2(num: int) -> None:
     """ Test harness. The last call with n = 35 is instanteneous
         for fastFib but takes long for fib """
-    print('fastFib of \t\t', num, ' = ', str(fast_fib(num)))   # Should be super fast
-    print('fastFib2 of \t\t', num, ' = ', str(fast_fib2(num))) # Should be super fast
+    print(f"fastFib of {num} =\t\t{str(fast_fib(num))}")   # Should be super fast
+    print(f"fastFib2 of {num} =\t{str(fast_fib2(num))}") # Should be super fast
     print("This should take a while....")
-    print('Traditional recursion Fib \t', num, ' = ', str(fib(num)))  # Should take some time
-    print('Traditional loop Fib \t\t', num, ' = ', str(fib_loop(num)))  # Should take some time
+    print(f"Traditional recursion Fib {num} =\t {str(fib(num))}")  # Should take some time
+    print(f"Traditional loop Fib {num} =\t {str(fib_loop(num))}")  # Should take some time
 
 
 def main():
