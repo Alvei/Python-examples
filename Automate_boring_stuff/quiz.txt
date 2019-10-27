@@ -1,78 +1,78 @@
 
-1. What is the corresponding Capital to Florida
-	 A) Juneau
+1. What is the corresponding Capital to Georgia
+	 A) Hartford
+	 B) Denver
+	 C) Altanta
+	 D) Montgomery
+
+2. What is the corresponding Capital to Alaska
+	 A) Phoenix
+	 B) Juneau
+	 C) Tallahassee
+	 D) Des Moines
+
+3. What is the corresponding Capital to Arkansas
+	 A) Little Rock
 	 B) Tallahassee
+	 C) Altanta
+	 D) Honolulu
+
+4. What is the corresponding Capital to Kansas
+	 A) Des Moines
+	 B) Little Rock
+	 C) Dover
+	 D) Topeka
+
+5. What is the corresponding Capital to Florida
+	 A) Sacremento
+	 B) Dover
+	 C) Montgomery
+	 D) Tallahassee
+
+6. What is the corresponding Capital to Connecticut
+	 A) Hartford
+	 B) Juneau
+	 C) Altanta
+	 D) Topeka
+
+7. What is the corresponding Capital to Arizona
+	 A) Topeka
+	 B) Montgomery
+	 C) Phoenix
+	 D) Sacremento
+
+8. What is the corresponding Capital to Idaho
+	 A) Altanta
+	 B) Montgomery
+	 C) Topeka
+	 D) Des Moines
+
+9. What is the corresponding Capital to California
+	 A) Altanta
+	 B) Des Moines
+	 C) Dover
+	 D) Sacremento
+
+10. What is the corresponding Capital to Hawaii
+	 A) Phoenix
+	 B) Denver
+	 C) Honolulu
+	 D) Tallahassee
+
+11. What is the corresponding Capital to Delaware
+	 A) Tallahassee
+	 B) Juneau
+	 C) Sacremento
+	 D) Dover
+
+12. What is the corresponding Capital to Alabama
+	 A) Honolulu
+	 B) Little Rock
 	 C) Des Moines
 	 D) Montgomery
 
-2. What is the corresponding Capital to Hawaii
-	 A) Hartford
-	 B) Tallahassee
-	 C) Honolulu
-	 D) Des Moines
-
-3. What is the corresponding Capital to California
-	 A) Juneau
-	 B) Phoenix
-	 C) Altanta
-	 D) Sacremento
-
-4. What is the corresponding Capital to Connecticut
+13. What is the corresponding Capital to Colorado
 	 A) Topeka
-	 B) Hartford
-	 C) Juneau
-	 D) Des Moines
-
-5. What is the corresponding Capital to Alabama
-	 A) Sacremento
-	 B) Topeka
-	 C) Montgomery
-	 D) Denver
-
-6. What is the corresponding Capital to Kansas
-	 A) Topeka
-	 B) Des Moines
-	 C) Juneau
-	 D) Montgomery
-
-7. What is the corresponding Capital to Georgia
-	 A) Little Rock
-	 B) Tallahassee
-	 C) Altanta
-	 D) Denver
-
-8. What is the corresponding Capital to Colorado
-	 A) Dover
-	 B) Honolulu
-	 C) Sacremento
-	 D) Denver
-
-9. What is the corresponding Capital to Idaho
-	 A) Phoenix
-	 B) Des Moines
-	 C) Juneau
-	 D) Little Rock
-
-10. What is the corresponding Capital to Delaware
-	 A) Sacremento
-	 B) Dover
-	 C) Denver
-	 D) Des Moines
-
-11. What is the corresponding Capital to Alaska
-	 A) Little Rock
 	 B) Juneau
-	 C) Dover
-	 D) Altanta
-
-12. What is the corresponding Capital to Arizona
-	 A) Denver
-	 B) Dover
-	 C) Topeka
-	 D) Phoenix
-
-13. What is the corresponding Capital to Arkansas
-	 A) Honolulu
-	 B) Little Rock
-	 C) Dover
-	 D) Phoenix
+	 C) Tallahassee
+	 D) Denver
