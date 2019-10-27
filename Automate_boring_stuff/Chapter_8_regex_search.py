@@ -49,12 +49,6 @@ def look_for_pattern(pattern: str) -> None:
 
 def main():
     """ Test harness
-    \s  => Matches any space, tab or newline character (i.e. whitespace characters)
-    ?   => Matches zero or one occurences of the pattern to the left of it.
-    *   => Matches zero or more occurences of the pattern to the left of it.
-    \w  => Matches any letter, numeric digit or underscore character (i.e. alphanumeric characters);
-        this is equivalent to the class [a-zA-Z0-9_]
-
     The pattern is: ok to have 0 or 1 spaces, then any combination of alphanumeric before !
     """
 

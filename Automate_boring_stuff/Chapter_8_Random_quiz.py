@@ -3,7 +3,6 @@
     Saves the answer to quiz.txt and the answers to quiz_answers.txt
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 8. Page 186.
 """
-
 import random
 import logging
 
@@ -13,7 +12,7 @@ logging.disable(logging.DEBUG)
 NUM_CHOICE = 4   # Cannot exceed 5 because of the ABCDE string index
 
 
-def read_questions(quiz_questions):
+def read_questions(quiz_questions: str):
     """ Reads the list of key,value pairs that will be the questions. The 1st line is different.
         It contains the name of the key, value pairs.
         Signature: (str) -> (list, dict)."""
@@ -34,8 +33,8 @@ def read_questions(quiz_questions):
 
 def main():
     """ Core code """
-    quiz_file = 'quiz.txt'
-    quiz_questions = 'quiz_questions.txt'
+    quiz_file = "quiz.txt"
+    quiz_questions = "quiz_questions.txt"
     answer_file = "quiz_answers.txt"
 
     key_value, multiple_choice =  read_questions(quiz_questions)
