@@ -1,17 +1,15 @@
 """
 Basic statistical functions
-Created on Mon Dec 29 06:56:45 2014
-for Python 3.5"""
+Created on Mon Dec 29 06:56:45 2014. """
 import math
 import pylab
 
 
-def my_combination(item_n, group_r):
+def my_combination(item_n: int, group_r: int) -> float:
     ''' Function that implements the basic combination.
         item_n is the total number of items
         group_r is the size of group taken each time
-        Needs math module
-        Signature: (int, int) -> int'''
+        Needs math module. '''
 
     assert isinstance(item_n, int) and isinstance(group_r, int)  # Input should be integers
     assert (item_n - group_r) > 0                        # myCombination() input test
@@ -19,14 +17,12 @@ def my_combination(item_n, group_r):
     return math.factorial(item_n) / (math.factorial(group_r) * math.factorial(item_n - group_r))
 
 
-def my_binomial_prob(prob, k, num_trial):
+def my_binomial_prob(prob: int, k: int, num_trial: int) -> float:
     ''' Function that calculates a single Binomial Proabability.
         Needs function myCombination and the math module
         Input:
         k is number of successes
-        n-k is the number of failures
-        Signature: (int, int, int) -> float
-    '''
+        n-k is the number of failures   '''
     assert (num_trial - k) > 0   # my_combination() input test
     failure_q = 1 - prob         # probability of failure
     ans = my_combination(num_trial, k) * prob**k * failure_q**(num_trial - k)
