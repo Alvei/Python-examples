@@ -22,7 +22,7 @@ def read_file(file_name: str) -> str:
         try:
             # Read the entire file into a string variable
             contents = in_file.read()
-            logging.debug("Original file:\n" + contents + "\n")
+            logging.debug("Original file:\n %s\n", contents)
             return contents
         except IOError:
             print(f"Unable to load {file_path}.  Check that it exists.")
