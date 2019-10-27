@@ -4,6 +4,7 @@
     Signature: (string, string) -> None
 """
 import sys, pprint, random
+
 passwd = {'Bob': 'yikes!'}
 
 
