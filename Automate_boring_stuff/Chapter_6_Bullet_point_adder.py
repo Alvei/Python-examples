@@ -11,7 +11,7 @@ def add_char_to_every_lines(file_name: str, characters: str) -> None:
     current_dir = dirname(__file__)
     file_path = join(current_dir, "./", file_name)
 
-    with open (file_path, 'rt') as in_file:
+    with open(file_path, 'rt') as in_file:
         try:
             # Read the entire file into a string variable
             contents = in_file.read()

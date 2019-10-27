@@ -17,7 +17,7 @@ def isphone_no(text: str) -> bool:
         return False
     if text[7] != '-':
         return False
-    for num in range(8,12):
+    for num in range(8, 12):
         if not text[num].isdecimal():
             return False
     return True
@@ -71,24 +71,24 @@ def look_phone_no2(text: str) -> list:
 def main():
     """ Test Harness """
 
-    print("1st test of presence:", isphone_no("415-124-5678"))
-    print("2nd test of presence:", isphone_no2("415-124-5678"))
+    print(f"1st test of presence: {isphone_no('415-124-5678')}")
+    print(f"2nd test of presence: {isphone_no2('415-124-5678')}")
 
     msg = "Call me at 415-555-1234 tomorrow. 415-555-9999 is my office"
     msg2 = "Call me at 415.555.1234 tomorrow. 415-555-9999 is my office"
     msg3 = "Call me at 415-555-1234 tomorrow. (415)-555-9999 is my office"
 
-    print("Message:", msg)
-    print("All the phone number(s) found:", look_phone_no(msg))
-    print("All the phone number(s) found:", look_phone_no2(msg))
+    print(f"Message: {msg}")
+    print(f"All the phone number(s) found: {look_phone_no(msg)}")
+    print(f"All the phone number(s) found: {look_phone_no2(msg)}")
 
-    print("\nMessage 2:", msg2)
-    print("All the phone number(s) found:", look_phone_no(msg2))
-    print("All the phone number(s) found:", look_phone_no2(msg2))
+    print(f"\nMessage 2: {msg2}")
+    print(f"All the phone number(s) found: {look_phone_no(msg2)}")
+    print(f"All the phone number(s) found: {look_phone_no2(msg2)}")
 
-    print("\nMessage 3:", msg3)
-    print("All the phone number(s) found:", look_phone_no(msg3))
-    print("All the phone number(s) found:", look_phone_no2(msg3))
+    print(f"\nMessage 3: {msg3}")
+    print(f"All the phone number(s) found: {look_phone_no(msg3)}")
+    print(f"All the phone number(s) found: {look_phone_no2(msg3)}")
 
 if __name__ == "__main__":
     main()

@@ -18,7 +18,7 @@ def read_file(file_name: str) -> str:
     current_dir = dirname(__file__)
     file_path = join(current_dir, "./", file_name)
 
-    with open (file_path, 'rt') as in_file:
+    with open(file_path, 'rt') as in_file:
         try:
             # Read the entire file into a string variable
             contents = in_file.read()
@@ -29,9 +29,8 @@ def read_file(file_name: str) -> str:
             return "IOError"
 
 
-def get_all_phone_no(text: str, debug: bool=False) -> str:
-    """ Apply phone_no regex to find all the phone numbers in a string.
-        Signature: (str) -> list(str). """
+def get_all_phone_no(text: str) -> str:
+    """ Apply phone_no regex to find all the phone numbers in a string. """
     # By putting the parenthesis in front of each element we get access to each
     phone_regex = re.compile(r'''(
         (\d{3}|\(\d{3}\))?       # Area code
@@ -41,10 +40,9 @@ def get_all_phone_no(text: str, debug: bool=False) -> str:
         (\d{4})                  # Last 4 digits
         )''', re.VERBOSE)
     ans = phone_regex.findall(text)
-    if debug == True:
-        print(f"Phone found: {ans}")
 
-    # Extra step to extract the 1st item of list which contains the whole phone no. Could also remove parenthesis
+    # Extra step to extract the 1st item of list which contains the whole phone no.
+    # Could also remove parenthesis
     phone_no = []
     for item in ans:
         phone_no.append(item[0])
@@ -63,7 +61,8 @@ def get_all_emails(text: str) -> str:
         )''', re.VERBOSE)
     ans = email_regex.findall(text)
 
-    # Extra step to extract the 1st item of list which contains the whole email. Could also remove parenthesis.
+    # Extra step to extract the 1st item of list which contains the whole email.
+    # Could also remove parenthesis.
     emails = []
     for item in ans:
         emails.append(item[0])
