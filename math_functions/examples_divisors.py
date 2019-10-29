@@ -1,18 +1,12 @@
 """
 examples_divisors.py
+Find all the common divisors between two integers. """
+from typing import Tuple
 
-Find all the common divisors between two integers.
-Created on Sat Jan 10 16:53:39 2015
-Python 3.X
-"""
-
-
-def find_divisors(number1, number2):
+def find_divisors(number1: int, number2: int) -> Tuple[int, int]:
     """ Find the common divisors of number1 and number2
         Assumes that number1 and number2 are positive ints
-        Returns a tuple containing all common divisors
-        Signature: (int, int) -> tuple."""
-
+        Returns a tuple containing all common divisors. """
     assert number1 >= 1 and number2 >= 1
 
     divisors = ()   # Initialize the empty tuple
@@ -37,11 +31,9 @@ def test_divisors():
     print("Sum of divisors:", total, "\t=> Answer = 42")
 
 
-def find_extreme_divisors(number1, number2):
+def find_extreme_divisors(number1: int, number2: int) -> tuple():
     """ Find the smallest and largest common divisors of number1 and number2.
-        Assumes that number1 and number2 are positive ints.
-        Signature (int, int) => (tuple)."""
-
+        Assumes that number1 and number2 are positive ints. """
     assert number1 >= 1 and number2 >= 1
 
     min_val, max_val = None, None
@@ -61,8 +53,8 @@ def main():
     """ Main code """
     test_divisors()
     min_div, max_div = find_extreme_divisors(100, 200)
-    print("Min Divisor =", min_div, "\t=> Answer = 2")
-    print("Max Divisor =", max_div, "\t=> Answer = 100")
+    print(f"Min Divisor = {min_div}\t\t=> Answer = 2")
+    print(f"Max Divisor = {max_div}\t=> Answer = 100")
 
 if __name__ == '__main__':
     main()

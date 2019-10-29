@@ -5,42 +5,44 @@ import cmath  # complex math library
 from typing import Callable, List, Union
 
 
-def dftk(x: List[float], k: int = 0, all = False) -> Union[float, List[float]]:
+def dftk(my_list: List[float], num: int = 0, all_elem = False) -> Union[float, List[float]]:
     ''' Function that applies k to all the elements of the list. '''
-    if all:
-        return [dftk(x, k) for k in range(len(x))]
-    num_c = -1j * 2 * cmath.pi * k / len(x)
+    if all_elem:
+        return [dftk(my_list, num) for k in range(len(my_list))]
+    num_c = -1j * 2 * cmath.pi * num / len(my_list)
 
     Xk = 0
-    for index, xn in enumerate(x):
+    for index, xn in enumerate(my_list):
         Xk += xn * cmath.exp(num_c * index)
     return Xk
 
 
-def square(x: float) -> float:
+def square(num: float) -> float:
     ''' Specialized function called by the operate function. '''
-    return x ** 2
+    return num ** 2
 
 
-def cube(x: float) -> float:
+def cube(num: float) -> float:
     ''' Specialized function called by the operate function. '''
-    return x ** 3
+    return num ** 3
 
 
-def operate(f: Callable, y: float) -> float:
+def operate(func: Callable, num: float) -> float:
     '''Apply a function on a single variable (not list). '''
-    return f(y)
+    return func(num)
 
 
-def square_plus_cube(x: float) -> float:
-    return x ** 2 + x ** 3
+def square_plus_cube(num: float) -> float:
+    ''' Specialized function called by the operate function. '''
+    return num ** 2 + num ** 3
 
 
 def main():
-    X = [1, 2, 0.1, -1.1, 5]
-    X3 = dftk(X, 3, all=True)
-    print("X:{X}\n")
-    print("X to the power of 3:{X3}\n")
+    ''' Test. Harness'''
+    my_list = [1, 2, 0.1, -1.1, 5]
+    my_list3 = dftk(my_list, 3, all_elem = True)
+    print(f"X:{my_list}\n")
+    print(f"X to the power of 3:{my_list3}\n")
 
     num = 4
     print(f"Square => {num}^2: {operate(square, num)}")     # prints '16'
@@ -52,8 +54,8 @@ def main():
     print(f"Square + Cube => {num}^2 + {num}^3: {operate(square_plus_cube, num)}")  # prints '80'
 
     id_dept_pairs = [(8283, 'Aero/Astro'),
-                    (3456, 'CS'),
-                    (7888, 'Math')]
+                     (3456, 'CS'),
+                     (7888, 'Math')]
 
     # Sort by id number
     print(sorted(id_dept_pairs, key=lambda pair: pair[0]))
