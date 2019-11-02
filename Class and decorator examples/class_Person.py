@@ -1,7 +1,9 @@
 """ Simple grade book for classes
-    for Python 3.5 """
+    Class Hiearchy: Person -> MIT_Person -> Student -> UG or Grad -> None
+                    Grades -> None
+"""
 import datetime
-from typing import Union
+from typing import Optional, List, Dict
 
 class Person():
     """ Basic person object. """
@@ -16,35 +18,34 @@ class Person():
         except:
             self.last_name = name
 
-        self.birthday = None
+        self.birthday: Optional[datetime.date] = None
 
-    def get_name(self):
-        """Return self's full name"""
+    def get_name(self) -> str:
+        """ Return self's full name"""
         return self.name
 
-    def get_last_name(self):
+    def get_last_name(self) -> str:
         """Return self's las name"""
         return self.last_name
 
-    def set_birthday(self, birthdate):
-        """Assumes birthdate is of type datetime.date
-           sets self's birthday to birthdate"""
+    def set_birthday(self, birthdate: Optional[datetime.date]) -> None:
+        """ Sets self's birthday to birthdate"""
         self.birthday = birthdate
 
-    def get_age(self):
-        """Returns self's current age in days"""
+    def get_age(self) -> int:
+        """ Returns self's current age in days"""
         if self.birthday is None:
             raise ValueError
         return (datetime.date.today() - self.birthday).days
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         """Returns True if self's name is lexicographically
            less than others's name, and False otherwise"""
         if self.last_name < other.last_name:
             return self.name < other.name
         return self.last_name < other.last_name
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -52,37 +53,37 @@ class MIT_Person(Person):
     """ MIT student class that uses Person class. """
     nextid_num = 0  # Identification number - class variable
 
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         """ Initialize. """
         Person.__init__(self, name)
         self.id_num = MIT_Person.nextid_num
         MIT_Person.nextid_num += 1
 
-    def get_id_num(self):
+    def get_id_num(self) -> int:
         """ Getter function. """
         return self.id_num
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         """ Comparator. """
         return self.id_num < other.id_num
 
-    def isstudent(self):
-        """Uses built-in function to test type. """
+    def isstudent(self) -> bool:
+        """ Uses built-in function to test type. """
         return isinstance(self, Student)
 
 class Student(MIT_Person):
-    """ Create a Student Class. """
+    """ Create a Student Class. Uses MIT_Person """
     pass
 
 
 class UG(Student):
     """ University undergrad (UG) Student. Uses Class Student. """
-    def __init__(self, name, classYear):
+    def __init__(self, name, class_year: int) -> None:
         """ Initializer function. """
         MIT_Person.__init__(self, name)
-        self.year = classYear
+        self.year: int = class_year
 
-    def get_class(self):
+    def get_class(self) -> int:
         """ Getter function. """
         return self.year
 
@@ -97,11 +98,11 @@ class Grades():
 
     def __init__(self):
         """Create empty grade book. """
-        self.students = []
-        self.grades = {}
-        self.is_sorted = True
+        self.students: List[Student] = []
+        self.grades: Dict[int, list] = {}
+        self.is_sorted: bool = True
 
-    def add_student(self, student):
+    def add_student(self, student: Student):
         """Assumes: student is of type Student. Add student to the grade book"""
         if student in self.students:
             raise ValueError('Duplicate student')
@@ -109,22 +110,22 @@ class Grades():
         self.grades[student.get_id_num()] = []
         self.is_sorted = False
 
-    def add_grade(self, student, grade: float) -> None:
-        """Add grade to the list of grades for student"""
+    def add_grade(self, student: Student, grade: float) -> None:
+        """ Add grade to the list of grades for student"""
         try:
             self.grades[student.get_id_num()].append(grade)
         except ValueError:
             raise ValueError('Student not in mapping')
 
     def get_grades(self, student):
-        """Return a list of grades for student"""
+        """ Return a list of grades for student"""
         try:  # Return copy of student's grades
             return self.grades[student.get_id_num()][:]
         except:
             raise ValueError('Student not in mapping')
 
     def get_students(self):
-        """Return the students in the grade book"""
+        """ Return the students in the grade book"""
         if not self.is_sorted:
             self.students.sort()
             self.is_sorted = True
@@ -134,10 +135,9 @@ class Grades():
             yield student
 
 
-def grade_report(course):
-    """Assumes course is of type Grades
-       Returns a string of students and their average grades"""
-    report = ''
+def grade_report(course: Grades) -> str:
+    """ Returns a string with the name of all the students in the course."""
+    report = '\nPrint mean grade for each student:'
     for student in course.get_students():
         tot = 0.0
         num_grades = 0
@@ -148,27 +148,22 @@ def grade_report(course):
         try:
             average = tot / num_grades
             report = report + '\n'\
-                + str(student) + '\'s mean grade is ' + str(average)
+                + str(student) + '\t' + str(round(average,2))
         except ZeroDivisionError:
             report = report + '\n'\
-                + str(student) + ' has no grades'
+                + str(student) + '\thas no grades'
     return report
 
-def print_student_list(course):
-    """Assumes course is of type Grades
-       Returns a string with all the names separated by \n"""
-    report = ''
-
+def print_student_list(course: Grades) -> str:
+    """ Returns a string with the name of all the students in the course. """
+    report = '\nPrinting student list'
     for student in course.get_students():
         report = report + '\n' + str(student)
-
     return report
 
-def raw_grade_report(course):
-    """Assumes course is of type Grades
-       Returns a string of students and their grades"""
-
-    report = ''
+def raw_grade_report(course: Grades) -> str:
+    """ Returns a string with the name of all the students & grades in the course."""
+    report = '\nPrint raw grade report:\n'
     for student in course.get_students():
         report = report + str(student)
         for grade in course.get_grades(student):
@@ -194,6 +189,7 @@ def test_basic():
 
 def test_sorting():
     """ Test Harness #2: Testing the sorting using __lt__ and last name. """
+    print(f"\n***** Test 2 *****")
     mili = Person('Mili Chad')
     bob = Person('Bob Paradis')
     zoe = Person('Zoe Lalonde')
@@ -236,11 +232,12 @@ def test_mit_class():
 
 def test_grades():
     """ Test Harness #4: Grade Book. """
+    print(f"\n***** Test 4 *****")
     undergrad1 = UG('Jane Doe', 2014)
     undergrad2 = UG('John Doe', 2015)
     undergrad3 = UG('David Henry', 2003)
-    grad1 = Grad('Billy Buckner')
-    grad2 = Grad('Bucky F. Dent')
+    grad1, grad2 = Grad('Billy Buckner'), Grad('Bucky F. Dent')
+
     six_hundred = Grades()
     six_hundred.add_student(undergrad1)
     six_hundred.add_student(undergrad2)
@@ -248,20 +245,18 @@ def test_grades():
     six_hundred.add_student(grad2)
 
     # Go through the list of students (using the copy) and place 75 in the grade
+    print("Enter grades:")
     for student in six_hundred.get_students():
         six_hundred.add_grade(student, 75)
 
-    # Then add grades to a few
+    # Then add grades to a few students
     six_hundred.add_grade(grad1, 25)
     six_hundred.add_grade(grad2, 100)
     six_hundred.add_student(undergrad3)
     six_hundred.add_grade(grad2, 90)
-    print('\n ============>')
 
-    # print printStudentList(six_hundred)
+    #print(print_student_list(six_hundred))
     print(raw_grade_report(six_hundred))
-    print('\n')
-
     print(grade_report(six_hundred))
 
 
@@ -269,8 +264,8 @@ def main():
     """ Test harness. """
     #test_basic()
     #test_sorting()
-    test_mit_class()
-    #test_grades()
+    #test_mit_class()
+    test_grades()
 
 if __name__ == "__main__":
     main()
