@@ -8,7 +8,7 @@ from typing import Optional, List, Dict
 class Person():
     """ Basic person object. """
     def __init__(self, name: str):
-        """Create a person. """
+        """Create a Person. Must specify a name"""
         self.name = name
 
         # find the index of the last space from the end
@@ -39,8 +39,8 @@ class Person():
         return (datetime.date.today() - self.birthday).days
 
     def __lt__(self, other) -> bool:
-        """Returns True if self's name is lexicographically
-           less than others's name, and False otherwise"""
+        """ Returns True if self's name is lexicographically
+            less than others's name, and False otherwise. """
         if self.last_name < other.last_name:
             return self.name < other.name
         return self.last_name < other.last_name
@@ -171,8 +171,9 @@ def test_basic():
     """ Test Harness #1: Testing the Person Class. """
     print(f"\n****** Test 1: *******")
     mili, bob = Person('Mili Chad'), Person('Bob Paradis')
-    zoe, anabel = Person('Zoe Lalonde'), Person('Anabel Potter')
+    zoe, anabel = Person('Zoe Lalonde'), Person('Potter')
     print(f"\n{mili}'s' last name is {mili.get_last_name()}")
+    print(f"\n{anabel}'s' last name is {anabel.get_last_name()}")
     print(bob, mili, zoe, anabel)
 
     mili.set_birthday(datetime.date(1969, 5, 22))
