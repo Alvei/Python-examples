@@ -1,16 +1,11 @@
 
 """
-Experiment with getter and setter decorators
-Created on Sat Mar 10 15:03:06 2018
-
-"""
-
+Experiment with getter and setter decorators.  """
 
 class Duck():
     """ Simple class that uses decorators
-        @property goes before the getter method
-        @name.setter goes before the setter method
-        It usese name mangling for privacy by using self.__name
+        @property goes before the getter method. @name.setter goes before the setter method
+        It uses name mangling for privacy by using self.__name
     """
 
     def __init__(self, inputName):
@@ -36,8 +31,7 @@ print(fowl.name)
 
 class Circle():
     """ Simple circle class to show the use of @property decorator
-        Cool to note that the diameter constantly change with the change in radius
-    """
+        Cool to note that the diameter constantly change with the change in radius. """
 
     def __init__(self, radius):
         self.radius = radius
@@ -64,7 +58,7 @@ class A():
     def __init__(self) -> None:
         A.count += 1
 
-    def exclaim(sefl):
+    def exclaim(self):
         print("\tI'm in A!")
 
     @classmethod
