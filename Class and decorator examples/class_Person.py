@@ -1,21 +1,19 @@
 """ Simple grade book for classes
     for Python 3.5 """
-
 import datetime
 
-
 class Person(object):
-
-    def __init__(self, name):
+    """ Basic person object. """
+    def __init__(self, name: str):
         """Create a person"""
         self.name = name
 
         # find the index of the last space from the end
         try:
             lastBlank = name.rindex(' ')
-            self.lastName = name[lastBlank + 1:]
+            self.lastName: str = name[lastBlank + 1:]
         except:
-            self.lastName = name
+            self.lastName: str = name
 
         self.birthday = None
 
@@ -50,21 +48,26 @@ class Person(object):
 
 
 class MITPerson(Person):
+    """ MIT student class that uses Person class. """
     nextIdNum = 0  # Identification number - class variable
 
     def __init__(self, name):
+        """ Initialize. """
         Person.__init__(self, name)
         self.idNum = MITPerson.nextIdNum
         MITPerson.nextIdNum += 1
 
     def getIdNum(self):
+        """ Getter function. """
         return self.idNum
 
     def __lt__(self, other):
+        """ Comparator. """
         return self.idNum < other.idNum
 
     def isStudent(self):
-        return isinstance(self, Student)  # Uses built-in function to test type
+        """Uses built-in function to test type"""
+        return isinstance(self, Student)  
 
 
 class Student(MITPerson):
@@ -72,11 +75,14 @@ class Student(MITPerson):
 
 
 class UG(Student):
+    """ University Student. Uses Class Student. """
     def __init__(self, name, classYear):
+        """ Initializer function. """
         MITPerson.__init__(self, name)
         self.year = classYear
 
     def getClass(self):
+        """ Getter function. """
         return self.year
 
 
@@ -85,26 +91,24 @@ class Grad(Student):
 
 
 class Grades(object):
-    """A mapping from students to a list of grades"""
+    """A mapping from students to a list of grades. """
 
     def __init__(self):
-        """Create empty grade book"""
+        """Create empty grade book. """
         self.students = []
         self.grades = {}
         self.isSorted = True
 
     def addStudent(self, student):
-        """Assumes: student is of type Student
-           Add student to the grade book"""
+        """Assumes: student is of type Student. Add student to the grade book"""
         if student in self.students:
             raise ValueError('Duplicate student')
         self.students.append(student)
         self.grades[student.getIdNum()] = []
         self.isSorted = False
 
-    def addGrade(self, student, grade):
-        """Assumes: grade is a float
-           Add grade to the list of grades for student"""
+    def addGrade(self, student, grade: float) -> None:
+        """Add grade to the list of grades for student"""
         try:
             self.grades[student.getIdNum()].append(grade)
         except:
@@ -132,28 +136,28 @@ class Grades(object):
             self.isSorted = True
 
         # Use generator, more memory efficient than passing a copy of a list
-        for s in self.students:
-            yield s
+        for student in self.students:
+            yield student
 
 
 def gradeReport(course):
     """Assumes course is of type Grades
        Returns a string of students and their average grades"""
     report = ''
-    for s in course.getStudents():
+    for student in course.getStudents():
         tot = 0.0
         numGrades = 0
         # For a specific student calculate average
-        for g in course.getGrades(s):
-            tot += g
+        for grade in course.getGrades(student):
+            tot += grade
             numGrades += 1
         try:
             average = tot / numGrades
             report = report + '\n'\
-                + str(s) + '\'s mean grade is ' + str(average)
+                + str(student) + '\'s mean grade is ' + str(average)
         except ZeroDivisionError:
             report = report + '\n'\
-                + str(s) + ' has no grades'
+                + str(student) + ' has no grades'
     return report
 
 
@@ -162,8 +166,8 @@ def printStudentList(course):
        Returns a string with all the names separated by \n"""
     report = ''
 
-    for s in course.getStudents():
-        report = report + '\n' + str(s)
+    for student in course.getStudents():
+        report = report + '\n' + str(student)
 
     return report
 
@@ -173,9 +177,9 @@ def rawGradeReport(course):
        Returns a string of students and their grades"""
 
     report = ''
-    for s in course.getStudents():
-        report = report + str(s)
-        for g in course.getGrades(s):
+    for student in course.getStudents():
+        report = report + str(student)
+        for g in course.getGrades(student):
 
             report = report + '\t' + str(g)
         report = report + '\n'
@@ -222,27 +226,27 @@ def test_sorting():
 
 
 def test_MITClass():
-    p1 = MITPerson('Mark Guttag')
-    p2 = MITPerson('Billy Bob Beaver')
-    p3 = MITPerson('Billy Bob Beaver')
-    p4 = Person('Billy Stephenson')
+    student1 = MITPerson('Mark Guttag')
+    student2 = MITPerson('Billy Bob Beaver')
+    student3 = MITPerson('Billy Bob Beaver')
+    student4 = Person('Billy Stephenson')
 
-    print(str(p1) + '\'s id number is  ' + str(p1.getIdNum()))
-    print(str(p2) + '\'s id number is  ' + str(p2.getIdNum()))
-    print(str(p3) + '\'s id number is  ' + str(p3.getIdNum()))
+    print(str(student1) + '\'s id number is  ' + str(student1.getIdNum()))
+    print(str(student2) + '\'s id number is  ' + str(student2.getIdNum()))
+    print(str(student3) + '\'s id number is  ' + str(student3.getIdNum()))
 
-    print('p1 < p2 = ', p1 < p2)
-    print('p3 < p2 = ', p3 < p2)
-    print('p4 < p1 = ', p4 < p1)
+    print('p1 < p2 = ', student1 < student2)
+    print('p3 < p2 = ', student3 < student2)
+    print('p4 < p1 = ', student4 < student1)
 
-    p5 = Grad('Buzz Aldrin')
-    p6 = UG('Billy Beaver', 1984)
-    print(p5, 'is a graduate student is', type(p5) == Grad)
-    print(p6, 'is a an undergraduate student is', type(p6) == UG)
+    student5 = Grad('Buzz Aldrin')
+    student6 = UG('Billy Beaver', 1984)
+    print(student5, 'is a graduate student is', type(student5) == Grad)
+    print(student6, 'is a an undergraduate student is', type(student6) == UG)
 
-    print(p5, 'is a student is ', p5.isStudent())
-    print(p6, 'is a student is ', p6.isStudent())
-    print(p3, 'is a student is ', p3.isStudent())
+    print(student5, 'is a student is ', student5.isStudent())
+    print(student6, 'is a student is ', student6.isStudent())
+    print(student3, 'is a student is ', student3.isStudent())
 
 # Test Harness #4: Grade Book
 

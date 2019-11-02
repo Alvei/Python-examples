@@ -1,6 +1,7 @@
 """ Cards_class.py
-    Inspired from https://realpython.com/python-data-classes/ """
-from dataclasses import dataclass, field, fields
+    Uses dataclasses prebuilt capabilities.
+    Inspired from 'https://realpython.com/python-data-classes/' """
+from dataclasses import dataclass, field
 from typing import List
 
 """ Used Unicode glyphs like ♠ directly in the source code.
@@ -52,6 +53,7 @@ def main():
 
     ace_of_spades = PlayingCard('A', '♠')
     queen_of_hearts = PlayingCard('Q', '♡')
+    # To be able to compare had to add the order flag and sort index function
     print(f"{ace_of_spades} {ace_of_spades > queen_of_hearts} {queen_of_hearts}")
 
 if __name__ == "__main__":
