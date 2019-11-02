@@ -89,7 +89,7 @@ class Grad(Student):
     """ Create a Graduate Student Class. """
 
 class Grades():
-    """A mapping from students to a list of grades. """
+    """A gradebook with mapping from students to a list of grades. """
 
     def __init__(self):
         """Create empty grade book. """
