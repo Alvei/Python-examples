@@ -7,7 +7,7 @@ class TestCypher(unittest.TestCase):
         # Test areas with radius > 0
         cypher_key = 3
         test_dict = {'abc': 'def', 'ABC': 'DEF',"b0nj0ur": "e3qm3xu",
-                    "b0nj0ur!": "e3qm3xu$", "b0n j0ur!": "e3qcm3xu$"}
+                    "b0nj0ur!": "e3qm3xu$", "b0n j0ur!": "e3q2m3xu$"}
         for key, value in test_dict.items():
             self.assertEqual(cypher(key, cypher_key), value)
 
