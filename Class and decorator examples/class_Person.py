@@ -73,12 +73,10 @@ class MIT_Person(Person):
 
 class Student(MIT_Person):
     """ Create a Student Class. Uses MIT_Person """
-    pass
-
 
 class UG(Student):
     """ University undergrad (UG) Student. Uses Class Student. """
-    def __init__(self, name, class_year: int) -> None:
+    def __init__(self, name: str, class_year: int) -> None:
         """ Initializer function. """
         MIT_Person.__init__(self, name)
         self.year: int = class_year
@@ -87,11 +85,8 @@ class UG(Student):
         """ Getter function. """
         return self.year
 
-
 class Grad(Student):
     """ Create a Graduate Student Class. """
-    pass
-
 
 class Grades():
     """A mapping from students to a list of grades. """
@@ -148,7 +143,7 @@ def grade_report(course: Grades) -> str:
         try:
             average = tot / num_grades
             report = report + '\n'\
-                + str(student) + '\t' + str(round(average,2))
+                + str(student) + '\t' + str(round(average, 2))
         except ZeroDivisionError:
             report = report + '\n'\
                 + str(student) + '\thas no grades'
