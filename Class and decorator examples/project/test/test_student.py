@@ -1,7 +1,7 @@
 """ Test the class_student. """
 import unittest, datetime
 
-from student.student import Person, MIT_Person, UG
+from student.student import Person, MIT_Person, UG, Grad, Grades
 
 class TestPerson(unittest.TestCase):
     def setUp(self):
@@ -49,25 +49,53 @@ class TestMITStudent(unittest.TestCase):
         self.student2 = MIT_Person('Billy Bob Beaver')
         self.student4 = Person('Billy Stephenson')   # Not an MIT student`
         self.student3 = MIT_Person('Billy Bob Beaver')
-
+        self.student5 = Grad('Buzz Aldrin')
+        self.student6 = UG('Billy Beaver', 1984)
         return super().setUp()
 
     def tearDown(self):
         return super().tearDown()
 
     def test_init_MIT_Person(self):
+        # Student 4 is not from MIT so does not increment the id_num
         self.assertEqual(self.student1.name, 'Mark Guttag')
         self.assertEqual(self.student1.id_num, 0)
         self.assertEqual(self.student2.name, 'Billy Bob Beaver')
         self.assertEqual(self.student2.id_num, 1)
         self.assertEqual(self.student3.name, 'Billy Bob Beaver')
         self.assertEqual(self.student3.id_num, 2)
+        self.assertEqual(self.student5.name, 'Buzz Aldrin')
+        self.assertEqual(self.student5.id_num, 3)
+        self.assertEqual(self.student6.name, 'Billy Beaver')
+        self.assertEqual(self.student6.id_num, 4)
+        self.assertEqual(self.student6.year, 1984)
 
     def test_lt_MIT_Person(self):
+        # Uses the id_num to determine relative order
         self.assertLess(self.student1, self.student2)
         self.assertLess(self.student2, self.student3)
         self.assertGreater(self.student3, self.student2)
 
+class TestGrades(unittest.TestCase):
+    def setUp(self):
+        self.undergrad1 = UG('Jane Doe', 2014)
+        self.undergrad2 = UG('John Doe', 2015)
+        self.undergrad3 = UG('David Henry', 2003)
+        self.grad1, self.grad2 = Grad('Billy Buckner'), Grad('Bucky F. Dent')
+
+        self.six_hundred = Grades()
+        self.six_hundred.add_student(self.undergrad1)
+        self.six_hundred.add_student(self.undergrad2)
+        self.six_hundred.add_student(self.grad1)
+        self.six_hundred.add_student(self.grad2)
+        return super().setUp()
+
+    def tearDown(self):
+        return super().tearDown()
+
+    #def test_init_Grades(self):
+        #self.assertIn(self.undergrad1, self.six_hundred.students)
+        #print("hi")
 
 if __name__ == "__main__":
     unittest.main()

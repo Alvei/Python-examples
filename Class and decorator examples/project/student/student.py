@@ -179,8 +179,6 @@ def test_mit_class():
     student3 = MIT_Person('Billy Bob Beaver')
     student4 = Person('Billy Stephenson')   # Not an MIT student
 
-    print(f"\n{student1} < {student2} = {student1 < student2}")
-    print(f"{student3} < {student2} = {student3 < student2}")
     print(f"{student4} < {student1} = {student4 < student1}")
 
     student5 = Grad('Buzz Aldrin')
