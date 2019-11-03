@@ -77,7 +77,8 @@ class TestMITStudent(unittest.TestCase):
         self.assertGreater(self.student3, self.student2)
 
 class TestGrades(unittest.TestCase):
-    def setUp(self):
+
+    def test_Grades(self):
         self.undergrad1 = UG('Jane Doe', 2014)
         self.undergrad2 = UG('John Doe', 2015)
         self.undergrad3 = UG('David Henry', 2003)
@@ -88,14 +89,8 @@ class TestGrades(unittest.TestCase):
         self.six_hundred.add_student(self.undergrad2)
         self.six_hundred.add_student(self.grad1)
         self.six_hundred.add_student(self.grad2)
-        return super().setUp()
-
-    def tearDown(self):
-        return super().tearDown()
-
-    #def test_init_Grades(self):
         #self.assertIn(self.undergrad1, self.six_hundred.students)
-        #print("hi")
+        print("hi")
 
 if __name__ == "__main__":
     unittest.main()
