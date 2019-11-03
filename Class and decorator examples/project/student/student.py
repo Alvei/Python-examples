@@ -9,6 +9,8 @@ class Person():
     """ Basic person object. """
     def __init__(self, name: str):
         """Create a Person. Must specify a name"""
+        if not isinstance(name, str):
+            raise TypeError(f"Person name:{name} is not a string but a {type(name)}")
         self.name = name
 
         # find the index of the last space from the end
@@ -29,11 +31,13 @@ class Person():
         return self.last_name
 
     def set_birthday(self, birthdate: Optional[datetime.date]) -> None:
-        """ Sets self's birthday to birthdate"""
+        """ Sets self's birthday to birthdate. """
+        if not isinstance(birthdate, datetime.date):
+            raise TypeError(f"Bday of:{self.name} should be specificed as a {type(datetime.date)}")
         self.birthday = birthdate
 
     def get_age(self) -> int:
-        """ Returns self's current age in days"""
+        """ Returns self's current age in days. """
         if self.birthday is None:
             raise ValueError
         return (datetime.date.today() - self.birthday).days
@@ -42,8 +46,8 @@ class Person():
         """ Returns True if self's name is lexicographically
             less than others's name, and False otherwise. """
         if self.last_name < other.last_name:
-            return self.name < other.name
-        return self.last_name < other.last_name
+            return True
+        return False
 
     def __str__(self) -> str:
         return self.name
@@ -129,7 +133,6 @@ class Grades():
         for student in self.students:
             yield student
 
-
 def grade_report(course: Grades) -> str:
     """ Returns a string with the name of all the students in the course."""
     report = '\nPrint mean grade for each student:'
@@ -167,38 +170,6 @@ def raw_grade_report(course: Grades) -> str:
         report = report + '\n'
     return report
 
-def test_basic():
-    """ Test Harness #1: Testing the Person Class. """
-    print(f"\n****** Test 1: *******")
-    mili, bob = Person('Mili Chad'), Person('Bob Paradis')
-    zoe, anabel = Person('Zoe Lalonde'), Person('Potter')
-    print(f"\n{mili}'s' last name is {mili.get_last_name()}")
-    print(f"\n{anabel}'s' last name is {anabel.get_last_name()}")
-    print(bob, mili, zoe, anabel)
-
-    mili.set_birthday(datetime.date(1969, 5, 22))
-    bob.set_birthday(datetime.date(1968, 7, 9))
-
-    print(f"\n{mili.get_name()} is {mili.get_age()} days old")
-    print(f"{bob.get_name()} is {bob.get_age()} days old")
-    print(f"Bob was born {bob.get_age() - mili.get_age()} days before Mili")
-
-def test_sorting():
-    """ Test Harness #2: Testing the sorting using __lt__ and last name. """
-    print(f"\n***** Test 2 *****")
-    mili = Person('Mili Chad')
-    bob = Person('Bob Paradis')
-    zoe = Person('Zoe Lalonde')
-    anabel = Person('Anabel Potter')
-    roster = [zoe, mili, bob, anabel]
-
-    for pers in roster:
-        print(pers)
-    print('\nSorted by last name')
-
-    roster.sort()
-    for pers in roster:
-        print(pers)
 
 def test_mit_class():
     """ Test Harness #3: Testing MIT_Person class and sorting based __Lt__ and  ID. """
@@ -207,10 +178,6 @@ def test_mit_class():
     student2 = MIT_Person('Billy Bob Beaver')
     student3 = MIT_Person('Billy Bob Beaver')
     student4 = Person('Billy Stephenson')   # Not an MIT student
-
-    print(f"\n{student1}'s id number is {student1.get_id_num()}")
-    print(f"{student2}'s id number is {student2.get_id_num()}")
-    print(f"{student3}'s id number is {student3.get_id_num()}")
 
     print(f"\n{student1} < {student2} = {student1 < student2}")
     print(f"{student3} < {student2} = {student3 < student2}")
@@ -258,10 +225,8 @@ def test_grades():
 
 def main():
     """ Test harness. """
-    #test_basic()
-    #test_sorting()
-    #test_mit_class()
-    test_grades()
+    test_mit_class()
+    #test_grades()
 
 if __name__ == "__main__":
     main()
