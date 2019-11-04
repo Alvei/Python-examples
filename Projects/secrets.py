@@ -3,6 +3,7 @@
     Only works with alphanumeric characters and single whitespace. """
 import string
 import logging
+from typing import List
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logging.disable(logging.DEBUG)
@@ -42,14 +43,14 @@ def cypher(phrase: str, key: int) -> str:
     # Convert the list to a string
     return list_to_string(new_list)
 
-def list_to_string(char_list):
+def list_to_string(char_list: List[str]) -> str:
     """ using .join() method to join the list. """
     word = ""
     return word.join(char_list)
 
 def main():
     """ Main program """
-    key = 19
+    key = 19   # This is the built-in key offset
     phrase = input("Enter a string of charaters: ")
     #print(string.punctuation)
     #phrase = 'b0nj0ur comm3nt ca va!'
@@ -57,8 +58,8 @@ def main():
     new_phrase = cypher(phrase, key)
     print("New Phrase[{}]:\t\t {}".format(len(new_phrase), new_phrase))
 
-    org_phrase = cypher(new_phrase, -key)
-    print("Original Phrase[{}]:\t {}".format(len(org_phrase), org_phrase))
+    original_phrase = cypher(new_phrase, -key)
+    print("Original Phrase[{}]:\t {}".format(len(original_phrase), original_phrase))
 
 if __name__ == "__main__":
     main()

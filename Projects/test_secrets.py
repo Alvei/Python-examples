@@ -4,10 +4,10 @@ from secrets import cypher, char_cypher, list_to_string
 class TestCypher(unittest.TestCase):
     """ Simple unit test. Run python -m unittest"""
     def test_msg(self):
-        # Test areas with radius > 0
+        # Test with a dictionary knowing cypher key is 3
         cypher_key = 3
         test_dict = {'abc': 'def', 'ABC': 'DEF',"b0nj0ur": "e3qm3xu",
-                    "b0nj0ur!": "e3qm3xu$", "b0n j0ur!": "e3qcm3xu$"}
+                    "b0nj0ur!": "e3qm3xu$", "b0n j0ur!": "e3q2m3xu$"}
         for key, value in test_dict.items():
             self.assertEqual(cypher(key, cypher_key), value)
 
