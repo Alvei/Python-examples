@@ -1,7 +1,7 @@
 """ Test the class_student. """
 import unittest, datetime
 
-from student.student import Person, MIT_Person, UG, Grad, Grades
+from student import Person, MIT_Person, UG, Grad, Grades
 
 class TestPerson(unittest.TestCase):
     def setUp(self):
@@ -10,10 +10,10 @@ class TestPerson(unittest.TestCase):
 
         self.mili.set_birthday(datetime.date(1969, 5, 22))
         self.bob.set_birthday(datetime.date(1968, 7, 9))
-        return super().setUp()
+        #return super().setUp()
 
-    def tearDown(self):
-        return super().tearDown()
+    #def tearDown(self):
+        #return super().tearDown()
 
     def test_init_Person(self):
         self.assertEqual(self.mili.name, 'Mili Chad')
@@ -76,9 +76,8 @@ class TestMITStudent(unittest.TestCase):
         self.assertLess(self.student2, self.student3)
         self.assertGreater(self.student3, self.student2)
 
-class TestGrades(unittest.TestCase):
-
-    def test_Grades(self):
+"""class TestGrades(unittest.TestCase):
+    def setUp(self):
         self.undergrad1 = UG('Jane Doe', 2014)
         self.undergrad2 = UG('John Doe', 2015)
         self.undergrad3 = UG('David Henry', 2003)
@@ -89,8 +88,14 @@ class TestGrades(unittest.TestCase):
         self.six_hundred.add_student(self.undergrad2)
         self.six_hundred.add_student(self.grad1)
         self.six_hundred.add_student(self.grad2)
-        #self.assertIn(self.undergrad1, self.six_hundred.students)
-        print("hi")
+        return super().setUp()
+
+    def tearDown(self):
+        return super().tearDown()
+
+    def test_Grades(self):
+        self.assertIn(self.undergrad1, self.six_hundred.students)
+"""
 
 if __name__ == "__main__":
     unittest.main()
