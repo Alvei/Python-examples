@@ -63,6 +63,10 @@ class MIT_Person(Person):
         self.id_num = MIT_Person.nextid_num
         MIT_Person.nextid_num += 1
 
+    """def __delattr__(self, name: str):
+        MIT_Person.nextid_num -= 1
+        return super().__delattr__(name)"""
+
     def get_id_num(self) -> int:
         """ Getter function. """
         return self.id_num
@@ -95,13 +99,13 @@ class Grad(Student):
 class Grades():
     """A gradebook with mapping from students to a list of grades. """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Create empty grade book. """
         self.students: List[Student] = []
-        self.grades: Dict[int, list] = {}
+        self.grades: Dict[int, List[float]] = {}
         self.is_sorted: bool = True
 
-    def add_student(self, student: Student):
+    def add_student(self, student: Student) -> None:
         """Assumes: student is of type Student. Add student to the grade book"""
         if student in self.students:
             raise ValueError('Duplicate student')
@@ -223,8 +227,8 @@ def test_grades():
 
 def main():
     """ Test harness. """
-    test_mit_class()
-    #test_grades()
+    #test_mit_class()
+    test_grades()
 
 if __name__ == "__main__":
     main()
