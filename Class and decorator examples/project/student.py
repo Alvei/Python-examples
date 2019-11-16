@@ -56,7 +56,7 @@ class Person():
 
 
 class Student(Person):
-    """ MIT student class that uses Person class but also has a unique ID. """
+    """ Student class that uses Person class but also has a unique ID. """
     nextid_num = 0  # Identification number - class variable
 
     def __init__(self, name: str) -> None:

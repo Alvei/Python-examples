@@ -3,7 +3,7 @@ import unittest, datetime
 
 from student import Person, Student, UG, Grad, Grades
 
-class TestPerson(unittest.TestCase):
+class Test_Person(unittest.TestCase):
 
     def setUp(self):
         self.mili, self.bob = Person('Mili Chad'), Person('Bob Paradis')
@@ -48,18 +48,15 @@ class TestPerson(unittest.TestCase):
         self.assertEqual(roster, [self.mili, self.zoe, self.bob, self.anabel])
 
 
-class TestMITStudent(unittest.TestCase):
+class Test_Student(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        print("setupclass MITPerson")
+        print("setupclass Student")
 
     @classmethod
     def tearDownClass(cls):
-        #print("TearDown MIT Person class")
         # Resetting a class variable to its initial value
         Student.nextid_num = 0
-        #print(Student.nextid_num)
-
 
     def setUp(self):
         self.student1 = Student('Mark Guttag')
@@ -68,7 +65,6 @@ class TestMITStudent(unittest.TestCase):
         self.student3 = Student('Billy Bob Beaver')
         self.student5 = Grad('Buzz Aldrin')
         self.student6 = UG('Billy Beaver', 1984)
-
         return super().setUp()
 
     def tearDown(self):
@@ -81,7 +77,8 @@ class TestMITStudent(unittest.TestCase):
         return super().tearDown()
 
     def test_init_Student(self):
-        # Student 4 is not from MIT so does not increment the id_num
+        # Student 4 is not a Student so does not increment the id_num
+
         self.assertEqual(self.student1.name, 'Mark Guttag')
         self.assertEqual(self.student1.id_num, 0)
         self.assertEqual(self.student2.name, 'Billy Bob Beaver')
@@ -89,10 +86,18 @@ class TestMITStudent(unittest.TestCase):
         self.assertEqual(self.student3.name, 'Billy Bob Beaver')
         self.assertEqual(self.student3.id_num, 2)
         self.assertEqual(self.student5.name, 'Buzz Aldrin')
+        self.assertEqual(self.student5.__str__(), 'Buzz Aldrin')
         self.assertEqual(self.student5.id_num, 3)
         self.assertEqual(self.student6.name, 'Billy Beaver')
         self.assertEqual(self.student6.id_num, 4)
         self.assertEqual(self.student6.year, 1984)
+        self.assertEqual(self.student6.get_class(), 1984)
+
+        # Assigning a bday that raises error
+        with self.assertRaises(TypeError):
+            self.student6.set_birthday('a1984')
+
+        self.assertTrue(self.student6.isstudent)
 
     def test_lt_Student(self):
         # Uses the id_num to determine relative order
@@ -139,6 +144,10 @@ class TestGrades(unittest.TestCase):
         self.assertIn(self.grad1, self.six_hundred.students)
         self.assertIn(self.grad2, self.six_hundred.students)
 
+        # Check for duplicate
+        with self.assertRaises(ValueError):
+            self.six_hundred.add_student(self.undergrad1)
+
     #def test_Get_Students(self):
      #   self.assertEqual(self.six_hundred.get_students(),'Jane Doe' )
 
@@ -156,6 +165,7 @@ class TestGrades(unittest.TestCase):
         #self.assertEqual(self.six_hundred.students.grades )
 
     def test_average_grade(self):
+
         # Go through the list of students (using the copy) and place 75 in the grade
         for student in self.six_hundred.get_students():
             self.six_hundred.add_grade(student, 75)
@@ -165,7 +175,11 @@ class TestGrades(unittest.TestCase):
         self.assertEqual(self.six_hundred.calculate_average(self.grad1), 50)
         self.assertEqual(self.six_hundred.calculate_average(self.grad2), 75)
 
-   
+        # student with no grades
+        self.undergrad4 = UG('Enigma', 2003)
+        self.six_hundred.add_student(self.undergrad4)
+        self.assertEqual(self.six_hundred.calculate_average(self.undergrad4), -99.)
+
 
 if __name__ == "__main__":
     unittest.main()
