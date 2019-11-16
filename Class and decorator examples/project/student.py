@@ -157,7 +157,7 @@ def grade_report(course: Grades) -> str:
     """ Returns a string with the name of all the students in the course."""
     report = '\nPrint mean grade for each student:'
     for student in course.get_students():
-        print(f"Student: {student} {type(student)}")
+        #print(f"Student: {student} {type(student)}")
         average = course.calculate_average(student)
 
         if average == -99:
@@ -197,6 +197,7 @@ def test_mit_class():
     student4 = Person('Billy Stephenson')   # Not an MIT student
 
     print(f"{student4} < {student1} = {student4 < student1}")
+    print(f"{student2} < {student1} = {student2 < student1}")
 
     student5 = Grad('Buzz Aldrin')
     student6 = UG('Billy Beaver', 1984)

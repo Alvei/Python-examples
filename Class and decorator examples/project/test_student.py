@@ -155,6 +155,17 @@ class TestGrades(unittest.TestCase):
 
         #self.assertEqual(self.six_hundred.students.grades )
 
+    def test_average_grade(self):
+        # Go through the list of students (using the copy) and place 75 in the grade
+        for student in self.six_hundred.get_students():
+            self.six_hundred.add_grade(student, 75)
+
+        self.six_hundred.add_grade(self.grad1, 25)
+
+        self.assertEqual(self.six_hundred.calculate_average(self.grad1), 50)
+        self.assertEqual(self.six_hundred.calculate_average(self.grad2), 75)
+
+   
 
 if __name__ == "__main__":
     unittest.main()
