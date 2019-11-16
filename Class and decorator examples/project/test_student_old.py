@@ -1,7 +1,7 @@
 """ Test the class_student. """
 import unittest, datetime
 
-from student import Person, Student, UG, Grad, Grades
+from student import Person, MIT_Person, UG, Grad, Grades
 
 class TestPerson(unittest.TestCase):
 
@@ -57,15 +57,15 @@ class TestMITStudent(unittest.TestCase):
     def tearDownClass(cls):
         #print("TearDown MIT Person class")
         # Resetting a class variable to its initial value
-        Student.nextid_num = 0
-        #print(Student.nextid_num)
+        MIT_Person.nextid_num = 0
+        #print(MIT_Person.nextid_num)
 
 
     def setUp(self):
-        self.student1 = Student('Mark Guttag')
-        self.student2 = Student('Billy Bob Beaver')
-        self.student4 = Person('Billy Stephenson')   # Not a student`
-        self.student3 = Student('Billy Bob Beaver')
+        self.student1 = MIT_Person('Mark Guttag')
+        self.student2 = MIT_Person('Billy Bob Beaver')
+        self.student4 = Person('Billy Stephenson')   # Not an MIT student`
+        self.student3 = MIT_Person('Billy Bob Beaver')
         self.student5 = Grad('Buzz Aldrin')
         self.student6 = UG('Billy Beaver', 1984)
 
@@ -80,7 +80,7 @@ class TestMITStudent(unittest.TestCase):
         del self.student6
         return super().tearDown()
 
-    def test_init_Student(self):
+    def test_init_MIT_Person(self):
         # Student 4 is not from MIT so does not increment the id_num
         self.assertEqual(self.student1.name, 'Mark Guttag')
         self.assertEqual(self.student1.id_num, 0)
@@ -94,7 +94,7 @@ class TestMITStudent(unittest.TestCase):
         self.assertEqual(self.student6.id_num, 4)
         self.assertEqual(self.student6.year, 1984)
 
-    def test_lt_Student(self):
+    def test_lt_MIT_Person(self):
         # Uses the id_num to determine relative order
         self.assertLess(self.student1, self.student2)
         self.assertLess(self.student2, self.student3)
@@ -109,7 +109,7 @@ class TestGrades(unittest.TestCase):
     def tearDownClass(cls):
         #print("TearDown testGrades")
         # Resetting a class variable to its initial value
-        Student.nextid_num = 0
+        MIT_Person.nextid_num = 0
 
     def setUp(self):
         self.undergrad1 = UG('Jane Doe', 2014)

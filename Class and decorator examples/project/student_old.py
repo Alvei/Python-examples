@@ -1,7 +1,7 @@
 """ Simple grade book for classes
-    Class Hiearchy: Person -> Student -> UG or Grad -> None
+    Class Hiearchy: Person -> MIT_Person -> Student -> UG or Grad -> None
                     Grades -> None
-    Student has a class counter.
+    MIT_Person has a class counter.
 """
 import datetime
 from typing import Optional, List, Dict
@@ -55,15 +55,15 @@ class Person():
         return self.name
 
 
-class Student(Person):
+class MIT_Person(Person):
     """ MIT student class that uses Person class but also has a unique ID. """
     nextid_num = 0  # Identification number - class variable
 
     def __init__(self, name: str) -> None:
         """ Initialize. """
         Person.__init__(self, name)
-        self.id_num = Student.nextid_num
-        Student.nextid_num += 1
+        self.id_num = MIT_Person.nextid_num
+        MIT_Person.nextid_num += 1
 
     def get_id_num(self) -> int:
         """ Getter function. """
@@ -77,11 +77,14 @@ class Student(Person):
         """ Uses built-in function to test type. """
         return isinstance(self, Student)
 
+class Student(MIT_Person):
+    """ Create a Student Class. Uses MIT_Person and is a pass through class. """
+
 class UG(Student):
     """ University undergrad (UG) Student. Uses Class Student. """
     def __init__(self, name: str, class_year: int) -> None:
         """ Initializer function. """
-        Student.__init__(self, name)
+        MIT_Person.__init__(self, name)
         self.year: int = class_year
 
     def get_class(self) -> int:
@@ -90,9 +93,6 @@ class UG(Student):
 
 class Grad(Student):
     """ Create a Graduate Student Class. Uses Class Student. """
-    def __init__(self, name: str) -> None:
-        """ Initializer function. """
-        Student.__init__(self, name)
 
 class Grades():
     """A gradebook with mapping from students to a list of grades. """
@@ -118,30 +118,30 @@ class Grades():
         except ValueError:
             raise ValueError('Student not in mapping')
 
-    def get_grades(self, student: Student) -> List[float]:
+    def get_grades(self, student: Student):
         """ Return a list of grades for student. """
+        print(f"*** {type(student)}")
         try:  # Return copy of student's grades
             return self.grades[student.get_id_num()][:]
         except:
             raise ValueError('Student not in mapping')
 
-    def calculate_average(self, student: Student) -> float:
+    def calculate_average(self, student: Student):
         """ Calculates the average of list of grades. """
         given_grades = self.get_grades(student)
-        #print(f"type given grade {type(given_grades)}")
-        total: float = 0
-        num_grades: int = 0
+        total = 0
+        num_grades = 0
         # For a specific student calculate average
         for grade in given_grades:
             total += grade
             num_grades += 1
 
-        # Calculate average
+        # Now calculate average
         try:
             average = total / num_grades
             return average
         except ZeroDivisionError:
-            return -99.
+            return -99
 
     def get_students(self):
         """ Return the students in the grade book. """
@@ -189,11 +189,11 @@ def raw_grade_report(course: Grades) -> str:
 
 
 def test_mit_class():
-    """ Test Harness: Testing Student class and sorting based __Lt__ and  ID. """
+    """ Test Harness: Testing MIT_Person class and sorting based __Lt__ and  ID. """
     print(f"\n***** Test 3 *****")
-    student1 = Student('Mark Guttag')
-    student2 = Student('Billy Bob Beaver')
-    student3 = Student('Billy Bob Beaver')
+    student1 = MIT_Person('Mark Guttag')
+    student2 = MIT_Person('Billy Bob Beaver')
+    student3 = MIT_Person('Billy Bob Beaver')
     student4 = Person('Billy Stephenson')   # Not an MIT student
 
     print(f"{student4} < {student1} = {student4 < student1}")
