@@ -9,40 +9,47 @@ L2G = {"A+": 4.3, "A": 4, "A-": 3.7,
 
 class Course():
     def __init__(self, name: str, grade: str=None, honor: bool=False) -> None:
+        """ Initialize. """
         self.__name = name
         self.__grade = grade
         self.__honor = honor
 
     @property
     def name(self) -> str:
+        """ Getter. """
         return self.__name
 
     @name.setter
     def name(self, name: str) -> None:
+        """ Setter. """
         self.__name = name
 
     @property
     def grade(self):
+        """ Getter. """
         return self.__grade
 
     @grade.setter
     def grade(self, grade: str) -> None:
+        """ Setter. """
         self.__grade = grade
 
     @property
     def honor(self) -> bool:
+        """ Getter. """
         return self.__honor
 
     @honor.setter
     def honor(self, honor: bool):
+        """ Setter. """
         self.__honor = honor
 
     def convert_grade(self) -> float:
         """ Convert the letter grades into numbers. """
-        return L2G[self.grade]
+        return L2G[self.__grade]
 
     def __str__(self) -> str:
-        if self.honor:
+        if self.__honor:
             class_type = "Hon"
         else:
             class_type = "Reg"

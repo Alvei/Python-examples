@@ -1,4 +1,5 @@
 """ class_global_position.py
+    Usese dataclass library.
     Inspired from https://realpython.com/python-data-classes/ """
 from dataclasses import dataclass, field, fields
 from math import asin, cos, radians, sin, sqrt

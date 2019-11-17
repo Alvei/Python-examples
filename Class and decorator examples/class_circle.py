@@ -5,7 +5,6 @@
 """
 PI = 3.14159
 
-
 class Circle():
     """ Definition of the class Circle."""
 
@@ -40,10 +39,10 @@ class Circle():
 def main():
     """ Main code """
     c = Circle(5)
-    print(f"radius = {c.radius}, diameter = {c.diameter}, area = {c.area}")
+    print(f"radius = {c.radius}, diameter = {c.diameter}, area = {c.area:.2f}")
 
     c.radius = 6  # using the setter
-    print(f"radius = {c.radius}, diameter = {c.diameter}, area = {c.area}")
+    print(f"radius = {c.radius}, diameter = {c.diameter}, area = {c.area:.2f}")
 
 
 if __name__ == '__main__':

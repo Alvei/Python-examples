@@ -4,14 +4,14 @@
 """
 
 
-class Celsius(object):
+class Celsius():
     """ Class definition for Celcius. It has a class counter"""
 
-    count = 0   # Class attribute
+    count: int = 0   # Class attribute
 
     def __init__(self, temperature: float=0) -> None:
         """ Using __temperature we are hidding the variable temperature"""
-        self.__temperature = temperature
+        self.__temperature: float = temperature
         Celsius.count += 1  # Increment the class attribute
 
     def to_farh(self) -> float:
@@ -37,6 +37,9 @@ class Celsius(object):
         """ Keeps track of the number of instances of the class"""
         print(f"Celsius has {cls.count} objects")
 
+    def __str__(self) -> str:
+        return str(self.__temperature)
+
 
 def main():
     """ Main code """
@@ -48,8 +51,9 @@ def main():
     num1.temperature = 66
     print(f"The temperature is {num1.temperature}")  # Answer is 66 using the getter function
 
-    num2 = Celsius(30)
-    num3 = Celsius(80)
+    num2 = Celsius(30.)
+    num3 = Celsius(80.)
+    print(f"two first temperatures: {num2}, {num3}")
     Celsius.print_count_instances()
 
 

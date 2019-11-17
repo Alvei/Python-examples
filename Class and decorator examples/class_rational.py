@@ -30,27 +30,37 @@ class Rational():
     def __init__(self, num: int, den: int) -> None:
         if den == 0:
             raise ZeroDivisionError("Denominator of a rational may not be zero.")
-        else:
-            common = gcd(num, den)
-            self.n, self.d = int(num / common), int(den / common)
+
+        common = gcd(num, den)
+        self._num, self._den = int(num / common), int(den / common)
+
+    @property
+    def num(self):
+        """ Getter. """
+        return self._num
+
+    @property
+    def den(self):
+        """ Getter. """
+        return self._den
 
     def __add__(self, other):
-        return Rational(self.n * other.d + self.d * other.n, self.d * other.d)
+        return Rational(self._num * other._den + self._den * other._num, self._den * other._den)
 
     def __sub__(self, other):
-        return Rational(self.n * other.d - self.d * other.n, self.d * other.d)
+        return Rational(self._num * other._den - self._den * other._num, self._den * other._den)
 
     def __mul__(self, other):
-        return Rational(self.n * other.n, self.d * other.d)
+        return Rational(self._num * other._num, self._den * other._den)
 
     def __truediv__(self, other):
-        return Rational(self.n * other.d, self.d * other.n)
+        return Rational(self._num * other._den, self._den * other._num)
 
     def __str__(self) -> str:
-        return "{self.n:d} / {self.d:d}"
+        return f"{self._num:d} / {self._den:d}"
 
     def __float__(self) -> float:
-        return float(self.n) / float(self.d)
+        return float(self._num) / float(self._den)
 
     def mixed(self):
         """Renders self as a mixed fraction in string form."""
@@ -59,16 +69,16 @@ class Rational():
         # that comes from floor division, then the remainder.
         # or said differently: whole = self.n / self.d, truncated
         #                            n2 = self.n % self.d """
-        whole, remainder = divmod(self.n, self.d)
+        whole, remainder = divmod(self._num, self._den)
 
         # Three cases:  1) if self.d == 1 -> return str(self.n)
         #               2) if whole == zero -> return str(n2)+"/"+str(self.d)
         #               3) num is bigger than den such that ans = whole + new_num/den
-        if self.d == 1:
-            return str(self.n)
+        if self._den == 1:
+            return str(self._num)
         if whole == 0:
-            return f"{remainder}/{self.d}"
-        return f"{whole} and {remainder}/{self.d}"
+            return f"{remainder}/{self._den}"
+        return f"{whole} and {remainder}/{self._den}"
 
 
 def gcd(num: int, num2: int) -> int:
