@@ -168,9 +168,9 @@ class Test_Grades(unittest.TestCase):
 
     def test_get_grades_non_student(self):
         # Try to add grade to a non-existent student
-        print(self.six_hundred.get_grades(self.grad2))
+        self.grad5 = Person('Bob')
         with self.assertRaises(AttributeError):
-            self.six_hundred.get_grades(self.grad2)
+            self.six_hundred.get_grades(self.grad5)
 
     def test_average_grade(self):
         # Go through the list of students (using the copy) and place 75 in the grade

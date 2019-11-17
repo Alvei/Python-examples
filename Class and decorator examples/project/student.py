@@ -185,30 +185,8 @@ def raw_grade_report(course: Grades) -> str:
         report = report + '\n'
     return report
 
-
-def test_class():
-    """ Test Harness: Testing Student class and sorting based __Lt__ and  ID. """
-    print(f"\n***** Test 3 *****")
-    student1 = Student('Mark Guttag')
-    student2 = Student('Billy Bob Beaver')
-    student3 = Student('Billy Bob Beaver')
-    student4 = Person('Billy Stephenson')   # Not an MIT student
-
-    print(f"{student4} < {student1} = {student4 < student1}")
-    print(f"{student2} < {student1} = {student2 < student1}")
-
-    student5 = Grad('Buzz Aldrin')
-    student6 = UG('Billy Beaver', 1984)
-    print(f"\n{student5} is a graduate student is {isinstance(student5, Grad)}")
-    print(f"{student6} is a an undergraduate student is {isinstance(student6, UG)}")
-
-    print(f"\n{student5} is a student is {student5.isstudent()}")
-    print(f"\n{student6} is a student is {student6.isstudent()}")
-    print(f"\n{student3} is a student is {student3.isstudent()}")
-
-
-def test_grades():
-    """ Test Harness: Gradebook. """
+def main():
+    """ Test harness. """
     print(f"\n***** Test Gradebook *****")
     # Create undergrad and grad students
     undergrad1 = UG('Jane Doe', 2014)
@@ -238,11 +216,6 @@ def test_grades():
     print(raw_grade_report(six_hundred))
     print(grade_report(six_hundred))
 
-
-def main():
-    """ Test harness. """
-    #test_class()
-    test_grades()
 
 if __name__ == "__main__":
     main()
