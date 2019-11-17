@@ -23,11 +23,13 @@ class Person():
 
         self.__birthday: Optional[datetime.date] = None
 
-    def get_name(self) -> str:
+    @property
+    def name(self) -> str:
         """ Return self's full name"""
         return self.__name
 
-    def get_last_name(self) -> str:
+    @property
+    def last_name(self) -> str:
         """ Return self's las name"""
         return self.__last_name
 
@@ -37,20 +39,21 @@ class Person():
             raise TypeError(f"Bday of:{self.__name} should be specificed as a {type(datetime.date)}")
         self.__birthday = birthdate
 
-    def get_birthday(self) -> str:
+    @property
+    def birthday(self) -> str:
         """ Return self's las name"""
         return self.__birthday
 
     def get_age(self) -> int:
         """ Returns self's current age in days. """
-        if self.get_birthday() is None:
+        if self.birthday is None:
             raise ValueError
-        return (datetime.date.today() - self.get_birthday()).days
+        return (datetime.date.today() - self.birthday).days
 
     def __lt__(self, other) -> bool:
         """ Returns True if self's name is lexicographically
             less than others's name, and False otherwise. """
-        if self.__last_name < other.__last_name:
+        if self.last_name < other.last_name:
             return True
         return False
 
@@ -69,13 +72,14 @@ class Student(Person):
         self.__id_num = Student.nextid_num
         Student.nextid_num += 1
 
-    def get_id_num(self) -> int:
+    @property
+    def id_num(self) -> int:
         """ Getter function. """
         return self.__id_num
 
     def __lt__(self, other) -> bool:
         """ Comparator. """
-        return self.get_id_num() < other.get_id_num()
+        return self.id_num < other.id_num
 
     def isstudent(self) -> bool:
         """ Uses built-in function to test type. """
@@ -88,7 +92,8 @@ class UG(Student):
         Student.__init__(self, name)
         self.__year: int = class_year
 
-    def get_class(self) -> int:
+    @property
+    def year(self) -> int:
         """ Getter function. """
         return self.__year
 
@@ -98,7 +103,7 @@ class Grad(Student):
         """ Initializer function. """
         Student.__init__(self, name)
 
-class Grades():
+class Gradesbook():
     """A gradebook with mapping from students to a list of grades. """
 
     def __init__(self) -> None:
@@ -112,10 +117,11 @@ class Grades():
         if student in self.__students:
             raise ValueError('Duplicate student')
         self.__students.append(student)
-        self.__grades[student.get_id_num()] = []
+        self.__grades[student.id_num] = []
         self.__is_sorted = False
 
-    def get_students(self):
+    @property
+    def students(self):
         """ Return the students in the grade book. """
         if not self.__is_sorted:
             self.__students.sort()
@@ -128,14 +134,14 @@ class Grades():
     def add_grade(self, student: Student, grade: float) -> None:
         """ Add grade to the list of grades for student. """
         try:
-            self.__grades[student.get_id_num()].append(grade)
+            self.__grades[student.id_num].append(grade)
         except AttributeError:
             raise AttributeError('Student not in gradebook')
 
     def get_grades(self, student: Student) -> List[float]:
         """ Return a list of grades for student. """
         try:  # Return copy of student's grades
-            return self.__grades[student.get_id_num()][:]
+            return self.__grades[student.id_num][:]
         except AttributeError:
             raise AttributeError('Student not in gradebook')
 
@@ -156,10 +162,10 @@ class Grades():
         except ZeroDivisionError:
             return -99.
 
-def grade_report(course: Grades) -> str:
+def grade_report(course: Gradesbook) -> str:
     """ Returns a string with the name of all the students in the course. """
     report = '\nPrint mean grade for each student:'
-    for student in course.get_students():
+    for student in course.students:
         average = course.calculate_average(student)
 
         if average == -99:
@@ -171,20 +177,19 @@ def grade_report(course: Grades) -> str:
 
     return report
 
-def print_student_list(course: Grades) -> str:
+def print_student_list(course: Gradesbook) -> str:
     """ Returns a string with the name of all the students in the course. """
     report = '\nPrinting student list'
-    for student in course.get_students():
+    for student in course.students:
         report = report + '\n' + str(student)
     return report
 
-def raw_grade_report(course: Grades) -> str:
+def raw_grade_report(course: Gradesbook) -> str:
     """ Returns a string with the name of all the students & grades in the course."""
     report = '\nPrint raw grade report:\n'
-    for student in course.get_students():
+    for student in course.students:
         report = report + str(student)
         for grade in course.get_grades(student):
-
             report = report + '\t' + str(grade)
         report = report + '\n'
     return report
@@ -199,7 +204,7 @@ def main():
     grad1, grad2 = Grad('Billy Buckner'), Grad('Bucky F. Dent')
 
     # Fill the gradbook
-    six_hundred = Grades()
+    six_hundred = Gradesbook()
     six_hundred.add_student(undergrad1)
     six_hundred.add_student(undergrad2)
     six_hundred.add_student(grad1)
@@ -207,7 +212,7 @@ def main():
 
     # Go through the list of students (using the copy) and place 75 in the grade
     print("Enter grades:")
-    for student in six_hundred.get_students():
+    for student in six_hundred.students:
         six_hundred.add_grade(student, 75)
 
     # Then add grades to a few students
