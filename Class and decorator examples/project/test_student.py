@@ -47,7 +47,6 @@ class Test_Person(unittest.TestCase):
         roster.sort()
         self.assertEqual(roster, [self.mili, self.zoe, self.bob, self.anabel])
 
-
 class Test_Student(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -93,11 +92,11 @@ class Test_Student(unittest.TestCase):
         self.assertEqual(self.student6.year, 1984)
         self.assertEqual(self.student6.get_class(), 1984)
 
-        # Assigning a bday that raises error
+        # Assigning a bday that raises error b/c not datetime
         with self.assertRaises(TypeError):
             self.student6.set_birthday('a1984')
 
-        self.assertTrue(self.student6.isstudent)
+        self.assertTrue(self.student6.isstudent())
 
     def test_lt_Student(self):
         # Uses the id_num to determine relative order
@@ -105,14 +104,13 @@ class Test_Student(unittest.TestCase):
         self.assertLess(self.student2, self.student3)
         self.assertGreater(self.student3, self.student2)
 
-class TestGrades(unittest.TestCase):
+class Test_Grades(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print("setupclass testGrades")
 
     @classmethod
     def tearDownClass(cls):
-        #print("TearDown testGrades")
         # Resetting a class variable to its initial value
         Student.nextid_num = 0
 
@@ -144,12 +142,9 @@ class TestGrades(unittest.TestCase):
         self.assertIn(self.grad1, self.six_hundred.students)
         self.assertIn(self.grad2, self.six_hundred.students)
 
-        # Check for duplicate
+    def test_duplicate_Students(self):
         with self.assertRaises(ValueError):
             self.six_hundred.add_student(self.undergrad1)
-
-    #def test_Get_Students(self):
-     #   self.assertEqual(self.six_hundred.get_students(),'Jane Doe' )
 
     def test_Loading_grades(self):
         # Go through the list of students (using the copy) and place 75 in the grade
@@ -162,20 +157,31 @@ class TestGrades(unittest.TestCase):
         self.six_hundred.add_student(self.undergrad3)
         self.six_hundred.add_grade(self.grad2, 90)
 
-        #self.assertEqual(self.six_hundred.students.grades )
+        self.assertEqual(self.six_hundred.get_grades(self.grad1), [75, 25])
+        self.assertEqual(self.six_hundred.get_grades(self.grad2), [75, 100, 90])
+
+    def test_adding_grade_non_student(self):
+        # Try to add grade to a non-existent student
+        self.grad5 = Person('Bob')
+        with self.assertRaises(AttributeError):
+            self.six_hundred.add_grade(self.grad5, 25)
+
+    def test_get_grades_non_student(self):
+        # Try to add grade to a non-existent student
+        print(self.six_hundred.get_grades(self.grad2))
+        with self.assertRaises(AttributeError):
+            self.six_hundred.get_grades(self.grad2)
 
     def test_average_grade(self):
-
         # Go through the list of students (using the copy) and place 75 in the grade
         for student in self.six_hundred.get_students():
             self.six_hundred.add_grade(student, 75)
-
         self.six_hundred.add_grade(self.grad1, 25)
 
         self.assertEqual(self.six_hundred.calculate_average(self.grad1), 50)
         self.assertEqual(self.six_hundred.calculate_average(self.grad2), 75)
 
-        # student with no grades
+    def test_average_grade_no_student(self):
         self.undergrad4 = UG('Enigma', 2003)
         self.six_hundred.add_student(self.undergrad4)
         self.assertEqual(self.six_hundred.calculate_average(self.undergrad4), -99.)

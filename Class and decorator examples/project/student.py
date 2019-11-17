@@ -104,7 +104,7 @@ class Grades():
         self.is_sorted: bool = True
 
     def add_student(self, student: Student) -> None:
-        """Assumes: student is of type Student. Add student to the grade book"""
+        """Assumes: student is of type Student. Add student to the grade book. """
         if student in self.students:
             raise ValueError('Duplicate student')
         self.students.append(student)
@@ -112,23 +112,22 @@ class Grades():
         self.is_sorted = False
 
     def add_grade(self, student: Student, grade: float) -> None:
-        """ Add grade to the list of grades for student"""
+        """ Add grade to the list of grades for student. """
         try:
             self.grades[student.get_id_num()].append(grade)
-        except ValueError:
-            raise ValueError('Student not in mapping')
+        except AttributeError:
+            raise AttributeError('Student not in gradebook')
 
     def get_grades(self, student: Student) -> List[float]:
         """ Return a list of grades for student. """
         try:  # Return copy of student's grades
             return self.grades[student.get_id_num()][:]
-        except:
-            raise ValueError('Student not in mapping')
+        except AttributeError:
+            raise AttributeError('Student not in gradebook')
 
     def calculate_average(self, student: Student) -> float:
         """ Calculates the average of list of grades. """
         given_grades = self.get_grades(student)
-        #print(f"type given grade {type(given_grades)}")
         total: float = 0
         num_grades: int = 0
         # For a specific student calculate average
@@ -154,10 +153,9 @@ class Grades():
             yield student
 
 def grade_report(course: Grades) -> str:
-    """ Returns a string with the name of all the students in the course."""
+    """ Returns a string with the name of all the students in the course. """
     report = '\nPrint mean grade for each student:'
     for student in course.get_students():
-        #print(f"Student: {student} {type(student)}")
         average = course.calculate_average(student)
 
         if average == -99:
@@ -188,7 +186,7 @@ def raw_grade_report(course: Grades) -> str:
     return report
 
 
-def test_mit_class():
+def test_class():
     """ Test Harness: Testing Student class and sorting based __Lt__ and  ID. """
     print(f"\n***** Test 3 *****")
     student1 = Student('Mark Guttag')
@@ -243,7 +241,7 @@ def test_grades():
 
 def main():
     """ Test harness. """
-    #test_mit_class()
+    #test_class()
     test_grades()
 
 if __name__ == "__main__":
