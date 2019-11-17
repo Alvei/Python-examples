@@ -9,8 +9,8 @@ class Test_Person(unittest.TestCase):
         self.mili, self.bob = Person('Mili Chad'), Person('Bob Paradis')
         self.zoe, self.anabel = Person('Zoe Lalonde'), Person('Potter')
 
-        self.mili.set_birthday(datetime.date(1969, 5, 22))
-        self.bob.set_birthday(datetime.date(1968, 7, 9))
+        self.mili.birthday = datetime.date(1969, 5, 22)
+        self.bob.birthday = datetime.date(1968, 7, 9)
         return super().setUp()
 
     def tearDown(self):
@@ -28,7 +28,7 @@ class Test_Person(unittest.TestCase):
         self.assertIsNone(self.anabel.birthday)
         with self.assertRaises(TypeError):
             dan = Person(124)
-            dan.set_birthday(1969)
+            dan.birthday = 1969
 
     def test_getter_Person(self):
         self.assertEqual(self.mili.name, 'Mili Chad')
@@ -93,7 +93,7 @@ class Test_Student(unittest.TestCase):
 
         # Assigning a bday that raises error b/c not datetime
         with self.assertRaises(TypeError):
-            self.student6.set_birthday('a1984')
+            self.student6.birthday = 'a1984'
 
         self.assertTrue(self.student6.isstudent())
 

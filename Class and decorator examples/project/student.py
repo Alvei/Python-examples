@@ -33,16 +33,17 @@ class Person():
         """ Return self's las name"""
         return self.__last_name
 
-    def set_birthday(self, birthdate: Optional[datetime.date]) -> None:
+    @property
+    def birthday(self) -> Optional[datetime.date]:
+        """ Return self's las name"""
+        return self.__birthday
+
+    @birthday.setter
+    def birthday(self, birthdate: Optional[datetime.date]) -> None:
         """ Sets self's birthday to birthdate. """
         if not isinstance(birthdate, datetime.date):
             raise TypeError(f"Bday of:{self.__name} should be specificed as a {type(datetime.date)}")
         self.__birthday = birthdate
-
-    @property
-    def birthday(self) -> str:
-        """ Return self's las name"""
-        return self.__birthday
 
     def get_age(self) -> int:
         """ Returns self's current age in days. """
@@ -60,7 +61,6 @@ class Person():
     def __str__(self) -> str:
         """ Representation of the class. """
         return self.__name
-
 
 class Student(Person):
     """ Student class that uses Person class but also has a unique ID. """
@@ -122,7 +122,7 @@ class Gradesbook():
 
     @property
     def students(self):
-        """ Return the students in the grade book. """
+        """ Getter function, returns the students in the grade book. """
         if not self.__is_sorted:
             self.__students.sort()
             self.__is_sorted = True
