@@ -48,7 +48,8 @@ def list_to_string(char_list: List[str]) -> str:
     word = ""
     return word.join(char_list)
 
-def main():
+
+if __name__ == "__main__":
     """ Main program """
     key = 19   # This is the built-in key offset
     phrase = input("Enter a string of charaters: ")
@@ -60,6 +61,3 @@ def main():
 
     original_phrase = cypher(new_phrase, -key)
     print("Original Phrase[{}]:\t {}".format(len(original_phrase), original_phrase))
-
-if __name__ == "__main__":
-    main()
