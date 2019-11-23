@@ -12,9 +12,9 @@ class CompressedGene:
 
     def _compress(self, gene: str) -> None:
         """ Compresses the nucleotide. Takes advantage to the facts that there are only 4 values
-            and therefore can use two bits binary: 00, 01, 10, 11. Str character is 8 bits by default.
-            Creates an int variable called bit_string. int in python ca be of any length.
-            Start with sentinel that can be shifted in 1st for loop."""
+            and therefore can use two bits binary: 00, 01, 10, 11. Str character is 8 bits
+            by default. Creates an int variable called bit_string. int in python ca be of
+            any length. Start with sentinel that can be shifted in 1st for loop. """
         self.bit_string: int = 1
 
         for nucleotide in gene.upper():
@@ -39,7 +39,7 @@ class CompressedGene:
             self.bit_string >> i shifts self.bit_string i bits to the right,
             i.e. returns self.bit_string with the i right-most bits chopped off.
             a & b returns the bit-wise AND of a and b. Effectively this means that
-            with b = 0b11, a & 0b11 returns the two right-most bits of a."""
+            with b = 0b11, a & 0b11 returns the two right-most bits of a. """
         gene: str = ""
 
         # -1 to exclude the sentinel, go in 2 bits steps
@@ -65,16 +65,16 @@ class CompressedGene:
         return gene[::-1] # Reverse string by slicing backwards
 
     def __str__(self) -> str:
-        """ Printing method for the class which is always decompressed """
+        """ Printing method for the class which is always decompressed. """
         return self.decompress()
 
 
 if __name__ == "__main__":
     from sys import getsizeof
-    original: str = "TAGGGATTAACCGT"*1
+    original: str = "TAGGGATTAACCGT"*10
 
     size_original = getsizeof(original)
-    print(f"Original is\t{size_original} bytes.")
+    print(f"\nOriginal is\t{size_original} bytes.")
 
     compressed: CompressedGene = CompressedGene(original)
     size_compressed = getsizeof(compressed)
@@ -82,4 +82,3 @@ if __name__ == "__main__":
     print(f"Compressed is\t{size_compressed} bytes.")
     print(f"Compression ration is {size_compressed*100/size_original:.2f}%")
     print(f"Orginal and decompressed are the same {original == compressed.decompress()}")
-    print(f"Decompressed is {compressed}")

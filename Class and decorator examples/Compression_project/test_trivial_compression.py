@@ -11,5 +11,9 @@ class Test_CompressedGene(unittest.TestCase):
         with self.assertRaises(ValueError):
             CompressedGene("ABC")
 
+    def test_str(self):
+        original: str = "TAGGGATTAACCGT"
+        self.assertEqual(original.__str__(), "TAGGGATTAACCGT")
+
 if __name__ == "__main__":
     unittest.main()
