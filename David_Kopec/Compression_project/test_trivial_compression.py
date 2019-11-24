@@ -1,7 +1,7 @@
 """ Test the bit compression. """
 import unittest
 
-from Trivial_Compression import CompressedGene
+from trivial_compression import CompressedGene
 
 class Test_CompressedGene(unittest.TestCase):
     def test_basic(self):

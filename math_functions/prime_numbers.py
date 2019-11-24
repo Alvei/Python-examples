@@ -26,14 +26,12 @@ Etudes_prime_numbers.py
 
     sieve_primes_comprehension(): has the most flexibility and can go > 50k
 
-    We can also change the recursion level by importing sys
-
-for Python 3.5 """
+    We can also change the recursion level by importing sys.  """
 
 # import sys
 # sys.setrecursionlimit(20000)
 from math import sqrt
-from typing import List, Iterator, Set, Union
+from typing import List, Set
 
 # Global constants
 MAX_RECURSION = 500
@@ -126,7 +124,7 @@ def list_primes_loop(beg: int, end: int) -> list:
 
     assert beg >= 2 and end < MAX_LOOP
 
-    my_list: List [int] = []
+    my_list: List[int] = []
 
     if beg == end:
         return []
@@ -141,8 +139,8 @@ def list_primes_loop(beg: int, end: int) -> list:
 def sift(number: int, num_list: list) -> List[int]:
     """ Takes a number, and a list of numbers, to
         returns the list of those numbers that are not multiple of n. """
-    def my_func(x):
-        return x % number != 0
+    def my_func(var):
+        return var % number != 0
 
     # Use list() because filter() return an iterator
     return list(filter(my_func, num_list))
@@ -168,38 +166,8 @@ def prime_sieve(num_list: list) -> List[int]:
     return [prime] + prime_sieve(sift(prime, num_list[1:]))
 
 
-def prime_sieve_comprehension(num: int) -> Set[int]:
-    """ Returns the SET of all primes in num_list using a prime Sieve algo. Assumes n > 2. """
-
-    assert num > 2
-    # from math import sqrt
-    sqrt_n = int(sqrt(num))  # unique propery, we only need to do half of work
-
-    # The 1st time we do range(i*2,sqrt_n,i), we call all multiples of 2
-    # The 2nd time we do range(i*2,sqrt_n,i), we get all multiple of 3
-    # Keep doing until we get multiples of sqrt_n
-    # if we used [], noprimes would have duplicate entries
-    # by using {} we create a set without duplicates
-    noprimes = {j for i in range(2, sqrt_n) for j in range(i * 2, num, i)}
-
-    # Remove the various multipes we found by applying Set
-    primes = {x for x in range(2, num) if x not in noprimes}
-
-    return primes
-
-def main():
-    """ Test harness """
-
-    # print( divisors(10, 2, 5) )
-    # print( is_prime(7) )
-    # print( is_prime(-1) )
-
-    print(f"\nSize of Prime list up to 500: {len(list_primes(2, 499))}=> Answer should be 94")
-    print(f"Size of Prime list using sqrt trick: {len(list_primes_sqrt(2, 499))}")
-    print(f"Prime using Sieve algo [0, 500]:\n {prime_sieve_comprehension(500 - 1)}")
-    # print( list_primes(2,1699) )
-    # print( list_primes_loop(2,995) )
-    # print( prime_sieve(range(2,100)) )
-
 if __name__ == "__main__":
-    main()
+    print(f"\nSize of Prime list up to 500: {len(list_primes(2, 499))}=> Answer should be 94")
+    print(f"Size of Prime list using sqrt trick: {len(list_primes_sqrt(2, 10))}")
+    print(f"Prime list using sqrt trick: {list_primes_sqrt(2, 10)}")
+    print( len(prime_sieve(range(2,100))) )
