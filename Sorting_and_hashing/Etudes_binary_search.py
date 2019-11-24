@@ -1,27 +1,24 @@
-"""
-Etudes_binary_search.py
-Different ways to do binary searches
+""" Etudes_binary_search.py
+    Different ways to do binary searches.
+    Binary searches work on SORTED lists or arrays.
+    Binary search runs in at worst logarithmic time, making O(log n)
+    comparisons, where n is the number of elements in the array,
+    the O is Big O notation, and log is the logarithm. """
+from typing import Union, List
 
-Binary searches work on SORTED lists or arrays
-Binary search runs in at worst logarithmic time, making O(log n)
-comparisons, where n is the number of elements in the array,
-the O is Big O notation, and log is the logarithm.
-
-"""
-# RECURSIVE IMPLEMENTATION
-############################
-
-
-def binary_search(elem: int, my_list: list) -> int:
-    """return the index at which elem lies, or return False
-       if elem is not found. List must be sorted. """
+def binary_search(elem: int, my_list: List[int]) -> Union[int, bool]:
+    """ Simple wrapper for binary search for list of integers.
+        List must be sorted. """
     assert isinstance(my_list, list)
+    assert isinstance(elem, int)
+
     return binary_search_helper(elem, my_list, 0, len(my_list) - 1)
 
+def binary_search_helper(elem: int, arr: List[int],
+                         start: int, end: int) -> Union[int, bool]:
+    """ Does the actual binary search recursevly. Input already validated.
+        List must be sorted. """
 
-def binary_search_helper(elem: int, arr: list, start: int, end: int):
-    """ Return the index at which elem lies, or return False if elem is not found.
-        List must be sorted"""
     if start > end:
         return False
 
@@ -32,14 +29,25 @@ def binary_search_helper(elem: int, arr: list, start: int, end: int):
     if arr[mid] > elem:
         # recurse to the left of mid
         return binary_search_helper(elem, arr, start, mid - 1)
+
     # default recurse to the right of mid
     return binary_search_helper(elem, arr, mid + 1, end)
 
+def b_search(my_list: list, elem: int) -> Union[int, bool]:
+    """Assumes my_list and elem are the same type. List in ascending order. """
+    assert isinstance(my_list, list)
+    assert isinstance(elem, int)
 
-def b_search_helper(my_list, elem, low, high):
+    # len(sequence) is being used inside a condition to determine
+    # if a sequence is empty. Instead of comparing the length to 0,
+    # rely on the fact that empty sequences are False
+    if my_list:
+        return b_search_helper(my_list, elem, 0, len(my_list) - 1)  # high has to fit list indexing
+    return False
+
+def b_search_helper(my_list: List[int], elem: int, low: int, high: int) -> Union[int, bool]:
     """binary search using recursion O(log(n))
-       Assumes my_list and e are the same type. my_list is in ascending order.
-       Returns boolean logical"""
+       Assumes my_list and elem are the same type. my_list is in ascending order. """
 
     if high == low:
         return my_list[high] == elem
@@ -58,20 +66,7 @@ def b_search_helper(my_list, elem, low, high):
     return b_search_helper(my_list, elem, mid + 1, high)
 
 
-def b_search(my_list: list, elem: int) -> bool:
-    """Assumes my_list and elem are the same type. L is in ascending order.
-       Returns boolean logical"""
-    assert isinstance(my_list, list)
 
-    # len(sequence) is being used inside a condition to determine
-    # if a sequence is empty. Instead of comparing the length to 0,
-    # rely on the fact that empty sequences are False
-    if my_list:
-        return b_search_helper(my_list, elem, 0, len(my_list) - 1)  # high has to fit list indexing
-    return False
-
-# WHILE IMPLEMENTATIONS
-############################
 
 
 def binary_search_while(elem: int, my_list: list):
@@ -97,8 +92,7 @@ def binary_search_while(elem: int, my_list: list):
         return left
     return False
 
-
-def binary_sort(elem: int, my_list: list) -> int:
+def binary_sort(elem: int, my_list: list) -> Union[int, bool]:
     """return the index at which elem lies, or return False/0 if
        elem is not found array must be sorted. """
     assert isinstance(my_list, list)
@@ -118,14 +112,4 @@ def binary_sort(elem: int, my_list: list) -> int:
 
     return False
 
-
-if __name__ == "__main__":
-    MY_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-    for count in range(0, len(MY_LIST) - 1, 2):
-        x = binary_search(count, MY_LIST)
-        y = binary_search_while(count, MY_LIST)
-        z = binary_sort(count, MY_LIST)
-        print(f"Recursion -> Element Index = {str(x)}")
-        print(f"WhileLoop -> Element Index = {str(y)}")
-        print(f"WhileLoop2-> Element Index = {str(z)}")
+print(binary_search(2, [4, 1, 2, 3]))
