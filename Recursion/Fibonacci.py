@@ -1,4 +1,4 @@
-"""Etudes Fibonacci.py
+"""Fibonacci.py
    Compares the recursive implementation of Fib with the one using
    Hashing and dynamic programing. """
 from functools import lru_cache
@@ -8,7 +8,9 @@ from typing import Generator, Dict
 def fib_loop(num: int) -> int:
     """ Calculates the fibonacci number of num.
         Use loops and double assignments. """
-    assert num >= 0 and isinstance(num, int)
+
+    assert isinstance(num, int)
+    assert num >= 0
 
     old, new = 0, 1
     for _ in range(num):
@@ -26,8 +28,8 @@ def fib(num: int) -> int:
         raise ValueError("num must be positive. It is", num)
 
     # Base case
-    if num in (0, 1):
-        return 1
+    if num < 2:
+        return num
     return fib(num - 1) + fib(num - 2)
 
 
@@ -40,8 +42,8 @@ def fast_fib(num: int, memo: Dict[int, int] = {}) -> int:
     assert num >= 0 and isinstance(num, int)
 
     # Base case
-    if num in (0, 1):
-        return 1
+    if num < 2:
+        return num
     try:  # Check to see if already computed and in dictionary
         return memo[num]
     except KeyError:  # Otherwise calculate the new {key, value} pair
@@ -59,8 +61,8 @@ def fast_fib2(num: int) -> int:
     if num < 0:
         raise ValueError("num must be positive. It is", num)
 
-    if num in (0, 1):
-        return 1
+    if num < 2:
+        return num
     return fast_fib2(num-1) + fast_fib2(num-2)
 
 
@@ -100,10 +102,10 @@ def main():
     """ Test Harness """
 
     print('\n')
-    test_fib(4)
+    #test_fib(4)
     print('\n')
-    test_fib2(35)
-
+    #test_fib2(35)
+    test_fib(10)
     # This is still buggy
     #for index in fib_yield(35):
     #    print(index)
