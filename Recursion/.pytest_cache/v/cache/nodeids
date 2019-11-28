@@ -1,0 +1,6 @@
+[
+  "test_fibonacci.py::test_fib",
+  "test_fibonacci.py::test_fib_loop",
+  "test_fibonacci.py::test_fast_fib",
+  "test_fibonacci.py::test_fast_fib2"
+]
