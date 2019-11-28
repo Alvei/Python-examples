@@ -19,7 +19,7 @@ def convert_to_int(integer_string_with_commas: str) -> Union[int, None]:
 
     # Create a single string by combining the parts
     integer_string_without_commas: str = "".join(comma_separated_parts)
-    #return int(integer_string_without_commas)
+    #return int(integer_string_without_commas)  # keep it inside the try/except combo
 
     # Try, it will not work if you have a decimal still in the string
     try:
