@@ -14,6 +14,7 @@ def main():
     dict_functions = {"slicing": reverse_slice, "iterator": reverse_iterator, "list method": reverse_method,
                     "lateral": reverse_lateral, "counter": reverse_counter, "recursion": reverse_recursion}
     text = 'bonjour'
+    a = 1
     time = []
     print("Approach\tAnswer\t\tTime")
     for name, func in dict_functions.items():

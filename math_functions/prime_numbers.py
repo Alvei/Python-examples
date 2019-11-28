@@ -101,7 +101,7 @@ def list_primes(beg: int, end: int) -> list:
     return list_primes(beg + 1, end)
 
 
-def list_primes_sqrt(beg: int, end: int) -> list:
+def list_primes_sqrt(beg: int, end: int) -> List[int]:
     """ Returns a list of prime numbers between beg and end. """
 
     # assert beg >= 2 and end < 3*MAX_RECURSION
