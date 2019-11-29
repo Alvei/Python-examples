@@ -199,57 +199,27 @@ def fib8(num: int) -> int:
     # Apply the matrix power function num time to find FIB(num). Keep 1st element
     return matrix_power(matrix_m, num)[0][1]
 
-
-def test_fib(num: int) -> None:
-    """ Test harness. The last call with n = 35 is instanteneous
-        for fastFib but takes long for fib """
-
-    print("Traditional \t Memoization ")
-    for i in range(num + 1):
-        print(i, ':', str(fib1(i)), "\t\t", str(fib3(i)))
-
-
-def test_fib2(num: int) -> None:
-    """ Test harness. The last call with n = 35 is instanteneous
-        for fastFib but takes long for fib """
-    print(f"fastFib of {num} =\t\t{str(fib3(num))}")   # Should be super fast
-    print(f"fastFib2 of {num} =\t{str(fib4(num))}") # Should be super fast
-    print("This should take a while....")
-    print(f"Traditional recursion Fib {num} =\t {str(fib1(num))}")  # Should take some time
-    print(f"Traditional loop Fib {num} =\t {str(fib2(num))}")  # Should take some time
-
 def time_fib(func, num: int) -> int:
     """ Simple function to calculate execution time. """
     start = time.time()
     answer = func(num)
     end = time.time()
-    print(f"{func.__name__} took {(end-start)*1000:.2f} miliseconds. answer: {answer}")
-    return answer
+
+    if func != fib6:
+        print(f"{func.__name__} took {(end-start)*1000:.2f} miliseconds. answer: {answer}")
+        return answer
+    print(f"{func.__name__} took {(end-start)*1000:.2f} miliseconds. answer: {answer[0]}")
+    return answer[0]
 
 def main():
     """ Test Harness """
-    #test_fib(4)
-    #test_fib2(35)
-    #test_fib(10)
-    # This is still buggy
-    #for index in fib_yield(35):
-    #    print(index)
-    #print("Using Yield:", fib_yield(10))
-    num = 20
-    test_func = [fib7, fib5, fib4, fib2]  # Cannot time the yield and the tuple memoization
+    print(f"\nUsing Yield (10):{list(fib3(10))}")
+    num = 450
+    test_func = [fib6, fib8, fib2,fib5, fib4,fib7]  # do not include Fib1 to long
     for func in test_func:
         time_fib(func, num)
 
-    # Have to do manually since it has a tuple return value
-    start = time.time()
-    answer = fib6(num)
-    end = time.time()
-    print(f"{fib6.__name__} took {(end-start)*1000:.2f} miliseconds. answer: {answer[0]}")
-
-    print(f"\nDoing it with large number very fast!!!!\n{fib8(2000)}")
-    A = ((1, 2), (3, 1))
-    for num in range(10):
-        print(f"{num} -> {matrix_power(A,num)}")
+    print(f"\nDoing 20000 with large number very fast!!!!\n{fib8(2000)}")
 
 
 if __name__ == '__main__':
