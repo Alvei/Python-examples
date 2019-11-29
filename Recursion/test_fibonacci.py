@@ -136,19 +136,19 @@ def test_matmult():
     B = ((1, 1), (1, 1))
     assert matmult(A, B) == ((3, 3), (3, 3))
 
-#def test_matrix_power():
+def test_matrix_power():
     """ Apply power num to 2X2 matrix.
         Did not test valid types. """
-    """A = ((1, 2), (3, 1))
+    A = ((1, 2), (3, 1))
     num = 0
     assert matrix_power(A, num) == ((1, 0), (0, 1))
     num = 1
     assert matrix_power(A, num) == ((1, 2), (3, 1))
     num = 2
-    assert matrix_power(A, num) == ((1, 4), (9, 1))
+    assert matrix_power(A, num) == ((7, 4), (6, 7))
     num = 3
-    assert matrix_power(A, num) == ((1, 8), (27, 1))
+    assert matrix_power(A, num) == ((19, 18), (27, 19))
     num = 7
-    assert matrix_power(A, num) == ((1, 128), (2187, 1))
+    assert matrix_power(A, num) == ((2899, 2378), (3567, 2899))
     num = 8
-    assert matrix_power(A, num) == ((1, 256), (6561, 1))"""
+    assert matrix_power(A, num) == ((10033, 8176), (12264, 10033))

@@ -172,6 +172,7 @@ def matmult(matrix_a: Tuple[Tuple[int, int], Tuple[int, int]],
 def matrix_power(matrix_a: Tuple[Tuple[int, int], Tuple[int, int]], num: int) \
     -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """ Apply the power of num to a 2x2 matrix. """
+
     # Base case
     if num == 0:
         return ((1, 0), (0, 1))
@@ -183,15 +184,19 @@ def matrix_power(matrix_a: Tuple[Tuple[int, int], Tuple[int, int]], num: int) \
     return matmult(root, root)
 
 def fib8(num: int) -> int:
-    """ Calculate Fib number. Using matrix algebra and a close form"""
+    """ Calculate Fib number. Using matrix algebra and a closed form.
+        See Structure and interpretation of Computer Programs. """
 
     # Check that the input is a positive integer
     if not isinstance(num, int):
         raise TypeError("num must be an int. It is", type(num))
     if num < 0:
         raise ValueError("num must be positive. It is", num)
+
+    # Matrix that allows to move one step ahead
     matrix_m: Tuple[Tuple[int, int], Tuple[int, int]] = ((0, 1), (1, 1))
 
+    # Apply the matrix power function num time to find FIB(num). Keep 1st element
     return matrix_power(matrix_m, num)[0][1]
 
 
@@ -242,7 +247,9 @@ def main():
     print(f"{fib6.__name__} took {(end-start)*1000:.2f} miliseconds. answer: {answer[0]}")
 
     print(f"\nDoing it with large number very fast!!!!\n{fib8(2000)}")
-
+    A = ((1, 2), (3, 1))
+    for num in range(10):
+        print(f"{num} -> {matrix_power(A,num)}")
 
 
 if __name__ == '__main__':
