@@ -1,6 +1,8 @@
 [
-  "test_fibonacci.py::test_fib",
-  "test_fibonacci.py::test_fib_loop",
-  "test_fibonacci.py::test_fast_fib",
-  "test_fibonacci.py::test_fast_fib2"
+  "test_fibonacci.py::test_fib1",
+  "test_fibonacci.py::test_fib2",
+  "test_fibonacci.py::test_fib4",
+  "test_fibonacci.py::test_fib5",
+  "test_fibonacci.py::test_fib6",
+  "test_fibonacci.py::test_fib7"
 ]
