@@ -1,4 +1,4 @@
-from Fibonacci import fib1, fib2, fib3, fib4, fib5, fib6, fib7
+from Fibonacci import fib1, fib2, fib3, fib4, fib5, fib6, fib7, fib8, matmult, matrix_power
 import pytest
 
 def test_fib1():
@@ -105,3 +105,50 @@ def test_fib7():
         assert fib7('a')
     with pytest.raises(ValueError):
         assert fib7(-1)
+
+def test_fib8():
+    """ Fib closed formed using linear algebra. """
+    assert fib8(0) == 0
+    assert fib8(1) == 1
+    assert fib8(2) == 1
+    assert fib8(3) == 2
+    assert fib8(6) == 8
+    assert fib8(10) == 55
+
+    with pytest.raises(TypeError):
+        assert fib8('a')
+    with pytest.raises(ValueError):
+        assert fib8(-1)
+
+def test_matmult():
+    """ 2X2 matrix multiplications using tuples.
+        Did not test valid types. """
+    A = ((1, 2), (2, 1))
+    B = ((1, 1), (2, 1))
+    assert matmult(A, B) == ((5, 3), (4, 3))
+    A = ((1, 2), (2, 1))
+    B = ((1, 0), (0, 1))
+    assert matmult(A, B) == ((1, 2), (2, 1))
+    A = ((1, 2), (2, 1))
+    B = ((0, 0), (0, 0))
+    assert matmult(A, B) == ((0, 0), (0, 0))
+    A = ((1, 2), (2, 1))
+    B = ((1, 1), (1, 1))
+    assert matmult(A, B) == ((3, 3), (3, 3))
+
+#def test_matrix_power():
+    """ Apply power num to 2X2 matrix.
+        Did not test valid types. """
+    """A = ((1, 2), (3, 1))
+    num = 0
+    assert matrix_power(A, num) == ((1, 0), (0, 1))
+    num = 1
+    assert matrix_power(A, num) == ((1, 2), (3, 1))
+    num = 2
+    assert matrix_power(A, num) == ((1, 4), (9, 1))
+    num = 3
+    assert matrix_power(A, num) == ((1, 8), (27, 1))
+    num = 7
+    assert matrix_power(A, num) == ((1, 128), (2187, 1))
+    num = 8
+    assert matrix_power(A, num) == ((1, 256), (6561, 1))"""

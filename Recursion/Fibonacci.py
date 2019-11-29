@@ -10,7 +10,7 @@
     fib6 > fib2 > fib5 > fib7 > fib1
     The tuple memoization is best. Recursion is worst.
     Looping (fib2) is suprisingly fast. LRU_cach or dict implementation is similar
-    My implementation of LRU_cache with decorator is pretty bad. Probably the sorting and conversion to tuple.
+    My implementation of LRU_cache with decorator is bad. Probably sorting & conversion to tuple.
     Good article at https://fulmicoton.com/posts/fibonacci/  """
 from functools import lru_cache
 import time
@@ -119,17 +119,16 @@ def fib6(num: int) -> Tuple[int, int]:
     if num == 0:
         return 0, 1
 
-    else:
-        num_a, num_b = fib6(num // 2)
-        num_c = num_a * (num_b * 2 - num_a)
-        num_d = num_a * num_a + num_b * num_b
+    num_a, num_b = fib6(num // 2)
+    num_c = num_a * (num_b * 2 - num_a)
+    num_d = num_a * num_a + num_b * num_b
 
-        if num % 2 == 0:
-            return num_c, num_d
-        else:
-            return num_d, num_c + num_d
+    if num % 2 == 0:
+        return num_c, num_d
 
-def memoize(f):
+    return num_d, num_c + num_d
+
+def memoize(func):
     """ Decorator for memoization function. """
     cache = {}
     def aux(*args, **kargs):
@@ -137,7 +136,7 @@ def memoize(f):
         key = (args, tuple(sorted(kargs.items())))
 
         if key not in cache:
-            cache[key] = f(*args, **kargs)
+            cache[key] = func(*args, **kargs)
         return cache[key]
     return aux
 
@@ -156,6 +155,45 @@ def fib7(num: int) -> int:
     if num == 1:
         return 1
     return fib7(num-1) + fib7(num-2)
+
+def matmult(matrix_a: Tuple[Tuple[int, int], Tuple[int, int]],
+            matrix_b: Tuple[Tuple[int, int], Tuple[int, int]]) \
+                -> Tuple[Tuple[int, int], Tuple[int, int]]:
+    """ 2X2 matrix multiplications using tuples. """
+    def val(row: int, col: int) -> int:
+        """ Element multiplications. """
+        return matrix_a[row][0] * matrix_b[0][col] + matrix_a[row][1] * matrix_b[1][col]
+    # Do the multiplication for each i,j pair or row, col pair
+    return (
+        (val(0, 0), val(0, 1)),
+        (val(1, 0), val(1, 1))
+    )
+
+def matrix_power(matrix_a: Tuple[Tuple[int, int], Tuple[int, int]], num: int) \
+    -> Tuple[Tuple[int, int], Tuple[int, int]]:
+    """ Apply the power of num to a 2x2 matrix. """
+    # Base case
+    if num == 0:
+        return ((1, 0), (0, 1))
+
+    if num % 2 == 1:
+        return matmult(matrix_a, matrix_power(matrix_a, num-1))
+
+    root = matrix_power(matrix_a, num//2)
+    return matmult(root, root)
+
+def fib8(num: int) -> int:
+    """ Calculate Fib number. Using matrix algebra and a close form"""
+
+    # Check that the input is a positive integer
+    if not isinstance(num, int):
+        raise TypeError("num must be an int. It is", type(num))
+    if num < 0:
+        raise ValueError("num must be positive. It is", num)
+    matrix_m: Tuple[Tuple[int, int], Tuple[int, int]] = ((0, 1), (1, 1))
+
+    return matrix_power(matrix_m, num)[0][1]
+
 
 def test_fib(num: int) -> None:
     """ Test harness. The last call with n = 35 is instanteneous
@@ -180,7 +218,7 @@ def time_fib(func, num: int) -> int:
     start = time.time()
     answer = func(num)
     end = time.time()
-    print(f"{func.__name__} took {(end-start)*1000:.2f} miliseconds")
+    print(f"{func.__name__} took {(end-start)*1000:.2f} miliseconds. answer: {answer}")
     return answer
 
 def main():
@@ -192,7 +230,7 @@ def main():
     #for index in fib_yield(35):
     #    print(index)
     #print("Using Yield:", fib_yield(10))
-    num = 399
+    num = 20
     test_func = [fib7, fib5, fib4, fib2]  # Cannot time the yield and the tuple memoization
     for func in test_func:
         time_fib(func, num)
@@ -201,7 +239,10 @@ def main():
     start = time.time()
     answer = fib6(num)
     end = time.time()
-    print(f"{fib6.__name__} took {(end-start)*1000:.2f} miliseconds")
+    print(f"{fib6.__name__} took {(end-start)*1000:.2f} miliseconds. answer: {answer[0]}")
+
+    print(f"\nDoing it with large number very fast!!!!\n{fib8(2000)}")
+
 
 
 if __name__ == '__main__':
