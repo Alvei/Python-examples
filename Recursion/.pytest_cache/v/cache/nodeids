@@ -5,7 +5,7 @@
   "test_fibonacci.py::test_fib5",
   "test_fibonacci.py::test_fib6",
   "test_fibonacci.py::test_fib7",
+  "test_fibonacci.py::test_fib8",
   "test_fibonacci.py::test_matmult",
-  "test_fibonacci.py::test_matrix_power",
-  "test_fibonacci.py::test_fib8"
+  "test_fibonacci.py::test_matrix_power"
 ]
