@@ -1,15 +1,16 @@
 """
 examples_divisors.py
 Find all the common divisors between two integers. """
-from typing import Tuple
+from typing import Tuple, Optional   # Optional necessary when None or int
 
-def find_divisors(number1: int, number2: int) -> Tuple[int, int]:
+def find_divisors(number1: int, number2: int) -> Tuple[int, ...]:
     """ Find the common divisors of number1 and number2
         Assumes that number1 and number2 are positive ints
         Returns a tuple containing all common divisors. """
     assert number1 >= 1 and number2 >= 1
 
-    divisors = ()   # Initialize the empty tuple
+    # Initialize the empty tuple of unknown legnth
+    divisors: Tuple[int, ...] = ()
 
     for num in range(1, min(number1, number2) + 1):
         # print("num = ", num)
@@ -25,13 +26,12 @@ def test_divisors():
     print("Answer is:\t\t", divisors)
     print("Answer should be:\t (1, 2, 4, 5, 10, 20)")
 
-    total = 0
-    for digit in divisors:
-        total += digit
-    print("Sum of divisors:", total, "\t=> Answer = 42")
+    # Use built-in sum() function
+    print(f"Sum of divisors: {sum(divisors)} \t=> Answer = 42")
 
 
-def find_extreme_divisors(number1: int, number2: int) -> tuple():
+def find_extreme_divisors(number1: int, number2: int)\
+     -> Tuple[Optional[int], Optional[int]]:
     """ Find the smallest and largest common divisors of number1 and number2.
         Assumes that number1 and number2 are positive ints. """
     assert number1 >= 1 and number2 >= 1
