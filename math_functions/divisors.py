@@ -8,6 +8,7 @@ def find_divisors(number1: int, number2: int) -> Tuple[int, ...]:
         Assumes that number1 and number2 are positive ints
         Returns a tuple containing all common divisors. """
     assert number1 >= 1 and number2 >= 1
+    assert isinstance(number1, int) and isinstance(number2, int)
 
     # Initialize the empty tuple of unknown legnth
     divisors: Tuple[int, ...] = ()
@@ -20,27 +21,21 @@ def find_divisors(number1: int, number2: int) -> Tuple[int, ...]:
     return divisors
 
 
-def test_divisors():
-    """ Test harness for divisor"""
-    divisors = find_divisors(20, 100)
-    print("Answer is:\t\t", divisors)
-    print("Answer should be:\t (1, 2, 4, 5, 10, 20)")
-
-    # Use built-in sum() function
-    print(f"Sum of divisors: {sum(divisors)} \t=> Answer = 42")
-
-
 def find_extreme_divisors(number1: int, number2: int)\
      -> Tuple[Optional[int], Optional[int]]:
-    """ Find the smallest and largest common divisors of number1 and number2.
+    """ Find the smallest and largest common divisors of number1 and number2 other than 1.
         Assumes that number1 and number2 are positive ints. """
-    assert number1 >= 1 and number2 >= 1
+    assert number1 >= 2 and number2 >= 2
+    assert isinstance(number1, int) and isinstance(number2, int)
 
     min_val, max_val = None, None
+    print(f"[{number1} & {number2}]")
 
     for index in range(2, min(number1, number2) + 1):
-        # print("index =", index)
+
+        # Check if it devides both numbers
         if number1 % index == 0 and number2 % index == 0:
+            print(f"index = {index} [{min_val}, {max_val}]")
             if min_val is None or index < min_val:
                 min_val = index
             if max_val is None or index > max_val:
@@ -51,7 +46,6 @@ def find_extreme_divisors(number1: int, number2: int)\
 
 def main():
     """ Main code """
-    test_divisors()
     min_div, max_div = find_extreme_divisors(100, 200)
     print(f"Min Divisor = {min_div}\t\t=> Answer = 2")
     print(f"Max Divisor = {max_div}\t=> Answer = 100")
