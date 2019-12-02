@@ -14,7 +14,7 @@ kthDerivative(): is a generalization of derivative() to work for derivatives
                  It solves the problem in recursive problem.
 
 For Python 3.5 """
-
+from typing import Union
 
 def scale(num):
     """Function that returns a function!"""
@@ -36,17 +36,17 @@ def derivative(func, h):
     return lambda x: (func(x + h) - func(x)) / h
 
 
-def square(number):
+def square(number: Union[float, int]) -> Union[float, int]:
     """Simple function that squares"""
     return number * number
 
 
-def quartic(number):
+def quartic(number: Union[float, int]) -> Union[float, int]:
     """ Simple function that puts to the power 4"""
     return number**4
 
 
-def kth_derivative(func, h, k_deriv):
+def kth_derivative(func, h, k_deriv: int):
     """Returns a new function that is the approximation of the kth
        derivative of function, func, with respect to h. """
 
@@ -66,8 +66,8 @@ def test_scale():
     # exp is different in the two functions since it was defined in the funciton assigment
     print('Polymorphic', f_square(10), f_cube(10), 'should be 100 and 1000')
 
-    print('\nf(2) =', my_func(2), 'should be 64')
-    print('f(3) =', my_func(3), 'should be 96')
+    print(f"\nf(2) = {my_func(2)} should be 64")
+    print(f"f(3) = {my_func(3)} should be 96")
 
 
 def test_derivatives():
