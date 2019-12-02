@@ -6,36 +6,34 @@
 """
 
 
-def collatz(number: int):
-    """ Collatzs the input number recursively until it reaches 1.
-        Signature: (int) -> None"""
+def collatz(number: int) -> None:
+    """ Collatzs the input number recursively until it reaches 1. """
     if number == 1:
         print('Collatz Complete because found 1!')
     elif number % 2 == 0:
-        print(int(number / 2))
-        collatz(number / 2)
+        print(number // 2)
+        collatz(number // 2)
     else:
         print(int(number * 3 + 1))
         collatz(number * 3 + 1)
 
 
-def collatz2(number: int):
-    """Collatz the number and print each step and tracks the number of them.
-       Signature: (int) -> int."""
+def collatz2(number: int) -> None:
+    """Collatz the number and print each step and tracks the number of them. """
     if number > 1:
         steps = 0
         while number != 1:
             if number % 2 == 0:
-                print(int(number / 2))
-                number = number / 2
+                print(number // 2)
+                number = number // 2
                 steps += 1
             else:
                 print(int(number * 3 + 1))
                 number = number * 3 + 1
                 steps += 1
         print('Collatz sequence finished in ' + str(steps) + ' steps')
-    else:
-        print("You entered 1. Should be greater than one. Start again.")
+
+    print("Should be greater than one. Start again.")
 
 
 def yes_or_no(question: str) -> bool:
@@ -46,6 +44,8 @@ def yes_or_no(question: str) -> bool:
             return True
         if reply[:1] == 'n':
             return False
+
+    return False # This will never be reached but required for pylint, mypy
 
 
 def main():
