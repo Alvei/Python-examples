@@ -16,18 +16,18 @@ kthDerivative(): is a generalization of derivative() to work for derivatives
 For Python 3.5 """
 from typing import Union
 
-def scale(num):
-    """Function that returns a function!"""
+def scale(num: Union[float, int]) -> Union[float, int]:
+    """Function that returns a function. """
     return lambda x: num * x
 
-
-def raise_val(exp):
-    """ polymorphic function """
-    def inner(num):
+def raise_val(exp: Union[float, int]) -> Union[float, int]:
+    """ polymorphic function. """
+    def inner(num: Union[float, int]):
+        """ Temporary function of local scope. """
         raised = num ** exp   # note that exp is part of the outer scope
         return raised
 
-    return inner
+    return inner  # Returns a function of local scope
 
 
 def derivative(func, h):
@@ -55,19 +55,7 @@ def kth_derivative(func, h, k_deriv: int):
     return derivative(kth_derivative(func, h, k_deriv - 1), h)
 
 
-def test_scale():
-    """Test Harness"""
-    my_func = scale(32)  # Assign the return function with n = 32
 
-    # Assign the funtion and define the first outer argument - exp
-    f_square = raise_val(2)
-    f_cube = raise_val(3)
-
-    # exp is different in the two functions since it was defined in the funciton assigment
-    print('Polymorphic', f_square(10), f_cube(10), 'should be 100 and 1000')
-
-    print(f"\nf(2) = {my_func(2)} should be 64")
-    print(f"f(3) = {my_func(3)} should be 96")
 
 
 def test_derivatives():
@@ -89,5 +77,13 @@ def test_derivatives():
 
 # Testing
 # ========
-test_scale()
+my_func = scale(32)  # Assign the return function with n = 32
+print(f"\nf(2) = {my_func(2)} should be 64")
+print(f"f(3) = {my_func(3)} should be 96")
+
+ # Assign the funtion and define the first outer argument - exp
+f_square = raise_val(2)
+f_cube = raise_val(3)
+# exp is different in the two functions since it was defined in the funciton assigment
+print('Polymorphic', f_square(10), f_cube(10), 'should be 100 and 1000')
 test_derivatives()
