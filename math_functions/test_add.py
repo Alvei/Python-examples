@@ -1,9 +1,6 @@
 import pytest
 from add import add
 
-#def test_same_size():
-#    with pytest.raises(ValueError):
-#        assert add([1, 2], [[1, 3], [1, 2]])
 
 def test_good_values():
     matrix1 = [[1, -2], [-3, 4]]
@@ -19,3 +16,17 @@ def test_good_values():
     expected = [[2, -1, 3], [-3, 3, -3], [5, -6, 7]]
     message = (f"add() returned {actual} instead of {expected}")
     assert  actual == expected, message
+
+"""def test_matrix_type():
+    with pytest.raises(AssertionError):
+        assert add('a', [[1, 3], [1, 2]])
+        assert add([1, 3], None)
+
+def test_unitary_matrix():
+    with pytest.raises(AssertionError):
+        assert add([1], [[1, 3], [1, 2]])
+        assert add([[1, 3], [1, 2]], [10])"""
+
+def test_same_size():
+    with pytest.raises(ValueError):
+        assert add([[1, 2], [3, 4]], [[1, 3, 4], [1, 2, 3]])
