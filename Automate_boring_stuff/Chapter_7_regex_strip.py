@@ -4,6 +4,7 @@
     also Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 6. Page 177.
 """
 import re
+from typing import Match
 import logging
 DEBUG = False
 
@@ -24,7 +25,7 @@ def my_strip(text: str, remove: str = '') -> str:
 
         # Remove the back spaces. \Z means from the end of the string
         back_regex = re.compile(r'\s+\Z')
-        ans = back_regex.sub("", front)
+        ans: str = back_regex.sub("", front)
 
         logging.debug("*** %s ***", ans)
         return ans
@@ -37,8 +38,8 @@ def my_strip(text: str, remove: str = '') -> str:
     end = remove_end.search(text)
 
     # Calculate the length of the matched
-    start_len = len(start.group())
-    end_len = len(end.group())
+    start_len: int = len(start.group())
+    end_len: int = len(end.group())
 
     logging.debug("Start:" + start.group() + "End:" + end.group())
 
@@ -58,8 +59,8 @@ def main():
 
     for key, text in tests.items():
         print(f"\nKey:\' {key}\' \tValue:\'{text}\'.")
-        orig_len = len(text)
-        ans = my_strip(text, key)
+        orig_len: int = len(text)
+        ans: str = my_strip(text, key)
         print(f"Length: Original= {orig_len} -> Final= {len(ans)} :{ans}.")
 
 

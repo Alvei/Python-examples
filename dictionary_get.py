@@ -1,7 +1,7 @@
 """ Different ways to get value from dict in increasing pythonic ways
 """
 
-my_dict = {'ID124': "bob", "ID345": "Majo", "ID445": "superman" }
+my_dict: dict = {'ID124': "bob", "ID345": "Majo", "ID445": "superman" }
 
 def return_name1(key):
     """ Not very robust, if wrong key is used, crashes with Key Error"""

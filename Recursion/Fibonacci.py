@@ -14,7 +14,7 @@
     Good article at https://fulmicoton.com/posts/fibonacci/  """
 from functools import lru_cache
 import time
-from typing import Generator, Dict, Tuple
+from typing import Generator, Dict, Tuple, Iterator
 
 def fib1(num: int) -> int:
     """Calculates the fibonacci number of num. """
@@ -46,7 +46,7 @@ def fib2(num: int) -> int:
         old, new = new, old + new
     return old
 
-def fib3(num: int) -> Generator:
+def fib3(num: int) -> Iterator[int]:
     """ Calculates the fibonacci number of num. Use generator. """
     # Check that the input is a positive integer
     if not isinstance(num, int):
