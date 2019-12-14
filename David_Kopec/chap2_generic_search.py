@@ -1,6 +1,7 @@
 """ Inspired by David Kopec.
     Key dependencies
-    __future__ ???
+    __future__ import feature to backport features from other
+               higher Python versions to the current interpreter.
     TypeVar
     Sequence
     Generic
@@ -9,15 +10,15 @@
     Protocol
     """
 from __future__ import annotations
-from typing import TypeVar, Iterable, Sequence, Generic, \
-    List, Callable, Set, Deque, Dict, Any, Optional
-from heapq import heappush, heappop
-#from typing_extensions import Protocol   # Need to install this module
+from typing import TypeVar, Iterable, Sequence, Any
+from typing_extensions import Protocol   # Need to install this module
+#from typing import List, Callable, Set, Deque, Dict, Optional, Generic
+#from heapq import heappush, heappop
 
 T = TypeVar('T')
 
 def linear_contains(iterable: Iterable[T], key: T) -> bool:
-    """ Generic Linear search. """
+    """ Generic Linear search. Order O(n)"""
     for item in iterable:
         if item == key:
             return True
@@ -30,16 +31,16 @@ class Comparable(Protocol):
     def __eq__(self, other: Any) -> bool:
         """ Equal comparator. Uses default. """
         ...
-    def __lt__(self, C, other: C) -> bool:
+    def __lt__(self: C, other: C) -> bool:
         """ Lower than comparator. Uses default. """
         ...
-    def __gt__(self, C, other: C) -> bool:
+    def __gt__(self: C, other: C) -> bool:
         """ Greater than comparator. """
         return (not self < other) and self != other
-    def __le__(self, C, other: C) -> bool:
+    def __le__(self: C, other: C) -> bool:
         """ Lower or equal than comparator. """
         return self < other or self == other
-    def __ge__(self, C, other: C) -> bool:
+    def __ge__(self: C, other: C) -> bool:
         """ Greater or equal than comparator. """
         return self < other
 
@@ -62,14 +63,14 @@ if __name__ == "__main__":
     my_list = [1, 5, 15, 15, 15, 20]  # must be sorted list
     key = 5
     print(f"key: {key} is in list: {my_list}? {linear_contains(my_list, key)}")
-    #print(f"key {key} is in list {my_list}? {binary_contains(my_list, key)}")
+    print(f"key: {key} is in list {my_list}? {binary_contains(my_list, key)}")
 
     my_list = ["a", "b", "e", "M", "z"]
     key = "M"
     print(f"key: {key} is in list: {my_list}? {linear_contains(my_list, key)}")
-    #print(f"key {key} is in list {my_list}? {binary_contains(my_list, key)}")
+    print(f"key: {key} is in list {my_list}? {binary_contains(my_list, key)}")
 
     my_list = ["john", "mark", "ronald", "julie", "sarah"]
     key = "sheila"
     print(f"key: {key} is in list: {my_list}? {linear_contains(my_list, key)}")
-    #print(f"key {key} is in list {my_list}? {binary_contains(my_list, key)}")
+    print(f"key: {key} is in list {my_list}? {binary_contains(my_list, key)}")
