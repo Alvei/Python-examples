@@ -21,7 +21,7 @@ def read_two_lists(file_path, key_col, value_col):
         try:
             readCSV = csv.reader(csvfile, delimiter=',')
         except IOError:
-            print('Unable to load "%s".  Check that it exists.' % csvfile)
+            print(f'Unable to load {csvfile}.  Check that it exists.')
             return
 
         values = []
