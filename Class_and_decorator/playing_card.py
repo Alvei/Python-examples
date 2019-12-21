@@ -4,6 +4,7 @@
     deck of 52 playing cards, and optionally shuffles the cards.
     deal_hands() deals the deck of cards to four players.
     Finally, play() plays the game.
+    Using Aliases.
     Inspired from https://realpython.com/python-type-checking/#duck-types-and-protocols """
 import random
 from pprint import pprint
@@ -14,7 +15,11 @@ from typing import List, Tuple
 RANKS = '2 3 4 5 6 7 8 9 10 J Q K A'.split()
 SUITS = '♣ ♢ ♡ ♠'.split()
 
-def create_deck(shuffle: bool = False) -> List[Tuple[str, str]]:
+# Define aliases for type hinting
+Card = Tuple[str, str]
+Deck = List[Card]
+
+def create_deck(shuffle: bool = False) -> Deck:
     """Create a new deck of 52 cards. """
     deck = [(suit, rank)
             for rank in RANKS
@@ -23,9 +28,8 @@ def create_deck(shuffle: bool = False) -> List[Tuple[str, str]]:
         random.shuffle(deck)
     return deck
 
-def deal_hands(deck: List[Tuple[str, str]]) -> Tuple[List[Tuple[str, str]], \
-        List[Tuple[str, str]], List[Tuple[str, str]], List[Tuple[str, str]]]:
-    """Deal the cards in the deck into 4 hands"""
+def deal_hands(deck: Deck) -> Tuple[Deck, Deck, Deck, Deck]:
+    """Deal the cards in the deck into 4 hands. """
     # list[start:end:stride], therefore deck[0::4], means start at 0 till the end stride=4
     return (deck[0::4], deck[1::4], deck[2::4], deck[3::4])
 
