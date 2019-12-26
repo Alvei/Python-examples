@@ -1,4 +1,7 @@
-""" Inspired by David Kopec. Different ways of searching """
+""" Different ways of searching. Linear search with O(n) and binary search with O(nLog(n).
+    Binary search requires the list to be ordered.
+    The examples are done on Genes. Genes of made of Codons. Codons are 3 Nucleotides.
+    Inspired by David Kopec.  """
 from enum import IntEnum
 from typing import Tuple, List
 
@@ -6,7 +9,6 @@ from typing import Tuple, List
 Nucleotide: IntEnum = IntEnum('Nucleotide', ('A', 'C', 'G', 'T'))
 Codon = Tuple[Nucleotide, Nucleotide, Nucleotide]   # Type alias for codons
 Gene = List[Codon]                                  # Type alias for genes
-
 
 def string_to_gene(in_str: str) -> Gene:
     """ Convert a string to a Gene where in_str is the input string. """
@@ -22,14 +24,14 @@ def string_to_gene(in_str: str) -> Gene:
     return gene
 
 def linear_contains(gene: Gene, key_codon: Codon) -> bool:
-    """ Typical implementation of linear search. """
+    """ Typical implementation of linear search. O(n). """
     for codon in gene:
-        if codon == key_codon:
+        if codon == key_codon:  # Uses built-in comparator of IntEnum
             return True
     return False
 
 def binary_contains(gene: Gene, key_codon: Codon) -> bool:
-    """ Typical binary search. Assume ordered list. """
+    """ Typical binary search. Assumes ordered list. O(nlog(n)). """
     low: int = 0
     high: int = len(gene) -1
     while low <= high:              # While there is still search space

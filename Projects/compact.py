@@ -1,7 +1,7 @@
 """ compaq.py
-    Write a function that accepts a sequence (a list for example)
-    and returns a new iterable (anything you can loop over) with
-    adjacent duplicate values removed.
+    Accepts a sequence (e.g., lists, strings, tuples) and returns a new iterable
+    anything you can loop over) with adjacent duplicate values removed.
+    A sequence is a subset of iterables that can be access with indexing.
 
     For the first bonus, make sure you accept any iterable as an argument,
     not just a sequence (which means you can't use index look-ups in your answer).
@@ -18,7 +18,7 @@ def compact(seq: Sequence[Any]) -> Iterable[Any]:
     """ Removes duplicate of a sequence. """
     # Make sure it is a sequence. Find out what type of sequence
     assert isiterable(seq)
-    return [k for k,_ in groupby(seq)]
+    return iter([k for k,_ in groupby(seq)])
 
 def compact_index(seq: Sequence[Any]) -> Iterable[Any]:
     """ Removes duplicate of a sequence. """
@@ -51,12 +51,12 @@ def isiterable(obj) -> bool:
 
 if __name__ == "__main__":
     initial = [1, 1, 2, 3, 3, 3, 4]
-    print(f"{initial} ? {compact(initial)}")
+    print(f"{initial} ? {list(compact(initial))}")
     initial = "Sasskatoon"
-    print(f"{initial} ? {compact(initial)}")
+    print(f"{initial} ? {list(compact(initial))}")
     initial = (1, 2, 3, 3, 3, 3, 3, 8)
-    print(f"{initial} ? {compact(initial)}")
+    print(f"{initial} ? {list(compact(initial))}")
     initial = [n**2 for n in [1, 2, 2]]
-    print(f"{initial} ? {compact(initial)}")
+    print(f"{initial} ? {list(compact(initial))}")
     initial = (n**2 for n in [1, 2, 3])
-    print(f"{[1, 4, 9]} ? {compact(initial)}")
+    print(f"{[1, 4, 9]} ? {list(compact(initial))}")

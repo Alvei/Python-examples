@@ -1,9 +1,13 @@
-""" Inspired by David Kopec.
+""" Different ways of searching. Using generic types not only list
+    Linear search with O(n) and binary search with O(nLog(n).
+    Binary search requires the list to be ordered.
+    The examples are done on Genes. Genes of made of Codons. Codons are 3 Nucleotides.
+    Inspired by David Kopec.
     Key dependencies
     __future__ import feature to backport features from other
                higher Python versions to the current interpreter.
-    TypeVar
-    Sequence
+    Sequence: Iterable that can be address with indexes/slice: lists, tuples, sets
+    TypeVar:  Works with generic to define the type hint.
     Generic
     Deque
     heapq
@@ -15,10 +19,10 @@ from typing_extensions import Protocol   # Need to install this module
 #from typing import List, Callable, Set, Deque, Dict, Optional, Generic
 #from heapq import heappush, heappop
 
-T = TypeVar('T')
+T = TypeVar('T')   # Create a generic type
 
 def linear_contains(iterable: Iterable[T], key: T) -> bool:
-    """ Generic Linear search. Order O(n)"""
+    """ Generic Linear search. Order O(n). """
     for item in iterable:
         if item == key:
             return True
@@ -27,7 +31,8 @@ def linear_contains(iterable: Iterable[T], key: T) -> bool:
 C = TypeVar("C", bound='Comparable')
 
 class Comparable(Protocol):
-    """ Class that uses the Protocol type to define the comprable. """
+    """ Class that uses the Protocol type to define the comparison operators.
+        A bit clunky and will likely not be necessary in the next version of Python. """
     def __eq__(self, other: Any) -> bool:
         """ Equal comparator. Uses default. """
         ...
@@ -45,7 +50,8 @@ class Comparable(Protocol):
         return self < other
 
 def binary_contains(sequence: Sequence[C], key: C) -> bool:
-    """ Generic binary search. Assumes sorted list."""
+    """ Generic binary search for sequences. Need a type with buit-in comparators.
+        Therefore using class C. Assumes sorted list. O(nlog(n)). """
     low: int = 0
     high: int = len(sequence) - 1
     while low <= high:              # While there is still search space
