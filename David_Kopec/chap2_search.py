@@ -69,5 +69,3 @@ if __name__ == "__main__":
     print("\nBuilt-in contain:")
     print(f"Is ACG in my genes? {acg in my_gene}")
     print(f"Is GAT in my genes? {gat in my_gene}")
-
-

@@ -71,12 +71,12 @@ if __name__ == "__main__":
     print(f"key: {key} is in list: {my_list}? {linear_contains(my_list, key)}")
     print(f"key: {key} is in list {my_list}? {binary_contains(my_list, key)}")
 
-    my_list = ["a", "b", "e", "M", "z"]
-    key = "M"
-    print(f"key: {key} is in list: {my_list}? {linear_contains(my_list, key)}")
-    print(f"key: {key} is in list {my_list}? {binary_contains(my_list, key)}")
+    my_list2 = ["a", "b", "e", "M", "z"]
+    key2 = "M"
+    print(f"key: {key} is in list: {my_list}? {linear_contains(my_list2, key2)}")
+    print(f"key: {key} is in list {my_list}? {binary_contains(my_list2, key2)}")
 
-    my_list = ["john", "mark", "ronald", "julie", "sarah"]
-    key = "sheila"
-    print(f"key: {key} is in list: {my_list}? {linear_contains(my_list, key)}")
-    print(f"key: {key} is in list {my_list}? {binary_contains(my_list, key)}")
+    my_list3 = ["john", "mark", "ronald", "julie", "sarah"]
+    key3 = "sheila"
+    print(f"key: {key} is in list: {my_list}? {linear_contains(my_list3, key3)}")
+    print(f"key: {key} is in list {my_list}? {binary_contains(my_list3, key3)}")
