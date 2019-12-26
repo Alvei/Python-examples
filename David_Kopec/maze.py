@@ -3,7 +3,7 @@ from enum import Enum
 import random
 from math import sqrt
 from typing import List, NamedTuple, Callable, Optional
-from generic_search import dfs, bfs, node_to_path, Node
+from generic_search import dfs, bfs, astar, node_to_path, Node
 
 class Cell(str, Enum):
     """ Defined the different states each cell can have. """
@@ -26,8 +26,8 @@ class MazeLocation(NamedTuple):
 class Maze:
     """ Defines a Maze. Note all variables are private except start. """
     def __init__(self, rows: int = 10, columns: int = 10, sparseness: float = 0.2,
-        start: MazeLocation = MazeLocation(0, 0),
-        goal: MazeLocation = MazeLocation(9, 9)) -> None:
+                 start: MazeLocation = MazeLocation(0, 0),
+                 goal: MazeLocation = MazeLocation(9, 9)) -> None:
 
         # Initialize basic instance variables
         self._rows: int = rows
@@ -101,6 +101,26 @@ class Maze:
         self._grid[self.start.row][self.start.column] = Cell.START
         self._grid[self.goal.row][self.goal.column] = Cell.GOAL
 
+def euclidean_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
+    """ Wrapper function that passes the goal that is a permanent MazeLocation. """
+    def distance(ml: MazeLocation) -> float:
+        """ Function that does all the work and permanently knows the goal.
+            Uses Pythagorean theorem. """
+        xdist: int = ml.column - goal.column
+        ydist: int = ml.row - goal.row
+        return sqrt((xdist * xdist) + (ydist * ydist))
+    return distance
+
+def manhattan_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
+    """ Wrapper function that passes the goal that is a permanent MazeLocation. """
+    def distance(ml: MazeLocation) -> float:
+        """ Function that does all the work and permanently knows the goal.
+            Uses a simplifying assumption that we have square grid. """
+        xdist: int = ml.column - goal.column
+        ydist: int = ml.row - goal.row
+        return (xdist + ydist)
+    return distance
+
 if __name__ == "__main__":
 
     # Test DFS
@@ -127,3 +147,16 @@ if __name__ == "__main__":
         m.mark(path2)
         print(m)
         m.clear(path2)
+
+    # A*
+    distance: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
+    solution3: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test,
+    m.successor, distance)
+
+    if solution3 is None:
+        print("\n => No solution found in A*!")
+    else:
+        path3: List[MazeLocation] = node_to_path(solution3)
+        m.mark(path3)
+        print(m)
+        m.clear(path3)
