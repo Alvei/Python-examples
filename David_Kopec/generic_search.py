@@ -10,7 +10,7 @@ from typing_extensions import Protocol   # Need to install this module
 T = TypeVar('T')   # Create a generic type
 
 class Stack(Generic[T]):
-    """ Generic Stack class. """
+    """ Generic Stack class implemented using a list. """
     def __init__(self) -> None:
         """ Initialize a List. """
         self._container: List[T] = []
@@ -101,7 +101,7 @@ class Node(Generic[T]):
 
     def __str__(self) -> str:
         """ printing. """
-        return f"state: {self.state} parent: {self.parent}"
+        return (f"state: {self.state} parent: {self.parent}")
 
 def node_to_path(node: Node[T]) -> List[T]:
     """ Helps keep track of the path pursued. """
@@ -125,7 +125,7 @@ def dfs(initial: T, goal_test: Callable[[T], bool],
     frontier.push(Node(initial, None))      # Load-up the frontier with starting Node
     explored: Set[T] = {initial}            # Where we have been. Use set to avoid duplication
 
-    print(f"Starting: {frontier}")
+    print(frontier)
     # Keep going while there is more to explore
     while not frontier.empty:
 

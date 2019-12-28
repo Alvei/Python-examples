@@ -1,9 +1,9 @@
-""" Inspired by David Kopec. """
+""" Inspired by David Kopec. KGB33 """
 from enum import Enum
 import random
 from math import sqrt
 from typing import List, NamedTuple, Callable, Optional
-from generic_search import dfs, bfs, astar, node_to_path, Node
+from generic_search import dfs, bfs, node_to_path, astar, Node
 
 class Cell(str, Enum):
     """ Defined the different states each cell can have. """
@@ -64,70 +64,65 @@ class Maze:
             output += "".join([c.value for c in row]) + "\n"
         return output
 
-    def goal_test(self, ml: MazeLocation) -> bool:
+    def goal_test(self, mloc: MazeLocation) -> bool:
         """ Checks whether the goal was reached during the search. """
-        return ml == self.goal
+        return mloc == self.goal
 
-    def successor(self, ml: MazeLocation) -> List[MazeLocation]:
+    def successor(self, mloc: MazeLocation) -> List[MazeLocation]:
         """ Find all the possible next locations for a given MazeLocation.
             First check within the maze then check that it is not blocked. """
         locations: List[MazeLocation] = []
 
-        if ml.row + 1 < self._rows and self._grid[ml.row + 1][ml.column] != Cell.BLOCKED:
-            locations.append(MazeLocation(ml.row + 1, ml.column))
-        if ml.row - 1 >= 0 and self._grid[ml.row - 1][ml.column] != Cell.BLOCKED:
-            locations.append(MazeLocation(ml.row - 1, ml.column))
+        if mloc.row + 1 < self._rows and self._grid[mloc.row + 1][mloc.column] != Cell.BLOCKED:
+            locations.append(MazeLocation(mloc.row + 1, mloc.column))
+        if mloc.row - 1 >= 0 and self._grid[mloc.row - 1][mloc.column] != Cell.BLOCKED:
+            locations.append(MazeLocation(mloc.row - 1, mloc.column))
 
-        if ml.column + 1 < self._columns and self._grid[ml.row][ml.column + 1] != Cell.BLOCKED:
-            locations.append(MazeLocation(ml.row, ml.column + 1))
-        if ml.column - 1 >= 0 and self._grid[ml.row][ml.column - 1] != Cell.BLOCKED:
-            locations.append(MazeLocation(ml.row, ml.column - 1))
+        if mloc.column + 1 < self._columns and self._grid[mloc.row][mloc.column + 1] != Cell.BLOCKED:
+            locations.append(MazeLocation(mloc.row, mloc.column + 1))
+        if mloc.column - 1 >= 0 and self._grid[mloc.row][mloc.column - 1] != Cell.BLOCKED:
+            locations.append(MazeLocation(mloc.row, mloc.column - 1))
         #print(f"=> {locations}")
         return locations
 
-    def mark(self, path: List[MazeLocation]):
-        """ Mark the maze with the successful path. """
-        for maze_location in path:
-            self._grid[maze_location.row][maze_location.column] = Cell.PATH
+    def mark(self, path: List[MazeLocation], clear=False):
+        """ Mark the maze with the successful path.
+            If clear is True, remove the path on the maze. """
+        fill = Cell.PATH    # Default is to fill a path
+        if clear:           # Overwrite if we need to clear
+            fill = Cell.EMPTY
 
-        self._grid[self.start.row][self.start.column] = Cell.START
-        self._grid[self.goal.row][self.goal.column] = Cell.GOAL
-
-    def clear(self, path: List[MazeLocation]):
-        """ Remove a path on a maze. """
         for maze_location in path:
-            self._grid[maze_location.row][maze_location.column] = Cell.EMPTY
+            self._grid[maze_location.row][maze_location.column] = fill
 
         self._grid[self.start.row][self.start.column] = Cell.START
         self._grid[self.goal.row][self.goal.column] = Cell.GOAL
 
 def euclidean_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
     """ Wrapper function that passes the goal that is a permanent MazeLocation. """
-    def distance(ml: MazeLocation) -> float:
+    def distance(mloc: MazeLocation) -> float:
         """ Function that does all the work and permanently knows the goal.
             Uses Pythagorean theorem. """
-        xdist: int = ml.column - goal.column
-        ydist: int = ml.row - goal.row
+        xdist: int = mloc.column - goal.column
+        ydist: int = mloc.row - goal.row
         return sqrt((xdist * xdist) + (ydist * ydist))
     return distance
 
 def manhattan_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
     """ Wrapper function that passes the goal that is a permanent MazeLocation. """
-    def distance(ml: MazeLocation) -> float:
+    def distance(mloc: MazeLocation) -> float:
         """ Function that does all the work and permanently knows the goal.
             Uses a simplifying assumption that we have square grid. """
-        xdist: int = ml.column - goal.column
-        ydist: int = ml.row - goal.row
-        return (xdist + ydist)
+        xdist: int = mloc.column - goal.column
+        ydist: int = mloc.row - goal.row
+        return xdist + ydist
     return distance
 
 if __name__ == "__main__":
-
-    # Test DFS
     m: Maze = Maze()            # Use defaults
-    print("\n=> New Maze\n")
     print(m)
 
+    # Test DFS
     solution1: Optional[Node[MazeLocation]] = dfs(m.start, m.goal_test, m.successor)
     if solution1 is None:
         print("\n => No solution found using DFS.")
@@ -135,7 +130,8 @@ if __name__ == "__main__":
         path1: List[MazeLocation] = node_to_path(solution1)
         m.mark(path1)
         print(m)
-        m.clear(path1)
+        print(f"DFS Path Length: {len(path1)}")
+        m.mark(path1, clear=True)
 
     # BFS
     solution2: Optional[Node[MazeLocation]] = bfs(m.start, m.goal_test, m.successor)
@@ -146,12 +142,13 @@ if __name__ == "__main__":
         path2: List[MazeLocation] = node_to_path(solution2)
         m.mark(path2)
         print(m)
-        m.clear(path2)
+        print(f"BFS Path Length: {len(path2)}")
+        m.mark(path2, clear=True)
 
     # A*
-    distance: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
+    dist: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
     solution3: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test,
-    m.successor, distance)
+                                                    m.successor, dist)
 
     if solution3 is None:
         print("\n => No solution found in A*!")
@@ -159,4 +156,5 @@ if __name__ == "__main__":
         path3: List[MazeLocation] = node_to_path(solution3)
         m.mark(path3)
         print(m)
-        m.clear(path3)
+        print(f"A* Path Length: {len(path3)}")
+        m.mark(path3, clear=True)

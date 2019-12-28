@@ -14,17 +14,33 @@
 from itertools import groupby
 from typing import Iterable, Iterator, Sequence, Any
 
-def compact(seq: Sequence[Any]) -> Iterable[Any]:
-    """ Removes duplicate of a sequence. """
+def compact(seq: Iterable[Any]) -> Iterable[Any]:
+    """ Removes duplicate in any Iterable - not just Sequence. """
     # Make sure it is a sequence. Find out what type of sequence
     assert isiterable(seq)
-    return iter([k for k,_ in groupby(seq)])
+    return (k
+            for k, _ in groupby(seq)) # Use () to create a generator
 
-def compact_index(seq: Sequence[Any]) -> Iterable[Any]:
+def compact_yield(iterable: Iterable[Any]) -> Iterable[Any]:
+    """Return new iterable with adjacent duplicate values removed."""
+    previous = object()
+    for item in iterable:
+        if item != previous:
+            yield item
+            previous = item
+
+def compact_index(sequence: Sequence[Any]) -> Iterable[Any]:
+    """Return new iterable with adjacent duplicate values removed."""
+    deduped = []
+    for i, item in enumerate(sequence):
+        if i == 0 or item != sequence[i-1]:
+            deduped.append(item)
+    return deduped
+
+def compact_long(seq: Sequence[Any]) -> Iterable[Any]:
     """ Removes duplicate of a sequence. """
     # Make sure it is a sequence. Find out what type of sequence
     assert isiterable(seq)
-    seq_type = type(seq)
     new_seq = list(seq)
     prev = None
     #new_iter = [] # Use item initially but convert later to the right iterable
@@ -50,7 +66,7 @@ def isiterable(obj) -> bool:
         return False
 
 if __name__ == "__main__":
-    initial = [1, 1, 2, 3, 3, 3, 4]
+    initial: Iterable[Any] = [1, 1, 2, 3, 3, 3, 4]
     print(f"{initial} ? {list(compact(initial))}")
     initial = "Sasskatoon"
     print(f"{initial} ? {list(compact(initial))}")
