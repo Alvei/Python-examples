@@ -10,7 +10,20 @@ from typing_extensions import Protocol   # Need to install this module
 T = TypeVar('T')   # Create a generic type
 
 class Stack(Generic[T]):
-    """ Generic Stack class implemented using a list. """
+    """ Generic Stack Class implemented using Python’s built-in list type makes
+        a decent stack data structure as it supports push and pop operations
+        in amortized O(1) time. Python’s lists are implemented as dynamic arrays
+        internally which means they occasional need to resize the storage space
+        for elements stored in them when elements are added or removed. The list
+        over-allocates its backing storage so that not every push or pop requires
+        resizing and you get an amortized O(1) time complexity for these operations.
+
+        The deque class implements a double-ended queue that supports adding and
+        removing elements from either end in O(1) time (non-amortized).
+
+        Because deques support adding and removing elements from either end equally
+        well, they can serve both as queues and as stacks.
+        https://dbader.org/blog/stacks-in-python. """
     def __init__(self) -> None:
         """ Initialize a List. """
         self._container: List[T] = []
@@ -31,6 +44,19 @@ class Stack(Generic[T]):
     def __repr__(self) -> str:
         """ Use default repr(). """
         return repr(self._container)
+
+    def peek(self):
+        """ View element at top of the stack. """
+        if self.isEmpty():
+            raise Exception("Stack empty!")
+        return self._container[-1]
+
+    def size(self):
+        """ Return the length of the container. """
+        return len(self._container)
+
+    #def show(self):
+    #     return self._container  # display the entire stack as list
 
 class Queue(Generic[T]):
     """ Generic Queue class. """
@@ -99,9 +125,10 @@ class Node(Generic[T]):
             and heappop() and heappush() in particular. """
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         """ printing. """
-        return (f"state: {self.state} parent: {self.parent}")
+        #return (f"state: {self.state} parent: {self.parent}")
+        return (f"s: {self.state}")
 
 def node_to_path(node: Node[T]) -> List[T]:
     """ Helps keep track of the path pursued. """
@@ -125,30 +152,32 @@ def dfs(initial: T, goal_test: Callable[[T], bool],
     frontier.push(Node(initial, None))      # Load-up the frontier with starting Node
     explored: Set[T] = {initial}            # Where we have been. Use set to avoid duplication
 
-    print(frontier)
-    # Keep going while there is more to explore
+    # Keep going while there is more to explore, counter will keep track of all attempts
+    counter = 0
     while not frontier.empty:
-
+        #print(f"count {counter}: {frontier}")
         # The 1st time, .pop() the starting Node, the other time, list
         current_node: Node[T] = frontier.pop()
         current_state: T = current_node.state
 
-        # If we found the goal, we are done!
-        if goal_test(current_state):
-            return current_node
+        print(f"count {counter}: {current_state}")  
 
-        # Check where we can go next and have not explored
+        # If we found the goal, we are done! current_node is the latest frontier
+        if goal_test(current_state):
+            return current_node  
+
+        # Check where we can go next and have not explored. e.g. successors return up to 4 in Maze
         for child in successors(current_state):
             if child in explored: # Skip the children we already explored
                 continue
 
-            # Use the .add() method from set to the current child to the list of visited Nodes
+            # Use the .add() method from set type to add the current child to the list of visited Nodes
             explored.add(child)
 
             # Load the stack with the current options -> child
             # and keep track of parent -> current_node
             frontier.push(Node(child, current_node))
-
+        counter += 1
     return None     # Went through everything and never found goal
 
 def bfs(initial: T, goal_test: Callable[[T], bool],
@@ -162,7 +191,6 @@ def bfs(initial: T, goal_test: Callable[[T], bool],
     frontier.push(Node(initial, None))      # Load-up the frontier with starting Node
     explored: Set[T] = {initial}            # Where we have been. Use set to avoid duplication
 
-    print(f"Starting: {frontier}")
     # Keep going while there is more to explore
     while not frontier.empty:
 
@@ -200,7 +228,6 @@ def astar(initial: T, goal_test: Callable[[T], bool],
     frontier.push(Node(initial, None))                  # Load-up the frontier with starting Node
     explored: Dict[T, float] = {initial: 0.0}           # Use Dict to keep track of cost function
 
-    print(f"Starting: {frontier}")
     # Keep going while there is more to explore
     while not frontier.empty:
 

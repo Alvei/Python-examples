@@ -20,8 +20,8 @@ class MazeLocation(NamedTuple):
     row: int
     column: int
 
-   # def __str__(self) -> str:
-   #     return f"{self.row}, {self.column}"
+    def __repr__(self) -> str:
+       return f"({self.row}, {self.column})"
 
 class Maze:
     """ Defines a Maze. Note all variables are private except start. """
@@ -118,43 +118,48 @@ def manhattan_distance(goal: MazeLocation) -> Callable[[MazeLocation], float]:
         return xdist + ydist
     return distance
 
+def euclidean_distance2(goal):
+    """ Uses Pythagorean theorem. """
+    return lambda location: sqrt(sum([x - y for x, y in zip(location, goal)]))
+
+def manhattan_distance2(goal):
+    """ Uses a simplifying assumption that we have square grid. """
+    return lambda location: sum([abs(x - y) for x, y in zip(location, goal)])
+
+def test_algo(m: Maze, num: int) -> None:
+    """ Test harness for the 3 algorithms.
+        num = 0: DFS
+        num = 1: BSF
+        num = 2: A*. """
+
+    if num == 0:
+        print("\nDFS Algorithm:")
+        solution: Optional[Node[MazeLocation]] = dfs(m.start, m.goal_test, m.successor)
+    elif num == 1:
+        print("\nBSF Algorithm:")
+        solution: Optional[Node[MazeLocation]] = bfs(m.start, m.goal_test, m.successor)
+    elif num == 2:
+        print("\nA* Algorithm:")
+        dist: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
+        solution: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test,
+                                                        m.successor, dist)
+    else:
+        print("\n***ERROR: NO SUCH ALGO. Options are 0, 1, 2")
+        solution = None
+
+    if solution is None:
+        print("\n => No solution found!")
+    else:
+        path: List[MazeLocation] = node_to_path(solution)
+        m.mark(path)
+        print(m)
+        print(f"Path Length: {len(path)}")
+        m.mark(path, clear=True)
+
 if __name__ == "__main__":
     m: Maze = Maze()            # Use defaults
     print(m)
 
-    # Test DFS
-    solution1: Optional[Node[MazeLocation]] = dfs(m.start, m.goal_test, m.successor)
-    if solution1 is None:
-        print("\n => No solution found using DFS.")
-    else:
-        path1: List[MazeLocation] = node_to_path(solution1)
-        m.mark(path1)
-        print(m)
-        print(f"DFS Path Length: {len(path1)}")
-        m.mark(path1, clear=True)
-
-    # BFS
-    solution2: Optional[Node[MazeLocation]] = bfs(m.start, m.goal_test, m.successor)
-
-    if solution2 is None:
-        print("\n => No solution found in BFS!")
-    else:
-        path2: List[MazeLocation] = node_to_path(solution2)
-        m.mark(path2)
-        print(m)
-        print(f"BFS Path Length: {len(path2)}")
-        m.mark(path2, clear=True)
-
-    # A*
-    dist: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
-    solution3: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test,
-                                                    m.successor, dist)
-
-    if solution3 is None:
-        print("\n => No solution found in A*!")
-    else:
-        path3: List[MazeLocation] = node_to_path(solution3)
-        m.mark(path3)
-        print(m)
-        print(f"A* Path Length: {len(path3)}")
-        m.mark(path3, clear=True)
+    test_algo(m, 0)
+ #   test_algo(m, 1)
+ #   test_algo(m, 2)

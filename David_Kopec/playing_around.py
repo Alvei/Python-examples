@@ -29,10 +29,15 @@ print(allo)
 
 my_node = Node(22, 33)
 my_node2 = Node("two", "three")
-print(my_node)
+print("my_node", type(my_node), my_node)
 print(my_node2)
 
 my_stack = Stack()
 my_stack.push(my_node)
 print(my_stack)
-print(my_stack.__name__())
+
+my_list: List[Node[T]] = []
+my_list2 = [9, 8, 7]
+#my_list.append(my_list)
+my_list.append(my_node)
+print("My_list", my_list)
