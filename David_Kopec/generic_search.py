@@ -128,7 +128,7 @@ class Node(Generic[T]):
     def __repr__(self) -> str:
         """ printing. """
         #return (f"state: {self.state} parent: {self.parent}")
-        return (f"s: {self.state}")
+        return (f"s: {self.state} p: {self.parent}")
 
 def node_to_path(node: Node[T]) -> List[T]:
     """ Helps keep track of the path pursued. """
@@ -154,28 +154,36 @@ def dfs(initial: T, goal_test: Callable[[T], bool],
 
     # Keep going while there is more to explore, counter will keep track of all attempts
     counter = 0
+
+    # Use the empty method to check if stack is empty
     while not frontier.empty:
-        #print(f"count {counter}: {frontier}")
-        # The 1st time, .pop() the starting Node, the other time, list
+
+        # Assign the latest frontier node to current_node. That Node is a linked list
+        # Current node will eventually become the final path.
+        # The first time, it is equal to the initial. It is possible that there is no
+        # successors for that Node, it will then simply .pop() another one  from the stack
         current_node: Node[T] = frontier.pop()
+
+        # Assign current_node to the current_state
         current_state: T = current_node.state
 
-        print(f"count {counter}: {current_state}")  
+        # print(f"count {counter}: {current_node}")
 
-        # If we found the goal, we are done! current_node is the latest frontier
+        # We are done? by checking the goal_test() function
         if goal_test(current_state):
-            return current_node  
+            # current_node is the linked-list of all Nodes that created the path
+            return current_node
 
         # Check where we can go next and have not explored. e.g. successors return up to 4 in Maze
         for child in successors(current_state):
             if child in explored: # Skip the children we already explored
                 continue
 
-            # Use the .add() method from set type to add the current child to the list of visited Nodes
+            # Use the set.add() method to add the current child to the list of visited Nodes
             explored.add(child)
 
-            # Load the stack with the current options -> child
-            # and keep track of parent -> current_node
+            # Add to the frontier with the current (child, parent)
+            # Parent is also a Node with (state, parent) -> linked-list
             frontier.push(Node(child, current_node))
         counter += 1
     return None     # Went through everything and never found goal
@@ -194,7 +202,10 @@ def bfs(initial: T, goal_test: Callable[[T], bool],
     # Keep going while there is more to explore
     while not frontier.empty:
 
-        # The 1st time, .pop() the starting Node, the other time, list
+        # Assign the latest frontier node to current_node. That Node is a linked list
+        # Current node will eventually become the final path.
+        # The first time, it is equal to the initial. It is possible that there is no
+        # successors for that Node, it will then simply .pop() another one  from the queue
         current_node: Node[T] = frontier.pop()
         current_state: T = current_node.state
 
@@ -210,7 +221,7 @@ def bfs(initial: T, goal_test: Callable[[T], bool],
             # Use the .add() method from set to the current child to the list of visited Nodes
             explored.add(child)
 
-            # Load the stack with the current options -> child
+            # Load the queue with the current options -> child
             # and keep track of parent -> current_node
             frontier.push(Node(child, current_node))
 
@@ -219,10 +230,11 @@ def bfs(initial: T, goal_test: Callable[[T], bool],
 def astar(initial: T, goal_test: Callable[[T], bool],
           successors: Callable[[T], List[T]],
           heuristic: Callable[[T], float]) -> Optional[Node[T]]:
-    """ A*star algorithm. Uses Queue Data element.
+    """ A*star algorithm. Uses PriorityQueue Data element.
         initial: starting point for search.
         goal_test: simple comparison fonction with input type T that returns a bool.
-        successors: function that returns a List[T] of all potential next steps or returns None. """
+        successors: function that returns a List[T] of all potential next steps or returns None.
+        explored: not a Set[] but a Dict[] to keep track of cost function also. """
 
     frontier: PriorityQueue[Node[T]] = PriorityQueue()  # Were we have yet to go of type Node[T]
     frontier.push(Node(initial, None))                  # Load-up the frontier with starting Node
@@ -231,7 +243,11 @@ def astar(initial: T, goal_test: Callable[[T], bool],
     # Keep going while there is more to explore
     while not frontier.empty:
 
-        # The 1st time, .pop() the starting Node, the other time, list
+        # Assign the latest frontier node to current_node. That Node is a linked list
+        # Current node will eventually become the final path.
+        # The first time, it is equal to the initial. It is possible that there is no
+        # successors for that Node, it will then simply .pop() another one  from the queue
+        # Main difference is .pop() is implemented to look at the cost function
         current_node: Node[T] = frontier.pop()
         current_state: T = current_node.state
 
@@ -241,15 +257,15 @@ def astar(initial: T, goal_test: Callable[[T], bool],
 
         # Check where we can go next and have not explored
         for child in successors(current_state):
-            new_cost: float = current_node.cost + 1 # Assumes a grid. Could make more complicated
+
+            new_cost: float = current_node.cost + 1 # Assumes a grid for this cost function
             if child in explored: # Skip the children we already explored
                 continue
 
             # Keep cost of current child to the list of visited Nodes
             explored[child] = new_cost
 
-            # Load the stack with the current options -> child
-            # and keep track of parent -> current_node
+            # Load the PriorityQueue with the current (child, parent, cost, heuristic)
             frontier.push(Node(child, current_node, new_cost, heuristic(child)))
 
     return None     # Went through everything and never found goal

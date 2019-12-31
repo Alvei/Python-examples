@@ -157,9 +157,12 @@ def test_algo(m: Maze, num: int) -> None:
         m.mark(path, clear=True)
 
 if __name__ == "__main__":
-    m: Maze = Maze()            # Use defaults
+    rows, cols = 20, 70
+    start: MazeLocation = MazeLocation(10, 10)
+    goal: MazeLocation = MazeLocation(9, cols-1)
+    m: Maze = Maze(rows, cols,.1, start=start, goal=goal)            # Use defaults
     print(m)
 
     test_algo(m, 0)
- #   test_algo(m, 1)
- #   test_algo(m, 2)
+    test_algo(m, 1)
+    test_algo(m, 2)
