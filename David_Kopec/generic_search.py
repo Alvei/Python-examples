@@ -2,12 +2,71 @@
 from __future__ import annotations
 from typing import TypeVar, Generic
 from typing import List, Callable, Set, Optional
-#from typing import Iterable, Sequence, Any
+from typing import Iterable, Sequence, Any, Union
 from typing import Deque, Dict
 from heapq import heappush, heappop
 from typing_extensions import Protocol   # Need to install this module
 
 T = TypeVar('T')   # Create a generic type
+
+def linear_contains(iterable: Iterable[T], key: T) -> bool:
+    """ Generic Linear search. Order O(n). """
+
+    if len(iterable) == 0:  # Makes sure not an empty list
+        return False
+
+    for item in iterable:
+        if item == key:
+            return True
+    return False
+
+C = TypeVar("C", bound='Comparable')
+
+class Comparable(Protocol):
+    """ Class that uses the Protocol type to define the comparison operators.
+        A bit clunky and will likely not be necessary in the next version of Python. """
+    def __eq__(self, other: Any) -> bool:
+        """ Equal comparator. Uses default. """
+        ...
+    def __lt__(self: C, other: C) -> bool:
+        """ Lower than comparator. Uses default. """
+        ...
+    def __gt__(self: C, other: C) -> bool:
+        """ Greater than comparator. """
+        return (not self < other) and self != other
+    def __le__(self: C, other: C) -> bool:
+        """ Lower or equal than comparator. """
+        return self < other or self == other
+    def __ge__(self: C, other: C) -> bool:
+        """ Greater or equal than comparator. """
+        return self < other
+
+def binary_contains(sequence: Sequence[C], key: C) -> Union[int, bool]:
+    """ Generic binary search for sequences. Need a type with buit-in comparators.
+        Therefore using class C. Assumes sorted list. O(nlog(n)).
+        Returns -1 if sequence is not ordered"""
+
+    if len(sequence) == 0:  # Makes sure not an empty sequence
+        return False
+
+    # Make sure the sequence is sorted
+
+    if not (sequence == sorted(sequence)):
+        print(sequence, "=?", sorted(sequence))
+        return -1
+
+    low: int = 0
+    high: int = len(sequence) - 1
+    while low <= high:              # While there is still search space
+        mid: int = (low + high) // 2
+        if sequence[mid] < key:     # If key is to the right of mid, replace low
+            low = mid + 1
+        elif sequence[mid] > key:   # If key is to the right of mid, replace high
+            high = mid - 1
+        else:
+            return True             # Found the match
+    return False
+
 
 class Stack(Generic[T]):
     """ Generic Stack Class implemented using Python’s built-in list type makes
@@ -45,18 +104,19 @@ class Stack(Generic[T]):
         """ Use default repr(). """
         return repr(self._container)
 
-    def peek(self):
-        """ View element at top of the stack. """
-        if self.isEmpty():
-            raise Exception("Stack empty!")
-        return self._container[-1]
-
     def size(self):
         """ Return the length of the container. """
         return len(self._container)
 
-    #def show(self):
-    #     return self._container  # display the entire stack as list
+    def peek(self) -> T:
+        """ View element at top of the stack. """
+        if self.empty:
+            raise Exception("Stack empty!")
+        return self._container[-1]
+
+    def show(self) -> List[T]:
+        """ Displays the entire stack as a list. """
+        return self._container
 
 class Queue(Generic[T]):
     """ Generic Queue class. """
@@ -76,6 +136,20 @@ class Queue(Generic[T]):
     def pop(self) -> T:
         """ Remove the 1st item in the container. FIFO. """
         return self._container.popleft()
+
+    def size(self):
+        """ Return the length of the container. """
+        return len(self._container)
+
+    def peek(self) -> T:
+        """ View element at top of the stack. """
+        if self.empty:
+            raise Exception("Queue empty!")
+        return self._container[0]
+
+    def show(self) -> List[T]:
+        """ Displays the entire queue as a list. """
+        return self._container
 
     def __repr__(self) -> str:
         """ Use default repr(). """
@@ -128,7 +202,7 @@ class Node(Generic[T]):
     def __repr__(self) -> str:
         """ printing. """
         #return (f"state: {self.state} parent: {self.parent}")
-        return (f"s: {self.state} p: {self.parent}")
+        return f"s: {self.state} p: {self.parent}"
 
 def node_to_path(node: Node[T]) -> List[T]:
     """ Helps keep track of the path pursued. """
