@@ -1,12 +1,13 @@
-""" Inspired by David Kopec. Different ways of searching """
+""" Inspired by David Kopec. Different ways of searching.
+    The enum module is used to define unique sets of names and values."""
 from enum import IntEnum
 from typing import Tuple, List
 
 # Choosing type IntEnum instead of Enum gives us comparison operator required for searches
 Nucleotide: IntEnum = IntEnum('Nucleotide', ('A', 'C', 'G', 'T'))
+
 Codon = Tuple[Nucleotide, Nucleotide, Nucleotide]   # Type alias for codons
 Gene = List[Codon]                                  # Type alias for genes
-
 
 def string_to_gene(in_str: str) -> Gene:
     """ Convert a string to a Gene where in_str is the input string. """
@@ -22,7 +23,8 @@ def string_to_gene(in_str: str) -> Gene:
     return gene
 
 def linear_contains(gene: Gene, key_codon: Codon) -> bool:
-    """ Typical implementation of linear search. """
+    """ Typical implementation of linear search. O(n)
+        Go through each codon until the end or break if one is found. """
     for codon in gene:
         if codon == key_codon:
             return True
@@ -43,12 +45,12 @@ def binary_contains(gene: Gene, key_codon: Codon) -> bool:
     return False
 
 
-
 if __name__ == "__main__":
     gene_str: str = "ACGTGGCTCTCTAACGTACGTACGTA"
     my_gene: Gene = string_to_gene(gene_str)
     print(f"\nmy_gene:{my_gene}\n")
 
+    print(f"\nGene: {gene_str}")
     # Define codons
     acg: Codon = (Nucleotide.A, Nucleotide.C, Nucleotide.G)
     gat: Codon = (Nucleotide.G, Nucleotide.A, Nucleotide.T)
