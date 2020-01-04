@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-""" Inspired by David Kopec. Different ways of searching.
-    The enum module is used to define unique sets of names and values."""
-=======
+
 """ Different ways of searching. Linear search with O(n) and binary search with O(nLog(n).
     Binary search requires the list to be ordered.
     The examples are done on Genes. Genes of made of Codons. Codons are 3 Nucleotides.
     Inspired by David Kopec.  """
->>>>>>> ace744a64c9fe65c440b85ff2877a50af0e31652
 from enum import IntEnum
 from typing import Tuple, List
 
