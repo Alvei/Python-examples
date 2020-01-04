@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 """ Inspired by David Kopec. Different ways of searching.
     The enum module is used to define unique sets of names and values."""
+=======
+""" Different ways of searching. Linear search with O(n) and binary search with O(nLog(n).
+    Binary search requires the list to be ordered.
+    The examples are done on Genes. Genes of made of Codons. Codons are 3 Nucleotides.
+    Inspired by David Kopec.  """
+>>>>>>> ace744a64c9fe65c440b85ff2877a50af0e31652
 from enum import IntEnum
 from typing import Tuple, List
 
@@ -23,15 +30,19 @@ def string_to_gene(in_str: str) -> Gene:
     return gene
 
 def linear_contains(gene: Gene, key_codon: Codon) -> bool:
+<<<<<<< HEAD
     """ Typical implementation of linear search. O(n)
         Go through each codon until the end or break if one is found. """
+=======
+    """ Typical implementation of linear search. O(n). """
+>>>>>>> ace744a64c9fe65c440b85ff2877a50af0e31652
     for codon in gene:
-        if codon == key_codon:
+        if codon == key_codon:  # Uses built-in comparator of IntEnum
             return True
     return False
 
 def binary_contains(gene: Gene, key_codon: Codon) -> bool:
-    """ Typical binary search. Assume ordered list. """
+    """ Typical binary search. Assumes ordered list. O(nlog(n)). """
     low: int = 0
     high: int = len(gene) -1
     while low <= high:              # While there is still search space
@@ -69,5 +80,3 @@ if __name__ == "__main__":
     print("\nBuilt-in contain:")
     print(f"Is ACG in my genes? {acg in my_gene}")
     print(f"Is GAT in my genes? {gat in my_gene}")
-
-
