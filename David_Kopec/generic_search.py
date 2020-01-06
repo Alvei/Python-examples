@@ -156,7 +156,8 @@ class Queue(Generic[T]):
         return repr(self._container)
 
 class PriorityQueue(Generic[T]):
-    """ Generic Priority Queue class. """
+    """ Generic Priority Queue class using heaps.
+        Only works with uniform List.  ie. not [1, "two", 3]"""
     def __init__(self) -> None:
         """ Initialize a List. """
         self._container: List[T] = []
@@ -167,12 +168,17 @@ class PriorityQueue(Generic[T]):
         return not self._container
 
     def push(self, item: T) -> None:
-        """ Add to the end of the priority queue item(s). """
+        """ Add but maintains the heap structure. """
         heappush(self._container, item)
 
     def pop(self) -> T:
-        """ Remove the 1st item in the container. FIFO. """
+        """ Remove and return the smallest element from heap.
+            The order is adjusted, so as heap structure is maintained. """
         return heappop(self._container)
+
+    def size(self):
+        """ Return the length of the container. """
+        return len(self._container)
 
     def __repr__(self) -> str:
         """ Use default repr(). """
