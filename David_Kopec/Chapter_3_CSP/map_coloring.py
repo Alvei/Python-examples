@@ -7,7 +7,8 @@
     Inspired From Classic Computer Science Problems in Python Chapter by David Kopec.  """
 
 from typing import Dict, List, Optional
-from chap3_csp import Constraint, CSP
+from csp import Constraint, CSP
+from pprint import pprint
 
 class MapColoringConstraint(Constraint[str, str]):
     """ Define the map contraints.
@@ -28,14 +29,15 @@ class MapColoringConstraint(Constraint[str, str]):
 
 if __name__ == "__main__":
 
-    # Name of the regions
+    # Name of the regions of Australia
     variables: List[str] = ["Western Australia", "Northern Territory", "South Australia",
                             "Queensland", "New South Wales", "Victoria", "Tasmania"]
 
-    # Create the domains. For each regions, assign a list of potential solutions
+    # For each regions, assign a list of potential solutions (R, G, B)
     domains: Dict[str, List[str]] = {}
     for variable in variables:
         domains[variable] = ["red", "green", "blue"]
+        #domains[variable] = ["red", "green"]  # No solution
 
     csp: CSP[str, str] = CSP(variables, domains)
 
@@ -57,4 +59,4 @@ if __name__ == "__main__":
     if solution is None:
         print("No solution found!")
     else:
-        print(solution)
+        pprint(solution)

@@ -1,14 +1,14 @@
 """ queens.py
     How can eight queens be placed on an 8x8 board without any queen attacking another queen?
     It requires a queen on each column. Requires two classes defined elsewhere that do all the work.
-    Inspired From Classic Computer Science Problems in Python Chapter by David Kopec. """
+    Setup the CSP problem with columns (variables) and rows (domains or possible solution).    Inspired From Classic Computer Science Problems in Python Chapter by David Kopec. """
 
 from typing import Dict, List, Optional
-from chap3_csp import Constraint, CSP
+from pprint import pprint
+from csp import Constraint, CSP
 
 class QueensConstraint(Constraint[int, int]):
-    """ Setup the CSP problem with columns (variables) and rows (domains or possible solution).
-        Inherits the attributes of Constraint class including a satisfied method that needs
+    """ Inherits the attributes of Constraint class including a satisfied method that needs
         to be updated. Use [int, int] rather than [str, int] to iterate easily across columns. """
 
     def __init__(self, columns: List[int]) -> None:
@@ -59,4 +59,4 @@ if __name__ == "__main__":
         # Convert the answer so that the column is displayed in letters
         LETTER_COLS: list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
         final_sol: Optional[Dict[str, int]] = dict(zip(LETTER_COLS, list(solution.values())))
-        print(final_sol)
+        pprint(final_sol)
