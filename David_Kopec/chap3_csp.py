@@ -27,9 +27,9 @@ class CSP(Generic[V, D]):
         self.variables: List[V] = variables         # Variables to be constrained
         self.domains: Dict[V, List[D]] = domains    # Domain of each variable
 
-        self.contraints: Dict[V, List[Constraint[V, D]]] = {}
+        self.constraints: Dict[V, List[Constraint[V, D]]] = {}
         for variable in self.variables:
-            self.contraints[variable] = []
+            self.constraints[variable] = []
             if variable not in self.domains:
                 raise LookupError("Every variable should have a domain assigned to it.")
 
@@ -40,7 +40,7 @@ class CSP(Generic[V, D]):
             if variable not in self.variables:
                 raise LookupError("Variable in constraint no in CSP.")
             else:
-                self.contraints[variable].append(constraint)
+                self.constraints[variable].append(constraint)
 
     def consistent(self, variable: V, assignment: Dict[V, D]) -> bool:
         """ Check if the value assignment is consistent by checking
@@ -50,28 +50,23 @@ class CSP(Generic[V, D]):
                 return False
         return True             # default case
 
-    def backtracking_search(self, assignment: Dict[V, D] = {}) -> Optional[Dict[V,D]]:
-        """ XXX """
-
-        # Assignment is complete if every variable is assigned - our base case.
+    def backtracking_search(self, assignment: Dict[V, D] = {}) -> Optional[Dict[V, D]]:
+        # assignment is complete if every variable is assigned (our base case)
         if len(assignment) == len(self.variables):
             return assignment
 
-        # Get all variables in the CSP but not in the assignment
-        unassigned: List[V] =  [v for v in self.variables if v not in assignment]
+        # get all variables in the CSP but not in the assignment
+        unassigned: List[V] = [v for v in self.variables if v not in assignment]
 
-        # Get every possible domain value of the first unassigned variable
+        # get the every possible domain value of the first unassigned variable
         first: V = unassigned[0]
-
         for value in self.domains[first]:
             local_assignment = assignment.copy()
             local_assignment[first] = value
-
-            # If we're still consistent, recurse (continue)
+            # if we're still consistent, we recurse (continue)
             if self.consistent(first, local_assignment):
                 result: Optional[Dict[V, D]] = self.backtracking_search(local_assignment)
-
-            # If we did not find the result, we will end-up backtracking
-            if result is not None:
-                return result
-        return None # default
+                # if we didn't find the result, we will end up backtracking
+                if result is not None:
+                    return result
+        return None
