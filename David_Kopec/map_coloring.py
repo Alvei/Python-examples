@@ -2,15 +2,16 @@
     The constraints are that no two adjacent regions can be colored
     with the same color. So the condition depends on who borders who.
     It is therefore a binary contraints (between two variables).
-    Every two regions that share a border will have a binary constraints meaning
+    Every 2 regions that share a border will have a binary constraints meaning
     they cannot have the same color.
-    Inspired by David Kopec. """
+    Inspired From Classic Computer Science Problems in Python Chapter by David Kopec.  """
 
 from typing import Dict, List, Optional
 from chap3_csp import Constraint, CSP
 
 class MapColoringConstraint(Constraint[str, str]):
-    """ Define the map. It takes Constraint object as input. """
+    """ Define the map contraints.
+        Inherits the attributes of Constraint class including a satisfied method that needs to be updated. """
 
     def __init__(self, place1: str, place2: str) -> None:
         """ Initializer. super() is used to call method from the superclass. """
