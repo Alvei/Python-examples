@@ -49,8 +49,8 @@ class CSP(Generic[V, D]):
         for variable in constraint.variables:
             if variable not in self.variables:
                 raise LookupError("Variable in constraint no in CSP.")
-            else:
-                self.constraints[variable].append(constraint)
+
+            self.constraints[variable].append(constraint)   # Default
 
     def consistent(self, variable: V, assignment: Dict[V, D]) -> bool:
         """ Check if the value assignment is consistent by checking
