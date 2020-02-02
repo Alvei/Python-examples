@@ -11,8 +11,9 @@ from csp import Constraint, CSP
 from pprint import pprint
 
 class MapColoringConstraint(Constraint[str, str]):
-    """ Define the map contraints.
-        Inherits the attributes of Constraint class including a satisfied method that needs to be updated. """
+    """ Define the map contraints and its .satisfied() method
+        Inherits the attributes of Constraint class including a satisfied
+        method that needs to be updated. """
 
     def __init__(self, place1: str, place2: str) -> None:
         """ Initializer. super() is used to call method from the superclass. """
@@ -21,10 +22,13 @@ class MapColoringConstraint(Constraint[str, str]):
         self.place2: str = place2  # inverse
 
     def satisfied(self, assignment: Dict[str, str]) -> bool:
-        """ Overrides the abstractmethod. """
+        """ Overrides the abstractmethod.  assignment is a dictionary with
+            the current decisions that have satisfied the constraints to date.
+            Checking to see the color of the two regions are not the same. """
         if self.place1 not in assignment or self.place2 not in assignment:
-            return True
+            return True  # This is a quick check. If not in assignment then no constraints
 
+        # Otherwise check if the color of both regions are the same
         return assignment[self.place1] != assignment[self.place2]
 
 if __name__ == "__main__":

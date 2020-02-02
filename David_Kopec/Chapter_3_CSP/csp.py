@@ -1,7 +1,9 @@
-""" Constraints-Statisfaction Problems (CSP) core functionality. CSPs are composed of variables with possible
+""" csp.py
+    Constraints-Statisfaction Problems (CSP) core functionality. CSPs are composed of variables with possible
     values that fall into ranges known as domains. Contraints between the variables must be satisfied.
 
     There are two classes. The Abstract Constraint class and the CSP class which brings variables-domains-constraints together.
+    The CSP class contains the functions to solve the problem. Here we use a recursive backtracking algorithm.
 
     Generic is indicating that the types of the variables and the domains are not known at the time of class definition.
     In other words, we do not know what the type of variables will be, and we do not know what the type of the domains will be.
@@ -47,29 +49,37 @@ class CSP(Generic[V, D]):
             domains is a Dict mapping variables to lists of possible values.
             constraints is a Disct that maps each variable to a list of contraints. """
         self.variables: List[V] = variables         # Variables to be constrained
-        self.domains: Dict[V, List[D]] = domains    # Domain of each variable
+        self.domains: Dict[V, List[D]] = domains    # List of possible values for each variable
 
         # Create an empty list of contraints for each variables.
-        # Constraints on a variables will be created by .add_constraint() method
+        # .add_constraint() is used to create the constraints on a variable
         self.constraints: Dict[V, List[Constraint[V, D]]] = {}
         for variable in self.variables:
-            self.constraints[variable] = []
+            self.constraints[variable] = []  # Empty constraint list for each variable
             if variable not in self.domains:
                 raise LookupError("Every variable should have a domain assigned to it.")
 
     def add_constraint(self, constraint: Constraint[V, D]) -> None:
-        """ Goes through all the variable touched by a specific constraint and
-            add itself to the contraints maping for each of them. """
+        """ Goes through all the variable touched by a specific Constraint and
+            add itself to the contraints maping for each of the variable.
+            This updates the self.constraints list for a variable. """
+
+        # Loop over the keys (variables) of the constraint dictionary
         for variable in constraint.variables:
             if variable not in self.variables:
                 raise LookupError("Variable in constraint no in CSP.")
 
+            # Update the instance constraint list for that variable
             self.constraints[variable].append(constraint)   # Default
+            print(f"Variable: {variable} -> constraints: {self.constraints[variable]}")
 
     def consistent(self, variable: V, assignment: Dict[V, D]) -> bool:
-        """ Check if the value assignment is consistent by checking
-            all constraints for the variable against it. """
+        """ Check if the value assignment meets all the constraints
+            for the corresponding variable. """
+
+        # Loop over all the constraints that were defined by the .add_constraint()
         for constraint in self.constraints[variable]:
+            # Check by calling the .satisfied() method that is associated with the Constraint
             if not constraint.satisfied(assignment):
                 return False
         return True             # default case
