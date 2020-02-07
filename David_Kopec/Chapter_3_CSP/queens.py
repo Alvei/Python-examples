@@ -1,7 +1,8 @@
 """ queens.py
     How can eight queens be placed on an 8x8 board without any queen attacking another queen?
     It requires a queen on each column. Requires two classes defined elsewhere that do all the work.
-    Setup the CSP problem with columns (variables) and rows (domains or possible solution).    Inspired From Classic Computer Science Problems in Python Chapter by David Kopec. """
+    Setup the CSP problem with columns (variables) and rows (domains or possible solution).
+    Inspired From Classic Computer Science Problems in Python Chapter by David Kopec. """
 
 from typing import Dict, List, Optional
 from pprint import pprint

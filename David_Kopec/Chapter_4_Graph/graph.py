@@ -14,9 +14,12 @@ class Graph(Generic[V]):
     """ Generic graph that associates vertices with edges. """
 
     def __init__(self, vertices: List[V] = []) -> None:
-        """ Initializes the graph. """
+        """ Initializes the graph.
+            vertices are saved as list of generic type V and can be access as indexes.
+            For each vertex, there is a list of all the Edges(u, v) touching that
+            vertex. They will all have the same u (starting vertex). """
         self._vertices: List[V] = vertices
-        self._edges: List[List[Edge]] = [[] for _ in vertices]
+        self._edges: List[List[Edge]] = [[] for _ in vertices] # For each vertex empty list
 
     @property
     def vertex_count(self) -> int:
@@ -31,7 +34,7 @@ class Graph(Generic[V]):
     def add_vertex(self, vertex: V) -> int:
         """ Add a vertex to the graph and return its index. """
         self._vertices.append(vertex)
-        self._edges.append([])       # add empty list for containing edges
+        self._edges.append([])       # Add empty list for edges
         return self.vertex_count - 1 # return index of added vertex
 
     def add_edge(self, edge: Edge) -> None:
@@ -42,7 +45,7 @@ class Graph(Generic[V]):
     def add_edge_by_indices(self, u: int, v: int) -> None:
         """ Add an edge using vertex indices (convenience method). """
         edge: Edge = Edge(u, v)
-        self.add_edge(edge)
+        self.add_edge(edge)   # call previous function
 
     def add_edge_by_vertices(self, first: V, second: V) -> None:
         """ Add an edge by looking up vertex indices (convenience method). """
@@ -58,24 +61,28 @@ class Graph(Generic[V]):
     def index_of(self, vertex: V) -> int:
         return self._vertices.index(vertex)
 
-    # Find the vertices that a vertex at some index is connected to
     def neighbors_for_index(self, index: int) -> List[V]:
+        """ Find the vertices that a vertex at some index is connected to.
+            map(function, iterator) returns an iterator hence the list.
+            the function is .vertex_at()
+            iterator is the list comprehension which is the index of
+            2nd vertices of each edge of the vertex at index. """
         return list(map(self.vertex_at, [e.v for e in self._edges[index]]))
 
-    # Lookup a vertice's index and find its neighbors (convenience method)
     def neighbors_for_vertex(self, vertex: V) -> List[V]:
+        """ Lookup a vertice's index and find its neighbors (convenience method). """
         return self.neighbors_for_index(self.index_of(vertex))
 
-    # Return all of the edges associated with a vertex at some index
     def edges_for_index(self, index: int) -> List[Edge]:
+        """ Return all of the edges associated with a vertex at some index. """
         return self._edges[index]
 
-    # Lookup the index of a vertex and return its edges (convenience method)
     def edges_for_vertex(self, vertex: V) -> List[Edge]:
+        """ Lookup the index of a vertex and return its edges (convenience method). """
         return self.edges_for_index(self.index_of(vertex))
 
-    # Make it easy to pretty-print a Graph
     def __str__(self) -> str:
+        """ Make it easy to pretty-print a Graph. """
         desc: str = ""
         for i in range(self.vertex_count):
             desc += f"{self.vertex_at(i)} -> {self.neighbors_for_index(i)}\n"
