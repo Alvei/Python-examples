@@ -273,7 +273,14 @@ def bfs(initial: T, goal_test: Callable[[T], bool],
     """ Breadth-First-Search algorithm. Uses Queue Data element.
         initial: starting point for search.
         goal_test: simple comparison fonction with input type T that returns a bool.
-        successors: function that returns a List[T] of all potential next steps or returns None. """
+        successors: function that returns a List[T] of all potential next steps or returns None.
+        https://pythoninwonderland.wordpress.com/2017/03/18/how-to-implement-breadth-first-search-in-python/
+        There’s a great news about BFS: it’s complete. That’s because this algorithm is always able to find
+        a solution to a problem, if there is one. Completeness is a nice-to-have feature for an algorithm,
+        but in case of BFS it comes to a high cost. The time complexity of the algorithm is exponential.
+        Lesson learned: You should use BFS only for relatively small problems. """
+
+    # Missing a check that initial is in the solution set of successor
 
     frontier: Queue[Node[T]] = Queue()      # Were we have yet to go of type Node[T]
     frontier.push(Node(initial, None))      # Load-up the frontier with starting Node
@@ -284,7 +291,7 @@ def bfs(initial: T, goal_test: Callable[[T], bool],
 
         # Assign the latest frontier node to current_node. That Node is a linked list
         # Current node will eventually become the final path.
-        # The first time, it is equal to the initial. It is possible that there is no
+        # The first time, it is equal to initial. It is possible that there is no
         # successors for that Node, it will then simply .pop() another one  from the queue
         current_node: Node[T] = frontier.pop()
         current_state: T = current_node.state

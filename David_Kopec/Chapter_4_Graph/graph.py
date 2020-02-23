@@ -53,13 +53,70 @@ class Graph(Generic[V]):
         v: int = self._vertices.index(second)
         self.add_edge_by_indices(u, v)
 
+    def remove_edge_by_indices(self, u, v):
+        """ Remove an edge using vertex indices (convenience method).
+            for exercise 4.7.1. Need to remove both directions. """
+        self._edges[u].remove(Edge(u, v))
+        self._edges[v].remove(Edge(v, u))
+
+    def remove_edge_by_vertices(self, first, second):
+        """ Remove edge by looking up vertex indices (convenience method)..
+            for exercise 4.7.1 """
+        u = self.index_of(first)
+        v = self.index_of(second)
+        remove_edge_by_indices(u, v)
+
+    def remove_vertex_at_index(self, u) -> None:
+        """ Remove a vertex of indice [u] to the graph and return its index.
+            Part of exercise 4.7.1"""
+
+        # Need to do a list copy since we will remove elements form
+        # the list and vertex_edges would change during the loop
+        vertex_edges: List[Edge] = self._edges[u].copy()
+
+        # Cycle through the edges of that vertex [u] to capture 2nd indice [v]
+        for edge in vertex_edges: # _edges[u] is a list of edges at vertex u
+            self.remove_edge_by_indices(edge.u, edge.v)
+
+        # Convert the index u into the vertex to be removed.
+        temp_vertex: V = self.vertex_at(u)
+
+        # Find all the location where the vertex was found. Should be only 1
+        loc = [i for i, value in enumerate(self._vertices) if value == temp_vertex]
+        self._vertices.pop(loc[0])
+
+        # Go back and remove the empty list in the edge list that
+        # correspond to the vertex
+        self._edges.pop(loc[0])
+
+        # Loop over all the vertex and all the edges in that vertex
+        for index_v, vertex in enumerate(self._edges):
+            for index_e, edge in enumerate(vertex):
+                # If the indice of the vertex of this edge are bigger than the vertex
+                # indice removed, reduce it by 1. Need to do the reverse as well.
+                if edge.u >= u:
+                    self._edges[index_v][index_e] = Edge(edge.u-1, edge.v)
+                if edge.v >= u:
+                    self._edges[index_v][index_e] = Edge(edge.u, edge.v-1)
+
     def vertex_at(self, index: int) -> V:
         """ Find the vertex at a specific index. """
-        return self._vertices[index]
+        try:
+            vertex = self._vertices[index]
+        except IndexError:
+            raise IndexError(f"\n*** IndexError => There is no Vertex for the index: '{index}'\n")
+        else:
+            return vertex
 
-    # Find the index of a vertex in the graph
     def index_of(self, vertex: V) -> int:
-        return self._vertices.index(vertex)
+        """ Find the index of a vertex in the graph. """
+        try:
+            index = self._vertices.index(vertex)
+        except ValueError as error:
+            #print(f"*** ValueError => There is no index for the Vertex: '{vertex}'\n")
+            raise ValueError(f"\n*** ValueError => There is no index for the Vertex: '{vertex}'\n")
+        else:
+            return index
 
     def neighbors_for_index(self, index: int) -> List[V]:
         """ Find the vertices that a vertex at some index is connected to.
@@ -87,7 +144,6 @@ class Graph(Generic[V]):
         for i in range(self.vertex_count):
             desc += f"{self.vertex_at(i)} -> {self.neighbors_for_index(i)}\n"
         return desc
-
 
 if __name__ == "__main__":
     # test basic Graph construction
@@ -119,17 +175,33 @@ if __name__ == "__main__":
     city_graph.add_edge_by_vertices("New York", "Philadelphia")
     city_graph.add_edge_by_vertices("Philadelphia", "Washington")
     print(city_graph)
+    print(f"Vertices: {city_graph.vertex_count} and edges: {city_graph.edge_count}")
+
+    print(f"Removing one city: {city_graph.vertex_at(12)} ...")
+    city_graph.remove_vertex_at_index(12)
+    print(f"Vertices: {city_graph.vertex_count} and edges: {city_graph.edge_count}")
+    #print(city_graph)
 
     # Reuse BFS from Chapter 2 on city_graph
     import sys
     sys.path.insert(0, '..') # so we can access the Chapter2 package in the parent directory
     from Chapter_2_Search.generic_search import bfs, Node, node_to_path
 
+    """ Breadth-First-Search algorithm. Uses Queue Data element.
+        initial: starting point for search.
+        goal_test: simple comparison fonction with input type T that returns a bool.
+        successors: function that returns a List[T] of all potential next steps or returns None. """
+
+    city = "Boston"
+    #city_graph.index_of("London")
+    #city = "London"
+    connected_city = city_graph.neighbors_for_vertex(city)
+
     bfs_result: Optional[Node[V]] = bfs("Boston", lambda x: x == "Miami", city_graph.neighbors_for_vertex)
     if bfs_result is None:
         print("No solution found using breadth-first search!")
     else:
         path: List[V] = node_to_path(bfs_result)
-        print("Path from Boston to Miami:")
+        print("\nPath from Boston to Miami:")
         print(path)
 

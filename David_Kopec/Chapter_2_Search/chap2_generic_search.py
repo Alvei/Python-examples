@@ -1,4 +1,5 @@
-""" Different ways of searching. Using generic types not only list
+""" Chap2_generic_search.py
+    Different ways of searching. Using generic types not only list
     Linear search with O(n) and binary search with O(nLog(n).
     Binary search requires the list to be ordered.
     The examples are done on Genes. Genes of made of Codons. Codons are 3 Nucleotides.
