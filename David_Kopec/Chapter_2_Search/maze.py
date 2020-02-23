@@ -3,7 +3,7 @@ from enum import Enum
 import random
 from math import sqrt
 from typing import List, NamedTuple, Callable, Optional
-from generic_search import dfs, bfs, node_to_path, astar, Node
+from three_search_algo import dfs, bfs, node_to_path, astar, Node
 
 class Cell(str, Enum):
     """ Defined the different states each cell can have. """

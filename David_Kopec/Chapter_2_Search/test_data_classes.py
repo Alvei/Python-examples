@@ -1,6 +1,6 @@
 """test_generic_search.py """
 import pytest
-from generic_search import Stack, Queue, PriorityQueue
+from data_classes import Stack, Queue, PriorityQueue
 from typing import Deque
 
 """ *** STACK TESTS *** """

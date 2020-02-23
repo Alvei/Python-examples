@@ -5,6 +5,7 @@
     Inspired by David Kopec.  """
 from enum import IntEnum
 from typing import Tuple, List
+from contain_searches import linear_contains, binary_contains
 
 # Choosing type IntEnum instead of Enum gives us comparison operator required for searches
 Nucleotide: IntEnum = IntEnum('Nucleotide', ('A', 'C', 'G', 'T'))
@@ -25,19 +26,15 @@ def string_to_gene(in_str: str) -> Gene:
         gene.append(codon)
     return gene
 
-def linear_contains(gene: Gene, key_codon: Codon) -> bool:
-<<<<<<< HEAD
+def gene_linear_contains(gene: Gene, key_codon: Codon) -> bool:
     """ Typical implementation of linear search. O(n)
         Go through each codon until the end or break if one is found. """
-=======
-    """ Typical implementation of linear search. O(n). """
->>>>>>> ace744a64c9fe65c440b85ff2877a50af0e31652
     for codon in gene:
         if codon == key_codon:  # Uses built-in comparator of IntEnum
             return True
     return False
 
-def binary_contains(gene: Gene, key_codon: Codon) -> bool:
+def gene_binary_contains(gene: Gene, key_codon: Codon) -> bool:
     """ Typical binary search. Assumes ordered list. O(nlog(n)). """
     low: int = 0
     high: int = len(gene) -1
@@ -64,13 +61,14 @@ if __name__ == "__main__":
 
     # Apply the linear function to check presence
     print("\nLinear search contain:")
-    print(f"Is ACG in my genes? {linear_contains(my_gene, acg)}")
-    print(f"Is GAT in my genes? {linear_contains(my_gene, gat)}")
+    print(f"Is ACG in my genes? {gene_linear_contains(my_gene, acg)}, {linear_contains(my_gene, acg)}")
+    print(f"Is GAT in my genes? {gene_linear_contains(my_gene, gat)}, {linear_contains(my_gene, gat)}")
 
     # Apply the binary function to check presence
+    # Interesting that the gene_binary version still works even if not ordered.
     print("\nBinary search contain:")
-    print(f"Is ACG in my genes? {binary_contains(my_gene, acg)}")
-    print(f"Is GAT in my genes? {binary_contains(my_gene, gat)}")
+    print(f"Is ACG in my genes? {gene_binary_contains(my_gene, acg)}, {binary_contains(my_gene, acg)}")
+    print(f"Is GAT in my genes? {gene_binary_contains(my_gene, gat)}, {binary_contains(my_gene, gat)}")
 
     # Use built in __contains__() operator
     print("\nBuilt-in contain:")
