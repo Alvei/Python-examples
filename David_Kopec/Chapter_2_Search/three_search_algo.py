@@ -2,9 +2,7 @@
 from __future__ import annotations
 from typing import TypeVar, Generic
 from typing import List, Callable, Set, Optional
-from typing import Iterable, Sequence, Any, Union
-from typing import Deque, Dict
-from typing_extensions import Protocol   # Need to install this module
+from typing import Dict
 from data_classes import Stack, Queue, PriorityQueue
 
 T = TypeVar('T')   # Create a generic type
@@ -100,10 +98,11 @@ def bfs(initial: T, goal_test: Callable[[T], bool],
         goal_test: simple comparison fonction with input type T that returns a bool.
         successors: function that returns a List[T] of all potential next steps or returns None.
         https://pythoninwonderland.wordpress.com/2017/03/18/how-to-implement-breadth-first-search-in-python/
-        There’s a great news about BFS: it’s complete. That’s because this algorithm is always able to find
-        a solution to a problem, if there is one. Completeness is a nice-to-have feature for an algorithm,
-        but in case of BFS it comes to a high cost. The time complexity of the algorithm is exponential.
-        Lesson learned: You should use BFS only for relatively small problems. """
+        There’s a great news about BFS: it’s complete. That’s because this algorithm is always
+        able to find a solution to a problem, if there is one. Completeness is a nice-to-have
+        feature for an algorithm, but in case of BFS it comes to a high cost. The time complexity
+        of the algorithm is exponential. Lesson learned: You should use BFS only for relatively
+        small problems. """
 
     # Missing a check that initial is in the solution set of successor
 

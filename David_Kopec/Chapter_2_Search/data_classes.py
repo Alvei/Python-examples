@@ -1,13 +1,11 @@
 """ data_classes.py
     Defines the following generic classes: Stack, Queue, PriorityQueue
 """
-from __future__ import annotations
+#from __future__ import annotations
 from typing import TypeVar, Generic
-from typing import List, Callable, Set, Optional
-from typing import Iterable, Sequence, Any, Union
-from typing import Deque, Dict
-from heapq import heappush, heappop
-from typing_extensions import Protocol   # Need to install this module
+from typing import List, Deque
+from heapq import  heappush, heappop
+#from typing_extensions import Protocol   # Need to install this module
 
 T = TypeVar('T')   # Create a generic type
 
@@ -90,7 +88,7 @@ class Queue(Generic[T]):
             raise Exception("Queue empty!")
         return self._container[0]
 
-    def show(self) -> List[T]:
+    def show(self) -> Deque[T]:
         """ Displays the entire queue as a list. """
         return self._container
 

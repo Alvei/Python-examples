@@ -11,11 +11,9 @@
     Sequence: Iterable that can be address with indexes/slice: lists, tuples, sets
     TypeVar:  Works with generic to define the type hint.
 """
-from __future__ import annotations
-from typing import TypeVar, Generic
-from typing import List, Callable, Set, Optional
+#from __future__ import annotations
+from typing import TypeVar
 from typing import Iterable, Sequence, Any, Union
-from typing import Deque, Dict
 from typing_extensions import Protocol   # Need to install this module
 
 T = TypeVar('T')   # Create a generic type
@@ -23,8 +21,9 @@ T = TypeVar('T')   # Create a generic type
 def linear_contains(iterable: Iterable[T], key: T) -> bool:
     """ Generic Linear search. Order O(n). """
 
-    if len(iterable) == 0:  # Makes sure not an empty list
-        return False
+    # Makes sure not an empty . But iterable do not have len() function
+    #if len(iterable) == 0:
+        #return False
 
     for item in iterable:
         if item == key:
@@ -62,8 +61,7 @@ def binary_contains(sequence: Sequence[C], key: C) -> Union[int, bool]:
         return False
 
     # Make sure the sequence is sorted
-
-    if not (sequence == sorted(sequence)):
+    if not sequence == sorted(sequence):
         #print(sequence, "=?", sorted(sequence))
         return -1
 

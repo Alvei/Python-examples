@@ -21,7 +21,7 @@ class MazeLocation(NamedTuple):
     column: int
 
     def __repr__(self) -> str:
-       return f"({self.row}, {self.column})"
+        return f"({self.row}, {self.column})"
 
 class Maze:
     """ Defines a Maze. Note all variables are private except start. """
@@ -78,7 +78,8 @@ class Maze:
         if mloc.row - 1 >= 0 and self._grid[mloc.row - 1][mloc.column] != Cell.BLOCKED:
             locations.append(MazeLocation(mloc.row - 1, mloc.column))
 
-        if mloc.column + 1 < self._columns and self._grid[mloc.row][mloc.column + 1] != Cell.BLOCKED:
+        if mloc.column + 1 < self._columns and \
+            self._grid[mloc.row][mloc.column + 1] != Cell.BLOCKED:
             locations.append(MazeLocation(mloc.row, mloc.column + 1))
         if mloc.column - 1 >= 0 and self._grid[mloc.row][mloc.column - 1] != Cell.BLOCKED:
             locations.append(MazeLocation(mloc.row, mloc.column - 1))
@@ -126,7 +127,7 @@ def manhattan_distance2(goal):
     """ Uses a simplifying assumption that we have square grid. """
     return lambda location: sum([abs(x - y) for x, y in zip(location, goal)])
 
-def test_algo(m: Maze, num: int) -> None:
+def test_algo(mz: Maze, num: int) -> None:
     """ Test harness for the 3 algorithms.
         num = 0: DFS
         num = 1: BSF
@@ -134,15 +135,15 @@ def test_algo(m: Maze, num: int) -> None:
 
     if num == 0:
         print("\nDFS Algorithm:")
-        solution: Optional[Node[MazeLocation]] = dfs(m.start, m.goal_test, m.successor)
+        solution: Optional[Node[MazeLocation]] = dfs(mz.start, mz.goal_test, mz.successor)
     elif num == 1:
         print("\nBSF Algorithm:")
-        solution: Optional[Node[MazeLocation]] = bfs(m.start, m.goal_test, m.successor)
+        solution: Optional[Node[MazeLocation]] = bfs(mz.start, mz.goal_test, mz.successor)
     elif num == 2:
         print("\nA* Algorithm:")
-        dist: Callable[[MazeLocation], float] = manhattan_distance(m.goal)
-        solution: Optional[Node[MazeLocation]] = astar(m.start, m.goal_test,
-                                                        m.successor, dist)
+        dist: Callable[[MazeLocation], float] = manhattan_distance(mz.goal)
+        solution: Optional[Node[MazeLocation]] = astar(mz.start, mz.goal_test,
+                                                       mz.successor, dist)
     else:
         print("\n***ERROR: NO SUCH ALGO. Options are 0, 1, 2")
         solution = None
@@ -151,16 +152,16 @@ def test_algo(m: Maze, num: int) -> None:
         print("\n => No solution found!")
     else:
         path: List[MazeLocation] = node_to_path(solution)
-        m.mark(path)
-        print(m)
+        mz.mark(path)
+        print(mz)
         print(f"Path Length: {len(path)}")
-        m.mark(path, clear=True)
+        mz.mark(path, clear=True)
 
 if __name__ == "__main__":
-    rows, cols = 20, 70
-    start: MazeLocation = MazeLocation(10, 10)
-    goal: MazeLocation = MazeLocation(9, cols-1)
-    m: Maze = Maze(rows, cols,.1, start=start, goal=goal)            # Use defaults
+    ROWS, COLS = 20, 70  # Maze size
+    maze_start: MazeLocation = MazeLocation(10, 10)
+    maze_goal: MazeLocation = MazeLocation(9, COLS-1)
+    m: Maze = Maze(ROWS, COLS, .1, start=maze_start, goal=maze_goal)     # Use defaults
     print(m)
 
     test_algo(m, 0)
