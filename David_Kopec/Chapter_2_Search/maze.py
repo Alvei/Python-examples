@@ -24,7 +24,7 @@ class MazeLocation(NamedTuple):
         return f"({self.row}, {self.column})"
 
 class Maze:
-    """ Defines a Maze. Note all variables are private except start. """
+    """ Defines a Maze. Note all variables are private except start and goal. """
     def __init__(self, rows: int = 10, columns: int = 10, sparseness: float = 0.2,
                  start: MazeLocation = MazeLocation(0, 0),
                  goal: MazeLocation = MazeLocation(9, 9)) -> None:
@@ -145,7 +145,7 @@ def test_algo(mz: Maze, num: int) -> None:
         solution: Optional[Node[MazeLocation]] = astar(mz.start, mz.goal_test,
                                                        mz.successor, dist)
     else:
-        print("\n***ERROR: NO SUCH ALGO. Options are 0, 1, 2")
+        print("\n*** ERROR: NO SUCH ALGO. Options are 0=DFS, 1=BFS, 2=A*")
         solution = None
 
     if solution is None:
