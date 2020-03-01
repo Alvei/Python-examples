@@ -147,7 +147,9 @@ class Graph(Generic[V]):
 
 if __name__ == "__main__":
     # test basic Graph construction
-    city_graph: Graph[str] = Graph(["Seattle", "San Francisco", "Los Angeles", "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
+    city_graph: Graph[str] = Graph(["Seattle", "San Francisco", "Los Angeles", \
+        "Riverside", "Phoenix", "Chicago", "Boston", "New York", "Atlanta", \
+        "Miami", "Dallas", "Houston", "Detroit", "Philadelphia", "Washington"])
     city_graph.add_edge_by_vertices("Seattle", "Chicago")
     city_graph.add_edge_by_vertices("Seattle", "San Francisco")
     city_graph.add_edge_by_vertices("San Francisco", "Riverside")
@@ -184,8 +186,10 @@ if __name__ == "__main__":
 
     # Reuse BFS from Chapter 2 on city_graph
     import sys
-    sys.path.insert(0, '..') # so we can access the Chapter2 package in the parent directory
-    from Chapter_2_Search.generic_search import bfs, Node, node_to_path
+
+    # so we can access the Chapter2 package in the parent directory
+    sys.path.insert(0, r'..\Chapter_2_search')
+    from three_search_algo import bfs, Node, node_to_path
 
     """ Breadth-First-Search algorithm. Uses Queue Data element.
         initial: starting point for search.
@@ -197,11 +201,11 @@ if __name__ == "__main__":
     #city = "London"
     connected_city = city_graph.neighbors_for_vertex(city)
 
-    bfs_result: Optional[Node[V]] = bfs("Boston", lambda x: x == "Miami", city_graph.neighbors_for_vertex)
+    bfs_result: Optional[Node[V]] = bfs("Boston", lambda x: x == "Miami",\
+         city_graph.neighbors_for_vertex)
     if bfs_result is None:
         print("No solution found using breadth-first search!")
     else:
         path: List[V] = node_to_path(bfs_result)
         print("\nPath from Boston to Miami:")
         print(path)
-
