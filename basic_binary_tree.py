@@ -19,6 +19,10 @@ class Node:
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
 
+    def __repr__(self):
+        """ Default printing behavior. """
+        return f"{self.value}"
+
     def insert(self, data: int) -> bool:
         """ Insert a node to the right or left.
             Return False only if trying to insert duplicate. """
@@ -158,44 +162,53 @@ class Tree:
         """ Check if the tree has root. """
         return self.root is None
 
+    def remove_root(self) -> None:
+        """ Remove the root node. """
+
+        print(f"Removing the root node {self.root}")
+
+        # Root has no child, empty tree
+        if self.root.left is None and self.root.right is None:
+            self.root = None
+
+        # Move the left child to become the root
+        elif self.root.left and self.root.right is None:
+            self.root = self.root.left
+
+        # Move the right child to become the root
+        elif self.root.left is None and self.root.right:
+            self.root = self.root.right
+
+        # There are two childs for the root
+        elif self.root.left and self.root.right:
+            del_node_parent = self.root
+            del_node = self.root.right
+            while del_node.left:
+                del_node_parent = del_node
+                del_node = del_node.left
+
+            self.root.value = del_node.value
+            if del_node.right:
+                if del_node_parent.value > del_node.value:
+                    del_node_parent.left = del_node.right
+                elif del_node_parent.value < del_node.value:
+                    del_node_parent.right = del_node.right
+            else:
+                if del_node.value < del_node_parent.value:
+                    del_node_parent.left = None
+                else:
+                    del_node_parent.right = None
+
     def remove(self, data: int) -> bool:
         """ Remove a node. """
 		# Empty tree
         if self.root is None:
             return False
 
-		# Data is in root node
+		# Data is the root node
         if self.root.value == data:
-            # Root has no child, simply conver root to none
-            if self.root.left is None and self.root.right is None:
-                self.root = None
-            # Move the left child to become the root
-            elif self.root.left and self.root.right is None:
-                self.root = self.root.left
-            # Move the right child to become the root
-            elif self.root.left is None and self.root.right:
-                self.root = self.root.right
-            # There are two childs for the root
-            elif self.root.left and self.root.right:
-                del_node_parent = self.root
-                del_node = self.root.right
-                while del_node.left:
-                    del_node_parent = del_node
-                    del_node = del_node.left
-
-                self.root.value = del_node.value
-                if del_node.right:
-                    if del_node_parent.value > del_node.value:
-                        del_node_parent.left = del_node.right
-                    elif del_node_parent.value < del_node.value:
-                        del_node_parent.right = del_node.right
-                else:
-                    if del_node.value < del_node_parent.value:
-                        del_node_parent.left = None
-                    else:
-                        del_node_parent.right = None
-
-            return True # Done moving the root node
+            self.remove_root() # Done removing the root node
+            return  True
 
         parent = None
         node = self.root
@@ -288,6 +301,9 @@ def main():
 
     print(f"Removing 4:")
     bst2.remove(4)
+    bst2.preorder()
+    print(f"\nRemoving 1:")
+    bst2.remove(1)
     bst2.preorder()
 
 if __name__ == "__main__":
