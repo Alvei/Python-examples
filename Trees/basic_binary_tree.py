@@ -14,7 +14,7 @@ from typing import Optional
 class Node:
     """ Contains data variable to type value and left, right pointers.
         Helper class. """
-    def __init__(self, val: Optional[int]) -> None:
+    def __init__(self, val: Optional[int]=None) -> None:
         self.value: Optional[int] = val
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
