@@ -1,8 +1,9 @@
 """ basic_binary_tree.py
+    Each node is represented by an integer node.
     They have specific properties. First they have two childs (can be null).
-    On any given node, the right child is bigger than the node.
-    On any given node, the left child is smaller than the node.
-    It makes searching very efficient.
+    On any given node, the right child is bigger than the parent node.
+    On any given node, the left child is smaller than the parent node.
+    Binary tree makes searching very efficient.
     inspired by
     https://github.com/joeyajames/Python/blob/master/Trees/BinarySearchTree.py
     https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
@@ -24,17 +25,16 @@ class Node:
         return f"{self.value}"
 
     def insert(self, data: int) -> bool:
-        """ Insert a node to the right or left.
+        """ Insert a node to the right or left of a parent node.
             Return False only if trying to insert duplicate. """
 
         # Do not allow duplicates
         if self.value == data:
             return False
 
-        # New node is to the left of "parent"
+        # New node is to the left of parent node
         if self.value > data:
-            # If we have already a left node,
-            # call recursively making the current left node be the "parent"
+            # Already have left node? recursive call making current left node == "parent"
             if self.left:
                 return self.left.insert(data)
             # Default, otherwise create a new left node

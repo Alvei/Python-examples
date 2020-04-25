@@ -7,6 +7,26 @@ def test_node_init_empty():
     assert node.left == None
     assert node.right == None
 
+def test_node_init_root():
+    node = Node(4)
+    assert node.value == 4
+    assert node.left == None
+    assert node.right == None
+
+def test_node_insert_left():
+    node = Node(4)
+    assert node.insert(3) == True
+    #assert node.left == 3
+    assert type(node.left) == type(Node())
+    assert node.right == None
+
+def test_node_insert_right():
+    node = Node(4)
+    assert node.insert(5) == True
+    assert node.left == None
+    assert type(node.right) == type(Node())
+    assert node.right == Node(5)
+
 def test_loading_tree():
     bst = Tree()
     list_nodes = [50, 30, 20, 40, 70, 60, 80]  # Root is 50
