@@ -13,8 +13,7 @@
 from typing import Optional
 
 class Node:
-    """ Contains data variable to type value and left, right pointers.
-        Helper class. """
+    """ Contains data variable to type value and left, right pointers."""
     def __init__(self, val: Optional[int]=None) -> None:
         self.value: Optional[int] = val
         self.left: Optional[Node] = None
@@ -22,48 +21,49 @@ class Node:
 
     def __repr__(self):
         """ Default printing behavior. """
-        return f"{self.value}"
+        return f'Node({self.value})'
+
+    def __eq__(self, other):
+        """ Comparator. """
+        if self.value == other:
+            return True
+        return False
+
 
     def insert(self, data: int) -> bool:
         """ Insert a node to the right or left of a parent node.
             Return False only if trying to insert duplicate. """
 
-        # Do not allow duplicates
-        if self.value == data:
+        if self.value == data:      # Duplicate found
             return False
 
-        # New node is to the left of parent node
-        if self.value > data:
-            # Already have left node? recursive call making current left node == "parent"
-            if self.left:
+        if self.value > data:       # New node to the left of parent node
+            if self.left:           # If left exist, then recurse
                 return self.left.insert(data)
-            # Default, otherwise create a new left node
-            self.left = Node(data)
+
+            self.left = Node(data)  # Default, create a new left node
             return True
         else:
-            if self.right:
+            if self.right:          # If right exist, then recurse
                 return self.right.insert(data)
-            # Default
-            self.right = Node(data)
+
+            self.right = Node(data) # Default, create a new right node
             return True
 
     def find(self, data: int) -> bool:
         """ Find a specific node. """
 
-        # If it is the current root/parent
-        if self.value == data:
+        if self.value == data:      # If it is the current root/parent
             return True
 
         if self.value > data:       # Go to the left
             if self.left:           # If left exist, then recurse
                 return self.left.find(data)
-            # Default
-            return False
-        else:                   # Got to the right recursively
+            return False            # Default
+        else:                       # Got to the right recursively
             if self.right:
                 return self.right.find(data)
-            # Default
-            return False
+            return False            # Default
 
     def preorder(self):
         """ Preorder traverse. Preorder (Root, Left, Right) : 1 2 4 5 3. """
@@ -278,9 +278,15 @@ def main():
          20   40    60   80
     """
     bst = Tree()
-    list_nodes = [50, 30, 20, 40, 70, 60, 80]  # Root is 50
-    for node in list_nodes:
-        print(f"Node is {node}: {bst.insert(node)}")
+    nodes = [50, 30, 20, 40, 70, 60, 80]  # Root is 50
+
+    # Create the binary tree by inserting each node, returns True if it works
+    print(f"Test 1=> Adding nodes to binary tree: ", end="")
+    for node in nodes:
+        test = bst.insert(node)
+        if not test:
+            print(f"Was not able to insert note")
+        print(f"{node} ", end=',')
 
     bst.preorder()  # Preorder (Root, Left, Right)  : 50, 30, 20, 40, 70, 60, 80
     bst.postorder() # Postorder (Left, Right, Root) : 20, 40, 30, 60, 80, 70, 50
@@ -289,10 +295,12 @@ def main():
 
     bst2 = Tree()
     list_nodes = [1, 2, 4, 5, 3]  # Root is 1
-    print("\nNode: ", end="")
+    print("\nTest 2=> Adding nodes to binary tree: ", end="")
     for node in list_nodes:
-        bst2.insert(node)
-        print(f" {node}, ", end='')
+        test = bst2.insert(node)
+        if not test:
+            print(f"Was not able to insert note")
+        print(f" {node} ", end=',')
 
     bst2.preorder()  # Preorder (Root, Left, Right)  : 1, 2, 4, 3, 5
     bst2.postorder() # Postorder (Left, Right, Root) : 3, 5, 4, 2, 1
@@ -305,6 +313,21 @@ def main():
     print(f"\nRemoving 1:")
     bst2.remove(1)
     bst2.preorder()
+
+    node = Node(4)
+    print(f"\n\n{node.left}-{node}-{node.right}")
+
+    node.insert(5)
+    print(f"{node.left}-{node}-{node.right}")
+
+    node.insert(3)
+    print(f"{node.left}-{node}-{node.right}")
+
+    if node.left == Node(3):
+        print("Left node is 3")
+    else:
+        print("left node is not 3")
+
 
 if __name__ == "__main__":
     main()
