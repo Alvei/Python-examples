@@ -9,7 +9,7 @@ def find_file_with_text(raw_match: str) -> None:
     print(f"\nString to match: {raw_match}")
     match_regex = re.compile(raw_match)
 
-    # List all files in directory and filter those that aren't txt files
+    # List all files in directory and filter those that are not txt files
     cwd = os.getcwd()
     print(f"Current Working Directory: {cwd}\n")
     files = os.listdir(os.getcwd())
