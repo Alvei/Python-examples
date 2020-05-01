@@ -3,7 +3,7 @@ import os, shutil
 import re
 
 def find_file_with_text(raw_match: str) -> None:
-    """ Simple function to files that matches regex pattern
+    """ Function to find files that matches regex pattern
         Prints the results to the terminal. """
 
     print(f"\nString to match: {raw_match}")
@@ -26,6 +26,5 @@ def find_file_with_text(raw_match: str) -> None:
             print(f"{doc}\t\t\t\t {new_name}")
 
 if __name__ == "__main__":
-    MATCH = r'\s?\w*\!'              # Matches all words ending in !, must be a raw string
-    MATCH = r'Chapter'
+     MATCH = r'Chapter'
     find_file_with_text(MATCH)
