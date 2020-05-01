@@ -21,7 +21,7 @@ def find_file_with_pattern(raw_match: str) -> List[str]:
     return match_files
 
 if __name__ == "__main__":
-    MATCH = 'Chapter_'
+    MATCH = 'chapter_'
     NEW = 'chap'
     match_files = find_file_with_pattern(r'{}'.format(MATCH))
     #print(match_files)
