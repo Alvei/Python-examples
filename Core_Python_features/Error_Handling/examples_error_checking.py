@@ -8,9 +8,8 @@ python 3.x
 """
 
 
-def yes_or_no(question):
-    """ Ask Y/N question with error checking.
-        Signature: (str) -> boolean."""
+def yes_or_no(question: str) -> bool:
+    """ Ask Y/N question with error checking."""
     while "the answer is invalid":
         reply = str(input(question + ' (y/n): ')).lower().strip()
         if reply[:1] == 'y':
@@ -31,7 +30,7 @@ def read_int():
             print(val, 'is not an integer')
 
 
-def read_val(val_type, request_msg, error_msg, max_tries=4):
+def read_val(val_type, request_msg: str, error_msg: str, max_tries=4):
     """ Function to test the input with error handling
     Input:
         valtype: is the type of value expected (eg., int)
@@ -53,17 +52,15 @@ def read_val(val_type, request_msg, error_msg, max_tries=4):
 
 
 def temp_convert(var):
-    """ """
+    """ Convert to integer. """
     try:
         return int(var)
     except ValueError:
         print("The argument does not contain integers\n")
 
 
-# Test Harness
-# #############
 def main():
-    """ Main code """
+    """ Main code - test harness. """
     # read_int()
     print(read_val(int, "Enter int: ", "Not an int."))
     print(read_val(str, "Enter string: ", "Not an string."))
