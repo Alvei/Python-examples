@@ -1,0 +1,6 @@
+setup.py
+Automate_boring_stuff.egg-info/PKG-INFO
+Automate_boring_stuff.egg-info/SOURCES.txt
+Automate_boring_stuff.egg-info/dependency_links.txt
+Automate_boring_stuff.egg-info/requires.txt
+Automate_boring_stuff.egg-info/top_level.txt

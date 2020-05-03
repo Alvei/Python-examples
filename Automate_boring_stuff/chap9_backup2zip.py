@@ -1,5 +1,6 @@
 """ chap9_backup2zip.py
     info on os.walk https://www.geeksforgeeks.org/os-walk-python/
+    http://truelogic.org/wordpress/2015/09/02/scheduled-backup-of-files-with-python-in-windows/
     os.walk(folder) returns a generator with three variables
     path[]:   The current path starting from root
     subdir[]: The subfolders in that directory
