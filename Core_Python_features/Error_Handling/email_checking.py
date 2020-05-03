@@ -1,7 +1,6 @@
 """
 Created on Thu Aug 22 10:43:57 2019
 Simple program with the reg-expression pattern for email
-
 """
 
 import re

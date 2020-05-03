@@ -7,7 +7,6 @@ number is a string
 python 3.x
 """
 
-
 def yes_or_no(question: str) -> bool:
     """ Ask Y/N question with error checking."""
     while "the answer is invalid":
