@@ -10,6 +10,10 @@ import os
 import re
 from typing import List
 from zipfile import ZipFile
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging.disable(logging.DEBUG)
 
 def create_zip_version(filename: str) -> str:
     """ Determine if the filename exist and adjust backup filename. Ensure name is not empty."""
