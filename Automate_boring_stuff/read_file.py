@@ -1,9 +1,6 @@
 """ Read_file.py """
 
-from datetime import datetime
-import re
 from os.path import dirname, join
-from typing import Union
 
 def read_file(file_name: str, debug: bool = False) -> str:
     """ Read a file and return a long string while doing some basic error checking. """
