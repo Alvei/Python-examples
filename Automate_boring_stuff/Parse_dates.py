@@ -7,7 +7,7 @@
 from datetime import datetime
 from typing import Union
 
-def try_parsing_date(text: str, debug: bool=False) -> Union[str, bool, datetime]:
+def try_parsing_date(text: str, debug: bool = False) -> Union[bool, datetime]:
     """ Find a date in a string. If not possible return False. """
 
     # Loop through the 3 different ways of representing a date

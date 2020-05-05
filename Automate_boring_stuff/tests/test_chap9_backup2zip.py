@@ -13,13 +13,13 @@ def test_version_correct():
     assert create_zip_version(foldername) == new_foldername
 
 def test_version_incorrect():
-    """check that the entered name is invalid"""
+    """check that the entered name is invalid. """
     empty_file = ''
     with pytest.raises(Exception) as e_info:
         create_zip_version(empty_file)
 
 def test_backup2zip_incorrect_file():
-    """check that the entered name is invalid"""
+    """check that the entered name is invalid. """
     empty_file = ''
     with pytest.raises(Exception) as e_info:
         backup2zip(empty_file)
