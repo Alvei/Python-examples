@@ -1,5 +1,10 @@
 """test_generic_search.py """
 import pytest
+
+# required to allow to find the file to test in directory above the test directory
+import sys, os
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 from data_classes import Stack, Queue, PriorityQueue
 from typing import Deque
 

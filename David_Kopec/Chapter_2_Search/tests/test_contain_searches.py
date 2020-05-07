@@ -1,5 +1,9 @@
 """test_contain_searches.py """
 import pytest
+import sys, os
+# required to allow to find the file to test in directory above the test directory
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 from contain_searches import linear_contains, binary_contains
 
 @pytest.fixture

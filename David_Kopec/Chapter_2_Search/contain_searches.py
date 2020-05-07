@@ -14,7 +14,7 @@
 #from __future__ import annotations
 from typing import TypeVar
 from typing import Iterable, Sequence, Any, Union
-from typing_extensions import Protocol   # Need to install this module
+#from typing import Protocol   # Need to install this module
 
 T = TypeVar('T')   # Create a generic type
 
@@ -32,7 +32,8 @@ def linear_contains(iterable: Iterable[T], key: T) -> bool:
 
 C = TypeVar("C", bound='Comparable')
 
-class Comparable(Protocol):
+#class Comparable():
+class Comparable():
     """ Class that uses the Protocol type to define the comparison operators.
         A bit clunky and will likely not be necessary in the next version of Python.
         It assumes that all elements of list are the same. E.g., str < int does not work. """
