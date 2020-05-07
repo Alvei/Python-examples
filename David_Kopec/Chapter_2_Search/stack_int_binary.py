@@ -31,7 +31,8 @@ def stack_int_to_binary(dec_num)-> str:
     return bin_num
 
 if __name__ == "__main__":
-    tests = [242, 8, 2, 0, -1]
+    tests = [242, 8, 2, 1]
+    print("\n")
     for test in tests:
         print(f"{test} is {stack_int_to_binary(test)}")
 
