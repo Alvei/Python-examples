@@ -1,20 +1,30 @@
-""" downloadXkcdpy.py """
-import requests, os, bs4
+""" downloadXkcdpy.py
+    Learn to use beautiful soup
+    Inspired by automate the boring stuff. chapter 11
+"""
+import requests, os
+from bs4 import BeautifulSoup       # Import specific class
 
 url = 'http://xkcd.com'             # Starting url
-os.makedirs('xkcd', exist_ok=True)  # store comics in ./xkcd
+os.makedirs('xkcd', exist_ok=True)  # Store comics in ./xkcd
 
 print("\n\n")
+count = 0                           # To limit the number of images downloaded
 
-while not url.endswith("#"):
-
+while (not url.endswith("#")) and count <= 10:
+    count +=1
     print(f"Downloading page {url}...")
     res = requests.get(url)
-    res.raise_for_status()                  # Check all worked
 
-    soup = bs4.BeautifulSoup(res.text)      # Load the page to bs4
+    # Check all worked and raise question exception if not 200 but 1st print
+    print(f"Was url found (200 is good, 404 is bad): {res.status_code}")
+    res.raise_for_status()
+
+    # Create soup object with the text found in res. Could have done it with .content method also
+    soup = BeautifulSoup(res.text)
 
     comic_elem = soup.select("#comic img")  # Find the URL of the comic image
+
     if comic_elem == []:
         print("Could not find comic image.")
     else:
@@ -36,7 +46,7 @@ while not url.endswith("#"):
         image_file.close()
 
         # Get the prev button's url
-        prev_link = soup.select('a[rel="prev')[0]
+        prev_link = soup.select('a[rel="prev"]')[0]
         url = 'http://xkcd.com' + prev_link.get("href")
 
 print("\nDone.")
