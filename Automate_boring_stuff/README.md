@@ -4,16 +4,15 @@
 [The Collatz Sequence / Input Validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%203/Collattz_Sequence.py)
 
 ## Chapter 4 - Lists:
-Comma Code /Character Picture Grid
+[Comma Code /Character Picture Grid](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%204%20-%20Lists/comma_grid.py)
 
 ## Chapter 5 - Dictionaries and Structuring Data:
-
 Fantasy Game Inventory / List to Dictionary Function for Game Inventory
+
 ## Chapter 6 - Manipulating Strings:
-
 Table Printer
-## Chapter 7 - Pattern Matching with Regular Expressions:
 
+## Chapter 7 - Pattern Matching with Regular Expressions:
 Strong Password Detection
 Regex Version of Strip()
 ## Chapter 8 - Reading and Writing Files:
