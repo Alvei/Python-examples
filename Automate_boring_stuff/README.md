@@ -1,7 +1,7 @@
 # My solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart.
 
 ## Chapter 3 - Functions:
-The Collatz Sequence / Input Validation
+[The Collatz Sequence / Input Validation]()
 
 ## Chapter 4 - Lists:
 Comma Code /Character Picture Grid
