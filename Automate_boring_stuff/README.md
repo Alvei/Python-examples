@@ -11,11 +11,20 @@
 
 ## Chapter 6 - Manipulating Strings:
 [Table Printer](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/table_printer.py)
+
 [Bullet point adder](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/bullet_point_adder.py)
 
 ## Chapter 7 - Pattern Matching with Regular Expressions:
-Strong Password Detection
-Regex Version of Strip()
+[Simple phone number validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/isphone_no.py)
+
+[Insecure pwd locker](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/pw.py)
+
+[Simple email and phone number extractor](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/phone_and_email.py)
+
+[Strong Password Detection](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/strong_password.py)
+
+[Regex Version of Strip](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/regex_strip.py)
+
 ## Chapter 8 - Reading and Writing Files:
 Extending the Multiclipboard
 Mad Libs
