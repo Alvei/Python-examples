@@ -1,4 +1,4 @@
-"""" Add to invetory.
+"""" Add to inventory.
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Page 120."""
 from typing import Dict, List
 

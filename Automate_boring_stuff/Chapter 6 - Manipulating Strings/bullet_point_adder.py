@@ -1,4 +1,4 @@
-""" Chapter_6_Bullet_point_adder.py
+""" bullet_point_adder.py
     Used os.path library to help find the file directory and special join to create the path.
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 6. Page 139."""
 from os.path import dirname, join

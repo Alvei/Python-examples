@@ -7,10 +7,11 @@
 [Comma Code /Character Picture Grid](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%204%20-%20Lists/comma_grid.py)
 
 ## Chapter 5 - Dictionaries and Structuring Data:
-Fantasy Game Inventory / List to Dictionary Function for Game Inventory
+[Fantasy Game Inventory / List to Dictionary Function for Game Inventory](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%205%20-%20Structuring%20Data/inventory.py)
 
 ## Chapter 6 - Manipulating Strings:
-Table Printer
+[Table Printer](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/table_printer.py)
+[Bullet point adder](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/bullet_point_adder.py)
 
 ## Chapter 7 - Pattern Matching with Regular Expressions:
 Strong Password Detection
