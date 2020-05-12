@@ -1,13 +1,13 @@
 # My solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart.
 
-## Chapter 3 - Functions:
-[The Collatz Sequence / Input Validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%203/Collattz_Sequence.py)
+*Chapter 3 - Functions:*
+[The Collatz Sequence / Input Validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_3-Functions/Collattz_Sequence.py)
 
 ## Chapter 4 - Lists:
-[Comma Code /Character Picture Grid](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%204%20-%20Lists/comma_grid.py)
+[Comma Code /Character Picture Grid](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_4-Lists/comma_grid.py)
 
 ## Chapter 5 - Dictionaries and Structuring Data:
-[Fantasy Game Inventory / List to Dictionary Function for Game Inventory](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%205%20-%20Structuring%20Data/inventory.py)
+[Fantasy Game Inventory / List to Dictionary Function for Game Inventory](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_5-Structuring_Data/inventory.py)
 
 ## Chapter 6 - Manipulating Strings:
 [Table Printer](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/table_printer.py)
