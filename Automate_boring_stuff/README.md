@@ -17,15 +17,15 @@
 [Bullet point adder](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/bullet_point_adder.py)
 
 ## Chapter 7 - Pattern Matching with Regular Expressions:
-[Simple phone number validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/isphone_no.py)
+[Simple phone number validation:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/isphone_no.py) Check if a number is a telephone number.
 
-[Insecure pwd locker](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/pw.py)
+[Insecure pwd locker:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/pw.py) An insecured password locker program. Works from the command line.
 
-[Simple email and phone number extractor](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/phone_and_email.py)
+[Simple email and phone number extractor:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/phone_and_email.py) Use Regex to extract all the NA phone numbers and emails from a file.
 
-[Strong Password Detection](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/strong_password.py) Use Regex to extract all the NA phone numbers and emails from a file.
+[Strong Password Detection:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/strong_password.py) Check if a password is strong? To be strong you need to be at least 8 character, to have at least one upper case, one lower case and one digit, must have at least one of ._%+-
 
-[Regex Version of Strip](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/regex_strip.py) Use Regex to emulate the string.strip() method.
+[Regex Version of Strip:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/regex_strip.py) Use Regex to emulate the string.strip() method.
 
 ## Chapter 8 - Reading and Writing Files:
 Extending the Multiclipboard
