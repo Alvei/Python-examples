@@ -1,6 +1,6 @@
 # My solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart.
 
-*Chapter 3 - Functions:*
+## Chapter 3 - Functions:
 [The Collatz Sequence / Input Validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_3-Functions/Collattz_Sequence.py)
 
 ## Chapter 4 - Lists:
@@ -10,22 +10,22 @@
 [Fantasy Game Inventory / List to Dictionary Function for Game Inventory](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_5-Structuring_Data/inventory.py)
 
 ## Chapter 6 - Manipulating Strings:
-[Table Printer](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/table_printer.py)
+[Table Printer](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_6-Manipulating_Strings/table_printer.py)
 
-[Parse dates](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/Parse_dates.py)
+[Parse dates](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_6-Manipulating_Strings/bullet_point_adder.py)
 
 [Bullet point adder](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/bullet_point_adder.py)
 
 ## Chapter 7 - Pattern Matching with Regular Expressions:
-[Simple phone number validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/isphone_no.py)
+[Simple phone number validation](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/isphone_no.py)
 
-[Insecure pwd locker](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/pw.py)
+[Insecure pwd locker](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/pw.py)
 
-[Simple email and phone number extractor](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/phone_and_email.py)
+[Simple email and phone number extractor](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/phone_and_email.py)
 
-[Strong Password Detection](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/strong_password.py)
+[Strong Password Detection](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/strong_password.py) Use Regex to extract all the NA phone numbers and emails from a file.
 
-[Regex Version of Strip](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%207%20-%20Regular%20Expressions/regex_strip.py)
+[Regex Version of Strip](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/regex_strip.py) Use Regex to emulate the string.strip() method.
 
 ## Chapter 8 - Reading and Writing Files:
 Extending the Multiclipboard
