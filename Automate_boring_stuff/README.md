@@ -29,7 +29,7 @@ otherwise return a standard date format.
 [Regex Version of Strip:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/regex_strip.py) Use Regex to emulate the string.strip() method.
 
 ## Chapter 8 - Reading and Writing Files:
-Extending the Multiclipboard
+Extending the Multiclipboard:
 
 [Mad Libs:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/mad_libs.py) Use regex to find all keywords and then replace to substitute for a new words.
 
@@ -38,40 +38,46 @@ Extending the Multiclipboard
 [Regex Search:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/regex_search.py) Search for a regex pattern in all txt files in a directory.
 
 ## Chapter 9 - Organizing Files:
-Selective Copy
-Deleting Unneeded Files
-Filling in the Gaps
+Selective Copy:
+Deleting Unneeded Files:
+Filling in the Gaps:
 
 ## Chapter 10 - Debugging:
-Debugging Coin Toss
+Debugging Coin Toss:
 
 ## Chapter 11 - Web Scraping:
 
-[Save web page:]()
-Command Line Emailer
-[Image Site Downloader:]()
-2048
-Link Verification
+[Save web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/download_web_page.py)
+
+[Download web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/download_web_page.py)
+
+Command Line Emailer:
+
+[Image Site Downloader:](/github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_download_images.py) Download jpg/png images from Imgur that match a user's search term.
+
+2048:
+
+Link Verification:
 
 ## Chapter 12 - Working with Excel Spreadsheets:
-Multiplication Table Maker
-Blank Row Inserter
-Spreadsheet Cell Inverter
-Text Files to Spreadsheet
-Spreadsheet to Text Files
+Multiplication Table Maker:
+Blank Row Inserter:
+Spreadsheet Cell Inverter:
+Text Files to Spreadsheet:
+Spreadsheet to Text Files:
 
 ## Chapter 13 - Working with PDF and Word Documents:
-PDF Paranoia - Encryption
-PDF Paranoia - Decryption
-Custom Invitations as Word Documents
-Brute-Force PDF Password Breaker
+PDF Paranoia - Encryption:
+PDF Paranoia - Decryption:
+Custom Invitations as Word Documents:
+Brute-Force PDF Password Breaker:
 
 ## Chapter 14 - Working with CSV Files and JSON Data:
-Excel-to-CSV Converter
+Excel-to-CSV Converter:
 
 ## Chapter 15 - Keeping Time, Scheduling Tasks, and Launching Programs:
-Prettified Stopwatch
-Scheduled Web Comic Downloader
+Prettified Stopwatch:
+Scheduled Web Comic Downloader:
 
 ## Chapter 16 - Sending Email and Text Messages:
 Random Chore Assignment Emailer
@@ -80,10 +86,10 @@ Auto Unsubscriber
 Controlling Your Computer Through Email
 
 ## Chapter 17 - Manipulating Images:
-Extending and Fixing the ## Chapter Project Programs
-Identifying Photo Folders on the Hard Drive
-Custom Seating Cards
+Extending and Fixing the ## Chapter Project Programs:
+Identifying Photo Folders on the Hard Drive:
+Custom Seating Cards:
 
 ## Chapter 18 - Controlling the Keyboard and Mouse with GUI Automation:
-Looking Busy
-Instant Messenger Bot
+Looking Busy:
+Instant Messenger Bot:
