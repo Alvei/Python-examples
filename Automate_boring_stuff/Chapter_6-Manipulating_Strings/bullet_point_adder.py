@@ -3,13 +3,14 @@
     Inspired from Automate the Boring Stuff with Python - Al Sweigart. Chapter 6. Page 139."""
 from os.path import dirname, join
 
-
 def add_char_to_every_lines(file_name: str, characters: str) -> None:
     """ Read a file and add characters to every line. """
 
     # Find the location of the current directory. Assumes the text file is in the same directory
     current_dir = dirname(__file__)
-    file_path = join(current_dir, "./", file_name)
+    #print(f"\nCurrent directory: {current_dir}")
+    file_path = join(current_dir + "/" + file_name)
+    print(f"\nCurrent file: {file_path}")
 
     with open(file_path, 'rt') as in_file:
         try:
@@ -37,7 +38,7 @@ def add_char_to_every_lines(file_name: str, characters: str) -> None:
 
 def main():
     """ Test harness. Use * to create a bullet list."""
-    add_char_to_every_lines("Chapter_6_old_file.md", "* ")
+    add_char_to_every_lines("chap6_old_file.md", "* ")
 
 if __name__ == "__main__":
     main()
