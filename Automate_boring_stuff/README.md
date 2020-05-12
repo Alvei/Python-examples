@@ -30,8 +30,12 @@ otherwise return a standard date format.
 
 ## Chapter 8 - Reading and Writing Files:
 Extending the Multiclipboard
-Mad Libs
-Regex Search
+
+[Mad Libs:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/mad_libs.py) Use regex to find all keywords and then replace to substitute for a new words.
+
+[Random Quiz:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/random_quiz.py)Generalized quiz creation function.
+
+[Regex Search:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/regex_search.py) Search for a regex pattern in all txt files in a directory.
 
 ## Chapter 9 - Organizing Files:
 Selective Copy
@@ -42,8 +46,10 @@ Filling in the Gaps
 Debugging Coin Toss
 
 ## Chapter 11 - Web Scraping:
+
+[Save web page:]()
 Command Line Emailer
-Image Site Downloader
+[Image Site Downloader:]()
 2048
 Link Verification
 
