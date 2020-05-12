@@ -1,4 +1,4 @@
-# Solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart.
+# Solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart and a few other musings.
 
 ## Chapter 3 - Functions:
 [The Collatz Sequence:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_3-Functions/Collattz_Sequence.py) Implement the Collatz sequence.
@@ -7,7 +7,7 @@
 [Comma Code Grid:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_4-Lists/comma_grid.py) Transpose the grid. Ie columns become row.
 
 ## Chapter 5 - Dictionaries and Structuring Data:
-[Fantasy Game Inventory](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_5-Structuring_Data/inventory.py)
+[Fantasy Game Inventory:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_5-Structuring_Data/inventory.py)
 
 ## Chapter 6 - Manipulating Strings:
 [Table Printer:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_6-Manipulating_Strings/table_printer.py) Print a right justified table.
@@ -15,7 +15,7 @@
 [Parse dates:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_6-Manipulating_Strings/Parse_dates.py) Check to see if string is a valid date. Return None is not,
 otherwise return a standard date format.
 
-[Bullet point adder](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_6-Manipulating_Strings/bullet_point_adder.py)
+[Bullet point adder:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_6-Manipulating_Strings/bullet_point_adder.py) Add a character to everyline in a file.
 
 ## Chapter 7 - Pattern Matching with Regular Expressions:
 [Simple phone number validation:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/isphone_no.py) Check if a number is a telephone number.
@@ -61,6 +61,12 @@ Debugging Coin Toss:
 [Download web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/download_web_page.py)
 
 [Save web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/save_web_page.py)
+
+Basic web scraping:
+
+More advanced web scraping:
+
+[White house briefing summary:]() Extract links form Whitehouse briefing:
 
 Command Line Emailer:
 
