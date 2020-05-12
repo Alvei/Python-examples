@@ -1,4 +1,4 @@
-# My solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart.
+# Solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart.
 
 ## Chapter 3 - Functions:
 [The Collatz Sequence:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_3-Functions/Collattz_Sequence.py) Implement the Collatz sequence.
@@ -7,7 +7,7 @@
 [Comma Code Grid:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_4-Lists/comma_grid.py) Transpose the grid. Ie columns become row.
 
 ## Chapter 5 - Dictionaries and Structuring Data:
-[Fantasy Game Inventory / List to Dictionary Function for Game Inventory](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_5-Structuring_Data/inventory.py)
+[Fantasy Game Inventory](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_5-Structuring_Data/inventory.py)
 
 ## Chapter 6 - Manipulating Strings:
 [Table Printer:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_6-Manipulating_Strings/table_printer.py) Print a right justified table.
@@ -38,6 +38,17 @@ Extending the Multiclipboard:
 [Regex Search:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/regex_search.py) Search for a regex pattern in all txt files in a directory.
 
 ## Chapter 9 - Organizing Files:
+
+[Directory Walk:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_9-Organizing_Files/dir_walk.py) Walks and print directory and files recursively.
+
+[Find a pattern across filesnames:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_9-Organizing_Files/filename_pattern.py) Search for a regex pattern in filenames inside the current directory.
+
+[Search for pattern:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_9-Organizing_Files/search_in_files_same_extension.py) Search for a regex pattern inside all files with same extension inside a directory.
+
+[Backup directory:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_9-Organizing_Files/backup2zip.py) Backup to Zip a directory and all its subfolders/
+
+[Shutil:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_9-Organizing_Files/shutil.py) Use shutil to copy and detete files.
+
 Selective Copy:
 Deleting Unneeded Files:
 Filling in the Gaps:
@@ -47,9 +58,9 @@ Debugging Coin Toss:
 
 ## Chapter 11 - Web Scraping:
 
-[Save web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/download_web_page.py)
-
 [Download web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/download_web_page.py)
+
+[Save web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/save_web_page.py)
 
 Command Line Emailer:
 
