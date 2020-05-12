@@ -12,6 +12,8 @@
 ## Chapter 6 - Manipulating Strings:
 [Table Printer](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/table_printer.py)
 
+[Parse dates](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/Parse_dates.py)
+
 [Bullet point adder](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter%206%20-%20Manipulating%20Strings/bullet_point_adder.py)
 
 ## Chapter 7 - Pattern Matching with Regular Expressions:

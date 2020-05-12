@@ -1,10 +1,11 @@
-"""test_chap9_backup2zip.py """
+"""test_parse_dates.py """
 import pytest
 import datetime
 import sys, os
 # required to allow to find the file to test in directory above the test directory
-myPath = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, myPath + '/../')
+"""myPath = os.path.dirname(os.path.abspath(__file__))
+print(myPath)
+sys.path.insert(0, myPath + '\\..\\Chapter_6-Manipulating_Strings\\') """
 from Parse_dates import try_parsing_date
 
 @pytest.mark.parametrize('date, result',[
