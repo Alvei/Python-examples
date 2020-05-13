@@ -38,7 +38,6 @@ Extending the Multiclipboard:
 [Regex Search:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/regex_search.py) Search for a regex pattern in all txt files in a directory.
 
 ## Chapter 9 - Organizing Files:
-
 [Directory Walk:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_9-Organizing_Files/dir_walk.py) Walks and print directory and files recursively.
 
 [Find a pattern across filesnames:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_9-Organizing_Files/filename_pattern.py) Search for a regex pattern in filenames inside the current directory.
@@ -57,16 +56,15 @@ Filling in the Gaps:
 Debugging Coin Toss:
 
 ## Chapter 11 - Web Scraping:
+[Download web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/download_web_page.py). Dowload web page using Requests.
 
-[Download web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/download_web_page.py)
+[Save web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/save_web_page.py). Download and save web page using Requests.
 
-[Save web page:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/save_web_page.py)
+[Basic web scraping:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_basic.py) Basic example using BeautifulSoup.
 
-Basic web scraping:
+[More advanced web scraping:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_long.py) More advanced examples using BeautifulSoup.
 
-More advanced web scraping:
-
-[White house briefing summary:]() Extract links form Whitehouse briefing:
+[White house briefing summary:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_WH.py) Extract links form Whitehouse briefing.
 
 Command Line Emailer:
 
