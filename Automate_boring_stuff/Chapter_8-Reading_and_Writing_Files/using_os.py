@@ -72,9 +72,9 @@ for file in os.listdir(cwd):
 
 print(f"Total size of folder = {size_folder(cwd)}")
 
-###############################
+########################
 # Checking path validity
-###############################
+########################
 print(f"{os.path.exists(cwd)}")
 print(f"{os.path.isfile(cwd)}")
 print(f"{os.path.isdir(cwd)}")
