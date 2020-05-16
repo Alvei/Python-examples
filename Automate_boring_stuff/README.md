@@ -1,4 +1,4 @@
-# Solutions to the projects in Automate the Boring Stuff with Python by Al Sweigart and a few other musings.
+# Projects and examples in Automate the Boring Stuff with Python by Al Sweigart.
 
 ## Chapter 3 - Functions:
 [The Collatz Sequence:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_3-Functions/Collattz_Sequence.py) Implement the Collatz sequence.
@@ -29,6 +29,8 @@ otherwise return a standard date format.
 [Regex Version of Strip:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/regex_strip.py) Use Regex to emulate the string.strip() method.
 
 ## Chapter 8 - Reading and Writing Files:
+[Using OS module:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/using_os.py)
+
 Extending the Multiclipboard:
 
 [Mad Libs:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/mad_libs.py) Use regex to find all keywords and then replace to substitute for a new words.
