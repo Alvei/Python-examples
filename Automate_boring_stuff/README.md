@@ -29,9 +29,9 @@ otherwise return a standard date format.
 [Regex Version of Strip:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_7-Regular_Expressions/regex_strip.py) Use Regex to emulate the string.strip() method.
 
 ## Chapter 8 - Reading and Writing Files:
-[Using OS module:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/using_os.py)
+[Using OS module:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/using_os.py) Various snippets to use OS module.
 
-Extending the Multiclipboard:
+[Extending the Multiclipboard:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/mcb_ext.pyw) Saves, loads and deletes pieces of text to the clipboard.
 
 [Mad Libs:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_8-Reading_and_Writing_Files/mad_libs.py) Use regex to find all keywords and then replace to substitute for a new words.
 
@@ -65,6 +65,8 @@ Debugging Coin Toss:
 [Basic web scraping:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_basic.py) Basic example using BeautifulSoup.
 
 [More advanced web scraping:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_long.py) More advanced examples using BeautifulSoup.
+
+[Find an address:]()Find a given address on googlemap.
 
 [White house briefing summary:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_WH.py) Extract links form Whitehouse briefing.
 
