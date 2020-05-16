@@ -66,7 +66,7 @@ Debugging Coin Toss:
 
 [More advanced web scraping:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_long.py) More advanced examples using BeautifulSoup.
 
-[Find an address:]()Find a given address on googlemap.
+[Find an address:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/mapit.py) Find a given address on googlemap.
 
 [White house briefing summary:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_11-Web_Scraping/bs4_WH.py) Extract links form Whitehouse briefing.
 
@@ -79,6 +79,7 @@ Command Line Emailer:
 Link Verification:
 
 ## Chapter 12 - Working with Excel Spreadsheets:
+Basic examples:
 Multiplication Table Maker:
 Blank Row Inserter:
 Spreadsheet Cell Inverter:
