@@ -79,7 +79,7 @@ Command Line Emailer:
 Link Verification:
 
 ## Chapter 12 - Working with Excel Spreadsheets:
-Basic examples:
+[Basic examples:](https://github.com/Alvei/Python-examples/blob/master/Automate_boring_stuff/Chapter_12-Excel/basic_examples.py) Basic examples of using openpyxl
 Multiplication Table Maker:
 Blank Row Inserter:
 Spreadsheet Cell Inverter:
