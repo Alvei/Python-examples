@@ -1,4 +1,5 @@
 """ tut_requests.py
+    requests module tutorial
     Inspired from: https://realpython.com/python-requests/
 """
 
@@ -6,8 +7,7 @@ import requests
 import requests
 from requests.exceptions import HTTPError
 
-print("\n")
-
+#print("\n")
 # for url in ['https://api.github.com', 'https://api.github.com/invalid']:
 #     try:
 #         response = requests.get(url)
@@ -43,9 +43,15 @@ response = requests.get('https://api.github.com')
 # for items in dict.items():
 #     print(f"Key: {items[0]} \t\t Value: {items[1]}")
 
+# PASSING PARAMETERS IN URL
+#####################################################
+payload = {'key1': 'value1', 'key2': 'value2'}
+r = requests.get('https://httpbin.org/get', params=payload)
+print(f"r.url when combining two  {payload['key1']} and {payload['key2']}: {r.url}\n")
 # Search GitHub's repositories using the AP for requests AND Python.
 # Here is the API guide https://developer.github.com/v3/search/. the combo is 'q': 'term to search'
 # pass params to .get() in the form of a dictionary, as you have just done, or as a list of tuples
+
 response = requests.get(
     'https://api.github.com/search/repositories',
     params={'q': 'requests+language:python'},
