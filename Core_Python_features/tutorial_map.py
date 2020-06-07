@@ -15,10 +15,10 @@ def multiply2(x):
 list0 = [1, 2, 3, 4]
 print(f"multiply {list0} by 2: {list(map(multiply2, list0 ))}")  # Output [2, 4, 6, 8])
 
-iterator = range(0, 10)
+iteratable = range(0, 10)
 function = lambda x: x**2
 
-ans_gen = map(function, iterator)
+ans_gen = map(function, iteratable)
 print(f"Output of map() is : {type(ans_gen)}")
 
 # Use list() to convert generator to list.
