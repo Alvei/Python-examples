@@ -4,7 +4,6 @@
 """
 
 import requests
-import requests
 from requests.exceptions import HTTPError
 
 #print("\n")

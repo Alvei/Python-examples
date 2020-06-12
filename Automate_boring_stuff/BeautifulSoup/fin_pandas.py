@@ -1,4 +1,5 @@
 """ fin_pandas.py
+    Example using OOP to gather stok statistics.
     Inspired by
     https://medium.com/c%C3%B3digo-ecuador/python-web-scraping-stock-market-statistics-on-yahoo-finance-455929c835ed
     https://gist.github.com/dray89/46a982956d9667474e2cfcedf07406a0
@@ -13,7 +14,6 @@ from bs4 import BeautifulSoup
 import requests, lxml
 from lxml import html
 from datetime import date, datetime
-import astropy.io.misc.asdf.tags.time
 import time
 
 class statistics:
@@ -111,13 +111,29 @@ class statistics:
         return df
 
 if __name__ == "__main__":
-    stocks = ['acn', 'adbe', 'adi', 'adm', 'adp', 'a', 'aa', 'aapl', 'abbv', 'abc', 'abt', 'MSFT']
-    #stocks = ['MSFT']
-    print("*****NEW********")
     price_book = []
     price_sales = []
     PE = []
-    for stock in stocks:
+
+    stocks = ['acn', 'adbe', 'adi', 'adm', 'adp', 'a', 'aa', 'aapl', 'abbv', 'abc', 'abt', 'MSFT']
+    FANG = ['FB', 'AAPL','NFLX','GOOGL']
+    Tech = FANG + ['IBM', 'MSFT', 'DELL', 'CRM', 'ABDE']
+
+    try:
+        # Downloaded the file from https://datahub.io/core/s-and-p-500-companies#data
+        filename = 'constituents_csv.csv'
+        SP500_df = pd.read_csv(filename)
+        SP500_temp = SP500_df.Symbol.tolist()               # Get the symbols and save as a list
+        SP500 = [x.replace(".", "-") for x in SP500_temp]   # Use list comprehension to replace '.' with '-'
+        print(SP500)
+    except IOError:
+        print(f"***Could not read: {filename}")
+
+
+
+    stocks = ['IPS.PA']
+    print("*****NEW********")
+    """ for stock in stocks:
         stock_stats = statistics(stock)
         print(f"Stock: {stock_stats.symbol}")
         table_list = stock_stats.scrape_page()
@@ -137,4 +153,14 @@ if __name__ == "__main__":
         time.sleep(1)
 
     DF = pd.DataFrame({"Stock": stocks, "PE": PE, "P/S": price_sales, "P/B": price_book})
-    print(DF)
+    print(DF) """
+
+stock_stats = statistics('IPS.PA')
+print(f"Stock: {stock_stats.symbol}")
+table_list = stock_stats.scrape_page()
+# print(f"\nNumber of tables: {len(table_list)}")  # There are ten tables
+
+
+table_list = stock_stats.label_stats(table_list)
+for p in table_list:
+    print(f"\n{p}")
