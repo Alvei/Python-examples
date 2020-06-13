@@ -12,6 +12,7 @@
 import re
 import time
 import dateutil.parser
+from datetime import datetime
 import pandas as pd
 import requests
 from requests.exceptions import HTTPError
@@ -34,7 +35,7 @@ def get_url(url: str) -> Any:
         print(f'\n*** Other error occurred:\n{err}')
     return soup
 
-def to_date(date_str: str):
+def to_date(date_str: str) -> datetime:
     """ Convert string to datetime. """
     date_str = re.match(r'[\w\s,]+', date_str)[0]
     return dateutil.parser.parse(date_str)
@@ -55,19 +56,19 @@ def get_date_admitted(table):
     raw_date = table.find(text='Admitted to the Union').next.text
     return to_date(raw_date)
 
-def get_population(table):
+def get_population(table) -> int:
     """ Get state population. """
     raw_population = table.find(text='Population')\
                         .parent.parent.next_sibling\
                         .find('td').text
     return to_int(raw_population)
 
-def get_area(table):
+def get_area(table) -> int:
     """ Get state area using regex. """
     raw_area = table.find(text=re.compile('Total')).next.text
     return to_int(raw_area)
 
-def get_income(table):
+def get_income(table) -> int:
     """ Get state area using regex. """
     raw_income = table.find(text='Median household income').next.next.text
     return to_int(raw_income)
@@ -129,8 +130,9 @@ def main():
     """ Main script. """
     print("\n")
     # ny_url = 'https://en.wikipedia.org/wiki/New_York_(state)'
-    # ny_info = get_state_info(ny_url)
-    # print(ny_info)
+    ny_url = 'https://en.wikipedia.org/wiki/Kansas'
+    ny_info = get_state_info(ny_url)
+    print(ny_info)
 
     # Get the html info on
     list_url = 'https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States'
@@ -139,7 +141,7 @@ def main():
     #print(get_state_info('https://en.wikipedia.org/wiki/Python_Conference'))
     #print(get_url('https://notawebsiteatleastihopenot.net'))   # Website that does not exist should create error
 
-    state_info_list = []
+    """ state_info_list = []
     for link in state_urls:
 
         state_info = get_state_info(link)
@@ -154,6 +156,6 @@ def main():
     print(state_data)
 
     state_data.to_csv('state_data.csv', index=False)
-
+ """
 if __name__ == "__main__":
     main()
