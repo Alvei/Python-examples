@@ -1,14 +1,14 @@
 """ state_table.py
     Gather simple infor on each US state.
 """
+import re
+import time
+import dateutil.parser
+import pandas as pd
 import requests
 from requests.exceptions import HTTPError
 from bs4 import BeautifulSoup as bs
-import re
-import dateutil.parser
-import pprint
-import time
-import pandas as pd
+from typing import Optional
 
 def get_url(url: str) -> str:
     """ Get the soup info from an url and do basic error checking. """
@@ -60,7 +60,7 @@ def get_income(table):
     raw_income = table.find(text='Median household income').next.next.text
     return to_int(raw_income)
 
-def get_state_info(state_url: str) -> dict:
+def get_state_info(state_url: str) -> Optional[dict, None]:
     """ Gather basic info on a state. Does error checking for finding a table and finding a value. """
     try:
         # Use parse page and grab main table, raise exception if no table is found
@@ -88,7 +88,7 @@ def get_state_info(state_url: str) -> dict:
     return state_info
 
 def main():
-
+    """ Main script. """
     ny_url = 'https://en.wikipedia.org/wiki/New_York_(state)'
 
     ny_info = get_state_info(ny_url)
@@ -117,22 +117,17 @@ def main():
 
     for link in state_urls:
 
-        #Step 2.
         state_info = get_state_info(link)
-
-        #Step 3.
         if state_info:
             state_info_list.append(state_info)
         print(state_info['state'])
-        #Be sure to pause
+        # Be sure to pause
         time.sleep(1)
 
-    #Step 4.
+    # Convert the list of dictionary to a dataframe
     state_data = pd.DataFrame(state_info_list)
-
     print(state_data)
 
-    #Step 5.
     state_data.to_csv('state_data.csv', index=False)
 
 if __name__ == "__main__":
