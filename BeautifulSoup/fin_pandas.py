@@ -110,6 +110,36 @@ class statistics:
 
         return df
 
+def ticker_to_excel(stock_name, table_list):
+    """ Save in excel the table. """
+    print(f"Saving {stock_name} to Excel")
+    table_names = ['Valuation', 'Hist', 'Share', 'Div', 'FY', 'Profit', 'Eff', 'P&L', 'BS', 'CF']
+
+    filename = stock_name + '.xlsx'
+    # Create a Pandas Excel writer using XlsxWriter as the engine.
+    writer = pd.ExcelWriter(filename, engine='xlsxwriter')
+
+    for i, p in enumerate(table_list):
+        print(i, p)
+        p.to_excel(writer, sheet_name=table_names[i])
+
+    # Close the Pandas Excel writer and output the Excel file.
+    writer.save()
+
+def get_SP500() -> list:
+    """ Get list of ticker symbols for S&P500. """
+    try:
+        # Downloaded the file from https://datahub.io/core/s-and-p-500-companies#data
+        filename = 'constituents_csv.csv'
+        SP500_df = pd.read_csv(filename)
+        SP500_temp = SP500_df.Symbol.tolist()               # Get the symbols and save as a list
+        SP500 = [x.replace(".", "-") for x in SP500_temp]   # Use list comprehension to replace '.' with '-'
+        print(SP500)
+        return SP500
+    except IOError:
+        print(f"***Could not read: {filename}")
+
+
 if __name__ == "__main__":
     price_book = []
     price_sales = []
@@ -118,18 +148,7 @@ if __name__ == "__main__":
     stocks = ['acn', 'adbe', 'adi', 'adm', 'adp', 'a', 'aa', 'aapl', 'abbv', 'abc', 'abt', 'MSFT']
     FANG = ['FB', 'AAPL','NFLX','GOOGL']
     Tech = FANG + ['IBM', 'MSFT', 'DELL', 'CRM', 'ABDE']
-
-    try:
-        # Downloaded the file from https://datahub.io/core/s-and-p-500-companies#data
-        filename = 'constituents_csv.csv'
-        SP500_df = pd.read_csv(filename)
-        SP500_temp = SP500_df.Symbol.tolist()               # Get the symbols and save as a list
-        SP500 = [x.replace(".", "-") for x in SP500_temp]   # Use list comprehension to replace '.' with '-'
-        print(SP500)
-    except IOError:
-        print(f"***Could not read: {filename}")
-
-
+    SP500 = get_SP500()
 
     stocks = ['IPS.PA']
     print("*****NEW********")
@@ -155,12 +174,13 @@ if __name__ == "__main__":
     DF = pd.DataFrame({"Stock": stocks, "PE": PE, "P/S": price_sales, "P/B": price_book})
     print(DF) """
 
-stock_stats = statistics('IPS.PA')
+stock_stats = statistics('MSFT')
 print(f"Stock: {stock_stats.symbol}")
 table_list = stock_stats.scrape_page()
 # print(f"\nNumber of tables: {len(table_list)}")  # There are ten tables
 
-
 table_list = stock_stats.label_stats(table_list)
 for p in table_list:
     print(f"\n{p}")
+
+#ticker_to_excel(stock_stats.symbol, table_list)

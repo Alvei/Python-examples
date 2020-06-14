@@ -125,24 +125,11 @@ def get_state_links(list_url: str) -> list:
 
     return state_urls
 
+def gather_info_all_state(state_urls:str, begin: int = 0, end: int = 50, save_flag: bool = False) -> None:
+    """ Gather the info on all 50 States and saved them to a csv file. """
 
-def main():
-    """ Main script. """
-    print("\n")
-    # ny_url = 'https://en.wikipedia.org/wiki/New_York_(state)'
-    ny_url = 'https://en.wikipedia.org/wiki/Kansas'
-    ny_info = get_state_info(ny_url)
-    print(ny_info)
-
-    # Get the html info on
-    list_url = 'https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States'
-    state_urls = get_state_links(list_url)
-
-    #print(get_state_info('https://en.wikipedia.org/wiki/Python_Conference'))
-    #print(get_url('https://notawebsiteatleastihopenot.net'))   # Website that does not exist should create error
-
-    """ state_info_list = []
-    for link in state_urls:
+    state_info_list = []
+    for link in state_urls[begin:end]:
 
         state_info = get_state_info(link)
         if state_info:
@@ -155,7 +142,30 @@ def main():
     state_data = pd.DataFrame(state_info_list)
     print(state_data)
 
-    state_data.to_csv('state_data.csv', index=False)
- """
+    if save_flag:
+        # Removes the 1st column with the index
+        filename = 'state_data.csv'
+        state_data.to_csv(filename, index=False)
+        print(f"Saving results to {filename}")
+
+
+def main():
+    """ Main script. """
+    print("\n")
+
+    #print(get_state_info('https://en.wikipedia.org/wiki/Python_Conference'))
+    #print(get_url('https://notawebsiteatleastihopenot.net'))   # Website that does not exist should create error
+
+    # Do a single state
+    # ny_url = 'https://en.wikipedia.org/wiki/New_York_(state)'
+    # ny_url = 'https://en.wikipedia.org/wiki/Kansas'
+    # ny_info = get_state_info(ny_url)
+    # print(ny_info)
+
+    # Get the html info on different states
+    list_url = 'https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States'
+    state_urls = get_state_links(list_url)
+    gather_info_all_state(state_urls)
+
 if __name__ == "__main__":
     main()
