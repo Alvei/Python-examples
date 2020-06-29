@@ -79,6 +79,35 @@ class SongSerializer_new:
         artist.text = song.artist
         return et.tostring(song_element, encoding='unicode')
 
+def get_serializer(format: str):
+    """ Returns the matching serialization function based on format.
+        Creator component. The creator decides which concrete implementation to use.
+    """
+    if format == 'JSON':
+        return _serialize_to_json
+    elif format == 'XML':
+        return _serialize_to_xml
+    else:
+        raise ValueError(format)
+
+def _serialize_to_json(song):
+    """ Product is a function that takes a Song and returns a string representation. """
+    payload = {
+        'id': song.song_id,
+        'title': song.title,
+        'artist': song.artist
+    }
+    return json.dumps(payload)
+
+def _serialize_to_xml(song):
+    """ Product is a function that takes a Song and returns a string representation. """
+    song_element = et.Element('song', attrib={'id': song.song_id})
+    title = et.SubElement(song_element, 'title')
+    title.text = song.title
+    artist = et.SubElement(song_element, 'artist')
+    artist.text = song.artist
+    return et.tostring(song_element, encoding='unicode')
+
 class SongSerializer_Factory_Method:
     """ Class that can convert a song object into its string representation
         according to the value of the format parameter.
@@ -88,7 +117,9 @@ class SongSerializer_Factory_Method:
 
         To complete the implementation of Factory Method, you add a new method
         ._get_serializer() that takes the desired format. This method evaluates
-        the value of format and returns the matching serialization function
+        the value of format and returns the matching serialization function.
+
+        Note that it does not use as many methods but functions.
     """
     def serialize(self, song, format: str):
         """ Call the right serializer. Depends on an interface to complete its task.
@@ -96,35 +127,6 @@ class SongSerializer_Factory_Method:
         """
         serializer = get_serializer(format)
         return serializer(song)
-
-    def get_serializer(format: str):
-        """ Returns the matching serialization function based on format.
-            Creator component. The creator decides which concrete implementation to use.
-        """
-        if format == 'JSON':
-            return self._serialize_to_json
-        elif format == 'XML':
-            return self._serialize_to_xml
-        else:
-            raise ValueError(format)
-
-    def _serialize_to_json(self, song):
-        """ Product is a function that takes a Song and returns a string representation. """
-        payload = {
-            'id': song.song_id,
-            'title': song.title,
-            'artist': song.artist
-        }
-        return json.dumps(payload)
-
-    def _serialize_to_xml(self, song):
-        """ Product is a function that takes a Song and returns a string representation. """
-        song_element = et.Element('song', attrib={'id': song.song_id})
-        title = et.SubElement(song_element, 'title')
-        title.text = song.title
-        artist = et.SubElement(song_element, 'artist')
-        artist.text = song.artist
-        return et.tostring(song_element, encoding='unicode')
 
 # Initialize a song using the Song() Class
 song = Song('1', 'Water of Love', 'Dire Straits')
