@@ -96,7 +96,8 @@ def solution_4b(word: str) -> int:
 
 def solution5(word: str) -> bool:
     """ Valid palindrome:
-        Given a non-empty string s, judge whether you can make it a palindrome.
+        Given a non-empty string s, the task is to check weather by removing
+        at most one character, the string matches with its reversed counterpart.
         The string will only contain lowercase characters a-z.
     """
     for i in range(len(word)):
@@ -105,6 +106,43 @@ def solution5(word: str) -> bool:
             return True
 
     return word == word[::-1]
+
+
+def solution6(nums: list) -> bool:
+    """ Given an list of integers, determine whether the list
+        is monotonic or not. Use all() returns Trueif all items
+        in an iterable are true, otherwise it returns False
+    """
+    return all(nums[i] <= nums[i + 1] for i in range(len(nums) - 1)) or all(
+        nums[i] >= nums[i + 1] for i in range(len(nums) - 1)
+    )
+
+
+def solution7(nums):
+    """ Given an array nums, write a function to move all zeroes to
+        the end of it while maintaining the relative order of
+        the non-zero elements.
+    """
+    for _ in nums:
+        if 0 in nums:
+            nums.remove(0)
+            nums.append(0)
+    return nums
+
+
+def solution8(nums):
+    """ Given an array containing None values fill in the None values
+        with most recent non None value in the array
+    """
+    valid = 0
+    res = []
+    for num in nums:
+        if num is not None:
+            res.append(num)
+            valid = num
+        else:
+            res.append(valid)
+    return res
 
 
 #### Run each questions ####
@@ -135,3 +173,22 @@ for word in words:
 # 5. Valid palindrome
 s = "radkar"
 print(f"Is {s} a palindrome? {solution5(s)}")
+
+# 6. Monotic array
+A = [6, 5, 4, 4]
+B = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
+C = [1, 1, 2, 3, 7]
+print(solution6(A))
+print(solution6(B))
+print(solution6(C))
+
+# 7. Move zeros to the end of the list
+array1 = [0, 1, 0, 3, 12]
+array2 = [1, 7, 0, 0, 8, 0, 10, 12, 0, 4]
+print(solution7(array1))
+print(solution7(array2))
+
+# 8. Fill in the blank
+
+array1 = [1, None, 2, 3, None, None, 5, None]
+print(solution8(array1))
