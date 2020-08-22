@@ -5,7 +5,6 @@
 def fact_i(num: int) -> int:
     """ Calculates the factorial with while loop. """
     assert num > 0 and isinstance(num, int)
-
     result = 1
 
     while num > 1:
@@ -31,5 +30,5 @@ def main():
         print(f"{test}! = {fact_i(test)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
