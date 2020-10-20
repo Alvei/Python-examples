@@ -4,7 +4,8 @@
     numbers in the the two given lists of list added together.
     Inspired by Python Morsels. """
 
-from typing import List
+# from typing import List
+
 
 def add(*matrices: list):
     """ nXn matrix additions using lists. """
@@ -13,10 +14,7 @@ def add(*matrices: list):
     # Loop over the matrices with set comprehension to keep only different shapes in a tuple.
     # The tuple function converts the size of each row which would have been a list into a tuple.
     # The inner list comprehension loops over the row of the given matrix and calculates its length.
-    no_matrix_shapes = {
-        tuple(len(row) for row in matrix)
-        for matrix in matrices
-    }
+    no_matrix_shapes = {tuple(len(row) for row in matrix) for matrix in matrices}
     # matrix_shape is a set, if we have more than 1, all matrices are not of the same size.
     if len(no_matrix_shapes) > 1:
         raise ValueError("Matrices are not of the same shape.")
@@ -25,10 +23,8 @@ def add(*matrices: list):
     # Takes the same rows of each matrices ancd create a list of lists.
     # E.g., [row1_A, row1_B, row1_C] then [row2_A, row2_B, row2_C]
     # Then take the same element of each sub-list and sums them.
-    return [
-        [sum(values) for values in zip(*rows)]
-        for rows in zip(*matrices)
-    ]
+    return [[sum(values) for values in zip(*rows)] for rows in zip(*matrices)]
+
 
 def add_m_matrices_1_comprehension(*matrices: list):
     """ nXn m matrices additions using lists. """
@@ -62,6 +58,7 @@ def add_m_matrices(*matrices: list):
         new_matrix.append(row)
     return new_matrix
 
+
 def add_2_matrices(matrix1: list, matrix2: list):
     """ nXn matrix additions using lists. Using for loop and 2 list comprehension"""
     assert isinstance(matrix1, list)
@@ -79,7 +76,8 @@ def add_2_matrices(matrix1: list, matrix2: list):
     return [
         [elem1 + elem2 for elem1, elem2 in zip(row1, row2)]
         for row1, row2 in zip(matrix1, matrix2)
-        ]
+    ]
+
 
 def add_list_comprehension(matrix1: list, matrix2: list):
     """ nXn matrix additions using lists. Using for loop and 1 list comprehension"""
@@ -89,6 +87,7 @@ def add_list_comprehension(matrix1: list, matrix2: list):
     for row1, row2 in zip(matrix1, matrix2):
         new_matrix.append([elem1 + elem2 for elem1, elem2 in zip(row1, row2)])
     return new_matrix
+
 
 def add_zip(matrix1: list, matrix2: list):
     """ nXn matrix additions using lists. Using for loop and zip. """
@@ -102,6 +101,7 @@ def add_zip(matrix1: list, matrix2: list):
         new_matrix.append(row)
     return new_matrix
 
+
 def add_loop(matrix1: list, matrix2: list):
     """ nXn matrix additions using lists. Using for loop and very clumsy """
 
@@ -113,9 +113,10 @@ def add_loop(matrix1: list, matrix2: list):
         new_matrix.append(temp_list)
     return new_matrix
 
+
 if __name__ == "__main__":
     mat1 = [[1, -2], [-3, 4]]
     mat2 = [[2, -1], [0, -1]]
     mat3 = [[3, 0], [1, -2]]
     print(add(mat1, mat2, mat3))
-    #print(add([[1, 2], [3, 4]], [[1, 3, 4], [1, 2, 3]]))
+    # print(add([[1, 2], [3, 4]], [[1, 3, 4], [1, 2, 3]]))

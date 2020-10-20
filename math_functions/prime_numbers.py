@@ -74,7 +74,9 @@ def is_prime_sqrt(number: int) -> bool:
 
     assert number >= 2
 
-    new_num = int(sqrt(number))  # Trick to improve efficiency. Only do half of the numbers
+    new_num = int(
+        sqrt(number)
+    )  # Trick to improve efficiency. Only do half of the numbers
 
     # Use divisors function that will iterate over all numbers from 2 to (number-1)
     if divisors(number, 2, new_num):
@@ -139,6 +141,7 @@ def list_primes_loop(beg: int, end: int) -> list:
 def sift(number: int, num_list: list) -> List[int]:
     """ Takes a number, and a list of numbers, to
         returns the list of those numbers that are not multiple of n. """
+
     def my_func(var):
         return var % number != 0
 
@@ -167,7 +170,9 @@ def prime_sieve(num_list: list) -> List[int]:
 
 
 if __name__ == "__main__":
-    print(f"\nSize of Prime list up to 500: {len(list_primes(2, 499))}=> Answer should be 94")
+    print(
+        f"\nSize of Prime list up to 500: {len(list_primes(2, 499))}=> Answer should be 94"
+    )
     print(f"Size of Prime list using sqrt trick: {len(list_primes_sqrt(2, 10))}")
     print(f"Prime list using sqrt trick: {list_primes_sqrt(2, 10)}")
-    print( len(prime_sieve(range(2,100))) )
+    print(len(prime_sieve(range(2, 100))))
