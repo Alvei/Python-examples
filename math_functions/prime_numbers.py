@@ -171,7 +171,7 @@ def prime_sieve(num_list: list) -> List[int]:
 
 if __name__ == "__main__":
     print(
-        f"\nSize of Prime list up to 500: {len(list_primes(2, 499))}=> Answer should be 94"
+        f"\nSize of Prime list up to 500: {len(list_primes(2, 499))} => Answer should be 94"
     )
     print(f"Size of Prime list using sqrt trick: {len(list_primes_sqrt(2, 10))}")
     print(f"Prime list using sqrt trick: {list_primes_sqrt(2, 10)}")
