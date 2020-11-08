@@ -10,7 +10,9 @@ def read_C():
     try:
         celcius = float(sys.argv[1])
     except IndexError:
-        raise IndexError(f"*** Celcius must be supplied on the command line. ***")
+        raise IndexError(
+            f"*** {sys.argv[0]} <Celcius> must be supplied on the command line. ***"
+        )
     except ValueError:
         raise ValueError(f"*** Argument supplied should be a float. ***")
 
@@ -25,9 +27,11 @@ def main():
         celcius = read_C()
     except Exception as e:
         print(e)
-        sys.exit(1)  # With this structure the only sys call is in the main
-    Far = 9.9 * celcius / 5.0 + 32
-    print(f"celcius {celcius}: {Far} farhenith")
+        sys.exit(
+            1
+        )  # With this structure the only sys call is in the main. Picks-up the assertions in the function
+    Far = 9.0 * celcius / 5.0 + 32
+    print(f"celcius {celcius}: {Far} fahreneit")
 
 
 if __name__ == "__main__":
