@@ -1,28 +1,34 @@
-import PyPDF2
-#import textract
-import pandas as pd
-import os
+""" Extract text from pdf. """
+# import os
 import logging
-#from nltk.tokenize import word_tokenize
-#from nltk.corpus import stopwords
+
+# import pandas as pd
+import PyPDF2
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
+
+# import textract
+# from nltk.tokenize import word_tokenize
+# from nltk.corpus import stopwords
+
+nltk.download("punkt")
+nltk.download("stopwords")
+
 
 def _is_pdf(file_name=None) -> bool:
-    # TODO: Must be a more detailed check
-    if file_name[-3:].lower() != 'pdf':
+    """ TODO: Must be a more detailed check. """
+    if file_name[-3:].lower() != "pdf":
         return False
     return True
+
 
 def pdf2txt(filename: str) -> str:
     """ Extract the text from PDF. """
     # Open pdf as a binary
     if _is_pdf(filename) is None:
-        logging.warning('Input file is not PDF.')
+        logging.warning("Input file is not PDF.")
         return None
 
-    pdf_obj = open(filename, 'rb')
+    pdf_obj = open(filename, "rb")
 
     # pdfReader variable is a readable object that will be parsed
     pdfReader = PyPDF2.PdfFileReader(pdf_obj)
@@ -50,25 +56,37 @@ def pdf2txt(filename: str) -> str:
 
     return text
 
-users = input("Enter your Name: ")
-path = "C:\\Users\\" + users.strip() + "\\Documents\\"
-name = 'lease_ex.pdf'
-filename = path + name
-text = pdf2txt(filename)
-# Break our text into individual words or sentences.
-tokens = nltk.word_tokenize(text)
-token_sentences = nltk.sent_tokenize(text)
 
-# Punctuation we wish to clean.
-punctuations = ['(',')',';',':','[',']',',', '~', "'"]
+def main():
+    """ Test Harness. """
+    users = input("Enter your Name: ")
+    path = "C:\\Users\\" + users.strip() + "\\Documents\\"
+    name = "lease_ex.pdf"
+    filename = path + name
+    text = pdf2txt(filename)
 
-# Initialize the stopwords variable, which is a list of words like "The," "I," "and," etc. that don't hold much value as keywords.
-stop_words = nltk.corpus.stopwords.words('english')
+    # Break our text into individual words or sentences.
+    tokens = nltk.word_tokenize(text)
+    #token_sentences = nltk.sent_tokenize(text)
 
-# List comprehension that only returns a list of words that are NOT IN stop_words and NOT IN punctuations.
-keywords = [word for word in tokens if not word in stop_words and not word in punctuations]
-#print(f"\nkeywords:{keywords}")
+    # Punctuation we wish to clean.
+    punctuations = ["(", ")", ";", ":", "[", "]", ",", "~", "'"]
 
-print("\nRead the list:")
-#for s in token_sentences:
-#    print(f"{s}\n")
+    # Initialize the stopwords variable, which is a list of words like
+    # "The," "I," "and," etc. that don't hold much value as keywords.
+    stop_words = nltk.corpus.stopwords.words("english")
+
+    # List comprehension that only returns a list of words that are NOT IN
+    # stop_words and NOT IN punctuations.
+    keywords = [
+        word for word in tokens if not word in stop_words and not word in punctuations
+    ]
+    print(f"\nkeywords:{keywords}")
+
+    print("\nRead the list:")
+    # for s in token_sentences:
+    #    print(f"{s}\n")
+
+
+if __name__ == "__main__":
+    main()
