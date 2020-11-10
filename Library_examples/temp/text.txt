@@ -1,0 +1,3 @@
+Un test pour montrer la puissance de pathlib
+deuxieme lignes
+c'est fatiguant quand meme
