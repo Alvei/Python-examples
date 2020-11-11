@@ -1,7 +1,7 @@
-""" Examples uses of Pathlib module. Path lib is supported throughout the standard library due 
+""" Examples uses of Pathlib module. Path lib is supported throughout the standard library due
 to the addition of the file system path protocol.
 References:
-realpython.com/python-pathlib 
+realpython.com/python-pathlib
 Trey Hunner as a Blog Dec 2018. treyhunner.com/2018/12/why-you-should-be-using-pathlib/
 https://docs.python.org/3/library/pathlib.html """
 
