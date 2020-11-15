@@ -1,13 +1,15 @@
 """ data_classes.py
     Defines the following generic classes: Stack, Queue, PriorityQueue
 """
-#from __future__ import annotations
+# from __future__ import annotations
 from typing import TypeVar, Generic
 from typing import List, Deque
-from heapq import  heappush, heappop
-#from typing_extensions import Protocol   # Need to install this module
+from heapq import heappush, heappop
 
-T = TypeVar('T')   # Create a generic type
+# from typing_extensions import Protocol   # Need to install this module
+
+T = TypeVar("T")  # Create a generic type
+
 
 class Stack(Generic[T]):
     """ Generic Stack Class implemented using Python’s built-in list type makes
@@ -18,12 +20,13 @@ class Stack(Generic[T]):
         over-allocates its backing storage so that not every push or pop requires
         resizing and you get an amortized O(1) time complexity for these operations.
 
-        The deque class implements a double-ended queue that supports adding and
+        The Deque class implements a double-ended queue that supports adding and
         removing elements from either end in O(1) time (non-amortized).
 
-        Because deques support adding and removing elements from either end equally
+        Because Deques support adding and removing elements from either end equally
         well, they can serve both as queues and as stacks.
         https://dbader.org/blog/stacks-in-python. """
+
     def __init__(self) -> None:
         """ Initialize a List. """
         self._container: List[T] = []
@@ -62,33 +65,38 @@ class Stack(Generic[T]):
         """ Displays the entire stack as a list. """
         return self._container
 
+
 class Queue(Generic[T]):
     """ Generic Queue class. """
+
     def __init__(self) -> None:
-        """ Initialize a List. """
+        """ Initialize a Special List: Deque as container.
+            It gives us access to .popleft(). """
         self._container: Deque[T] = Deque()
 
     @property
     def empty(self) -> bool:
-        """ Returns True for empty container. """
+        """ Returns True for empty container.
+            Could have implemented as a function. O(1). """
         return not self._container
 
     def push(self, item: T) -> None:
-        """ Add to the end of the queue item(s). """
+        """ Add to the end of the queue item(s). O(1)"""
         self._container.append(item)
 
     def pop(self) -> T:
-        """ Remove the 1st item in the container. FIFO. """
+        """ Remove the 1st item in the container. FIFO. O(1)
+            If we add used a list it would have been in O(n) Linear. """
         if self.empty:
-            raise Exception("Queue empty! Cannot use .pop().")
+            raise Exception("Queue empty! Cannot use .popleft().")
         return self._container.popleft()
 
     def size(self):
-        """ Return the length of the container. """
+        """ Return the length of the container. O(1). """
         return len(self._container)
 
     def peek(self) -> T:
-        """ View element at top of the stack. """
+        """ View element at top of the stack. O(1). """
         if self.empty:
             raise Exception("Queue empty! Cannot use .peek().")
         return self._container[0]
@@ -101,9 +109,11 @@ class Queue(Generic[T]):
         """ Use default repr(). """
         return repr(self._container)
 
+
 class PriorityQueue(Generic[T]):
     """ Generic Priority Queue class using heaps.
         Only works with uniform List.  ie. not [1, "two", 3]"""
+
     def __init__(self) -> None:
         """ Initialize a List. """
         self._container: List[T] = []
