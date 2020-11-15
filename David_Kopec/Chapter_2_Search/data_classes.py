@@ -30,11 +30,12 @@ class Stack(Generic[T]):
 
     @property
     def empty(self) -> bool:
-        """ Returns True for empty container. """
+        """ Returns True for empty container.
+            Chose to implement as property vs. function. O(1). """
         return not self._container
 
     def push(self, item: T) -> None:
-        """ Add to the end of the stack item(s). O(1)"""
+        """ Add to the end of the stack item(s). O(1). """
         self._container.append(item)
 
     def pop(self) -> T:

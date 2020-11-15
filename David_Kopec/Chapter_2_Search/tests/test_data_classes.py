@@ -35,7 +35,7 @@ def test_stack():
 
 def test_stack_pop_empty():
     input = Stack()
-    with pytest.raises(IndexError):
+    with pytest.raises(Exception):
         input.pop()
 
 def test_stack_peek():
@@ -85,7 +85,7 @@ def test_queue():
 
 def test_queue_pop_empty():
     input = Queue()
-    with pytest.raises(IndexError):
+    with pytest.raises(Exception):
         input.pop()
 
 def test_queue_peek():
