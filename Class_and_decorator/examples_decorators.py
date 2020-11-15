@@ -6,6 +6,8 @@ The decorator function provides info on the funtion and returns either
 the same result or the square of the result (in the second case).
 Note that func and its parameters args,kwargs are available
 to new_function inside the decorator.
+Reference
+https://book.pythontips.com/en/latest/decorators.html 
 """
 
 
