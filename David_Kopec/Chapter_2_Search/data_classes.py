@@ -34,11 +34,13 @@ class Stack(Generic[T]):
         return not self._container
 
     def push(self, item: T) -> None:
-        """ Add to the end of the stack item(s). """
+        """ Add to the end of the stack item(s). O(1)"""
         self._container.append(item)
 
     def pop(self) -> T:
-        """ Remove the last item in the container. LIFO. """
+        """ Remove the last item in the container. LIFO. O(1). """
+        if self.empty:
+            raise Exception("Stack empty! Cannot use .pop()")
         return self._container.pop()
 
     def __repr__(self) -> str:
@@ -46,13 +48,13 @@ class Stack(Generic[T]):
         return repr(self._container)
 
     def size(self):
-        """ Return the length of the container. """
+        """ Return the length of the container. O(1). Const time. """
         return len(self._container)
 
     def peek(self) -> T:
-        """ View element at top of the stack. """
+        """ View element at top of the stack. O(1). """
         if self.empty:
-            raise Exception("Stack empty!")
+            raise Exception("Stack empty! Cannot use .peek()")
         return self._container[-1]
 
     def show(self) -> List[T]:
@@ -76,6 +78,8 @@ class Queue(Generic[T]):
 
     def pop(self) -> T:
         """ Remove the 1st item in the container. FIFO. """
+        if self.empty:
+            raise Exception("Queue empty! Cannot use .pop().")
         return self._container.popleft()
 
     def size(self):
@@ -85,7 +89,7 @@ class Queue(Generic[T]):
     def peek(self) -> T:
         """ View element at top of the stack. """
         if self.empty:
-            raise Exception("Queue empty!")
+            raise Exception("Queue empty! Cannot use .peek().")
         return self._container[0]
 
     def show(self) -> Deque[T]:
