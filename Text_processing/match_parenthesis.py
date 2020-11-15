@@ -81,8 +81,10 @@ def match_symbols(msg: str) -> bool:
         else:
             pass
 
-    if my_stack.empty:
+    if my_stack.empty:  # when loop is done then we have match all parenthesis
         return True
+
+    return False  # Default behavior
 
 
 def main(msg):
