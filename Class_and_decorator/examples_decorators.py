@@ -6,9 +6,12 @@ The decorator function provides info on the funtion and returns either
 the same result or the square of the result (in the second case).
 Note that func and its parameters args,kwargs are available
 to new_function inside the decorator.
-Reference
-https://book.pythontips.com/en/latest/decorators.html 
+References
+https://book.pythontips.com/en/latest/decorators.html
+https://www.youtube.com/watch?v=FsAPt_9Bf3U
 """
+from functools import wraps
+from typing import Callable
 
 
 def hi(name="Hugo"):
@@ -156,10 +159,101 @@ def reviewing_decorators():
     hi4()
 
 
+def outer_function(msg: str) -> Callable:
+    def inner_function():
+        print(msg)
+
+    return inner_function  #  Does not execute the function but returns it
+
+
+def decorator_function(original_function: Callable):
+    """ Instead of receiving variable it receives a funciton as an argument. """
+
+    def wrapper_function(*args, **kwargs):
+        """ Inner function has access to outer function variables. """
+        print(f"Wrapper executed before {original_function.__name__}")
+        return original_function(*args, **kwargs)  # Execute the passed function
+
+    return wrapper_function  # Does not execute the function but returns it
+
+
+class decorator_class(object):
+    def __init__(self, original_function):
+        self.original_function = original_function
+
+    def __call__(self, *args, **kwargs):
+        print(f"Call method. executed before {self.original_function.__name__}")
+        return self.original_function(*args, **kwargs)  # Execute the passed function
+
+
+def my_logger(orig_func):
+    import logging
+
+    logging.basicConfig(
+        filename="{}.log".format(orig_func.__name__), level=logging.INFO
+    )
+
+    @wraps(orig_func)  # Needed to have the stack decorators
+    def wrapper(*args, **kwargs):
+        logging.info(f"Ran with args: {args} and kwargs: {kwargs}")
+        return orig_func(*args, **kwargs)
+
+    return wrapper  # point to function not execute the function
+
+
+def my_timer(orig_func: Callable):
+    import time
+
+    @wraps(orig_func)  # Needed to have stack decorators
+    def wrapper(*args, **kwargs):
+        t1 = time.time()
+        result = orig_func(*args, **kwargs)
+        t2 = time.time() - t1
+        print(f"{orig_func.__name__} ran in: {t2} sec")
+        return result
+
+    return wrapper
+
+
+def display():
+    """ Function to be passed to the decorator. """
+    print(f"Running {display.__name__}")
+
+
+# @decorator_class  # Less common but equivalent
+# @decorator_function # More common
+@my_timer
+@my_logger
+def display2():
+    """ Function to be passed to the decorator. """
+    import time
+
+    time.sleep(1)
+    print(f"Running display2")
+
+
+# @decorator_class  # Less common but equivalent
+# @decorator_function # More common
+@my_logger
+def display_info(name: str, age: int):
+    print(f"display_info {name} {age}")
+
+
 def main():
     """ Test harness """
     # reviewing_functions()
-    reviewing_decorators()
+    # reviewing_decorators()
+    hi_func = outer_function("Hi")
+    bye_func = outer_function("Bye")
+    hi_func()
+    bye_func()
+
+    decorated_display = decorator_function(display)  # It points to a function
+    decorated_display()
+
+    display2()  # noticed that we do not need to do the 2 steps assigments
+
+    display_info("Bob", 50)
 
     #############
     print(f"\nSimple addition: {add_integers(3, 5)}")
