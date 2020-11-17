@@ -7,5 +7,14 @@
   "test_fibonacci.py::test_fib7",
   "test_fibonacci.py::test_fib8",
   "test_fibonacci.py::test_matmult",
-  "test_fibonacci.py::test_matrix_power"
+  "test_fibonacci.py::test_matrix_power",
+  "tests/test_fibonacci.py::test_fib1",
+  "tests/test_fibonacci.py::test_fib2",
+  "tests/test_fibonacci.py::test_fib4",
+  "tests/test_fibonacci.py::test_fib5",
+  "tests/test_fibonacci.py::test_fib6",
+  "tests/test_fibonacci.py::test_fib7",
+  "tests/test_fibonacci.py::test_fib8",
+  "tests/test_fibonacci.py::test_matmult",
+  "tests/test_fibonacci.py::test_matrix_power"
 ]
