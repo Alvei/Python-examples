@@ -1,4 +1,7 @@
 """ printer_queue.py
+    Inspired by Problem Solving with Algo and Data Structure - 2013
+             from Miller, Ranum
+    See page 86
     Implement 3 classes the simulate a printer queue behaviors.
     PrintQueue Class: class that follows the queue data structure
     Job Class: 

@@ -2,6 +2,7 @@
 """
 import sys
 from typing import TypeVar, Generic, List
+from collections import deque
 
 T = TypeVar("T")  # Create a generic type
 
@@ -87,11 +88,41 @@ def match_symbols(msg: str) -> bool:
     return False  # Default behavior
 
 
-def main(msg):
+def match_symbols_deque(msg: str) -> bool:
+    """ Re-implement with deque. """
+    container = deque(msg)
+    symbol_pairs = {"(": ")", "[": "]", "{": "}"}
+    openers = symbol_pairs.keys()
+
+    index = len(msg)
+    while index > 2:
+        lhs = container.popleft()
+        rhs = container.pop()
+        if symbol_pairs[lhs] != rhs:
+            return False
+        index -= 2
+    if index == 1:
+        print(container)
+        return False
+    return True
+
+
+def main():
     """ Test Harness. """
 
-    print(match_symbols(msg))
+    print(match_symbols("()"))
+    print(match_symbols("([)]"))
+    print(match_symbols("[()]"))
+    print(match_symbols("(allo)"))
+    print(match_symbols("[()"))
+
+    print("\nDeque:")
+    print(match_symbols_deque("()"))
+    print(match_symbols_deque("([)]"))
+    print(match_symbols_deque("[()]"))
+    print(match_symbols_deque("(allo)"))
+    print(match_symbols_deque("[()"))
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main()
