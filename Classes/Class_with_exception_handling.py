@@ -1,4 +1,9 @@
-""" Context managers can be useful to rollback operations based on a condition (or exception). """
+""" Context managers can be useful to rollback operations based on a condition (or exception).
+    A context manager is a simple “protocol” (or interface) that your object needs to follow so
+    it can be used with the with statement. Basically all you need to do is add __enter__ and __exit__
+    methods to an object if you want it to function as a context manager.
+    https://www.python.org/dev/peps/pep-0343/
+    https://dbader.org/blog/python-dunder-methods """
 
 class Account:
     """ """
@@ -17,6 +22,7 @@ class Account:
 
     def __enter__(self):
         """ """
+        print('\tENTER WITH: Making backup of transactions for rollback')
         self._copy_transaction = list(self._transaction)
         return self
 
@@ -29,22 +35,26 @@ class Account:
 def main():
     """ Test Harness"""
     acc = Account()
-    print(f"Balance: {acc.balance}")
+    print(f"Balance at beginning: {acc.balance}")
 
     with acc as a:
-        a.add_amount(10)
-    print(f"Balance: {acc.balance}")
+        num = 10
+        a.add_amount(num)
+    print(f"Balance add {num}: {acc.balance}")
 
-    a.add_amount(-20)
-    print(f"Balance: {acc.balance}")
-
-    with acc as a:
-        a.add_amount(20)
-    print(f"Balance: {acc.balance}")
+    num = -20
+    a.add_amount(num)
+    print(f"Balance add {num}: {acc.balance}")
 
     with acc as a:
-        a.add_amount(-20)
-    print(f"Balance: {acc.balance}")
+        num = 10
+        a.add_amount(num)
+    print(f"Balance add {num}: {acc.balance}")
+
+    with acc as a:
+        num = 20
+        a.add_amount(num)
+    print(f"Balance add {num}: {acc.balance}")
 
 if __name__ == "__main__":
     main()
