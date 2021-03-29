@@ -33,6 +33,7 @@ class Square(Polygon):
         super().__init__(4, "Square", size, color, line_thickness)
 
     def draw(self):
+        """ Overide method and fill the square. """
         turtle.begin_fill()
         super().draw()
         turtle.end_fill()
@@ -41,4 +42,4 @@ class Square(Polygon):
 if __name__ == "__main__":
     square = Square(size=300, color="#abcdef")
     square.draw()
-
+    turtle.done()  # Necessary to see the fill
