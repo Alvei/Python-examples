@@ -3,3 +3,5 @@
 .dmypy.json
 dmypy.json
 .DS*
+__pychache__
+*.pyc
